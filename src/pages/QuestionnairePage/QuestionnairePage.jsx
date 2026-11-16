@@ -238,7 +238,7 @@ const DigitalMarketingQuestionnaire = () => {
         {/* Soft Ambient Brand Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[260px] bg-gradient-to-r from-[#ffed4e]/20 via-[#ffb400]/15 to-[#0072BC]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+        <div className="w-full max-w-[1560px] mx-auto px-6 sm:px-12 lg:px-[80px] xl:px-[100px] relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-[#0072BC] text-xs font-sans font-bold uppercase tracking-wider mb-3 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#ffb400]" />
             <span>Digital Performance & Marketing Discovery</span>
@@ -248,14 +248,14 @@ const DigitalMarketingQuestionnaire = () => {
             Digital Marketing Initial Questionnaire
           </h1>
 
-          <p className="mt-3 text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed">
+          <p className="mt-3 text-xs sm:text-sm md:text-base text-slate-600 max-w-3xl mx-auto font-sans leading-relaxed">
             Please fill in this initial discovery form with your project parameters, campaign objectives, and targeting preferences so our strategy team can engineer a tailored marketing plan.
           </p>
         </div>
       </header>
 
       {/* ===================== MAIN FORM WORKFLOW CONTAINER ===================== */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6">
+      <main className="w-full max-w-[1560px] mx-auto px-6 sm:px-12 lg:px-[80px] xl:px-[100px] pb-16">
         <AnimatePresence mode="wait">
           {isSubmitted ? (
             /* ================= SUCCESS BANNER ================= */
@@ -323,7 +323,7 @@ const DigitalMarketingQuestionnaire = () => {
                 </div>
 
                 {/* Grid Inputs */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
                   <div>
                     <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
                       Full Name <span className="text-red-500">*</span>
@@ -507,7 +507,7 @@ const DigitalMarketingQuestionnaire = () => {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     {SERVICES_OPTIONS.map((srv) => {
                       const isChecked = formData.services.includes(srv);
                       return (
@@ -558,7 +558,7 @@ const DigitalMarketingQuestionnaire = () => {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
                     {GOALS_OPTIONS.map((goal) => {
                       const isChecked = formData.projectGoals.includes(goal);
                       return (
@@ -662,7 +662,7 @@ const DigitalMarketingQuestionnaire = () => {
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 font-sans">
                     Do you have an existing account from the following?
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     {EXISTING_ACCOUNTS_OPTIONS.map((acc) => {
                       const isChecked = formData.existingAccounts.includes(acc);
                       return (
@@ -707,7 +707,7 @@ const DigitalMarketingQuestionnaire = () => {
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 font-sans">
                     What Search engines or platforms should we advertise on?
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
                     {PLATFORMS_OPTIONS.map((plat) => {
                       const isChecked = formData.targetPlatforms.includes(plat);
                       return (
