@@ -204,11 +204,11 @@ const WebQuestionnairePage = () => {
       `}</style>
 
       {/* ===================== HERO BANNER ===================== */}
-      <header className="relative pt-8 pb-6 sm:pt-10 sm:pb-8 bg-gradient-to-b from-slate-100/90 via-white to-[#f0f4f8] border-b border-slate-200/70 overflow-hidden mb-5 sm:mb-6 text-center">
+      <header className="relative pt-8 pb-6 sm:pt-10 sm:pb-8 bg-gradient-to-b from-slate-100/90 via-white to-[#f0f4f8] border-b border-slate-200/70 overflow-hidden mb-6 sm:mb-8 text-center">
         {/* Soft Ambient Brand Glows */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[300px] bg-gradient-to-r from-[#ffed4e]/20 via-[#ffb400]/15 to-[#0072BC]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+        <div className="w-full max-w-[1560px] mx-auto px-6 sm:px-12 lg:px-[80px] xl:px-[100px] relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-[#0072BC] text-xs font-sans font-bold uppercase tracking-wider mb-4 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#ffb400]" />
             <span>WEBSITE DESIGN & DEVELOPMENT</span>
@@ -218,24 +218,24 @@ const WebQuestionnairePage = () => {
             Client Project Discovery Questionnaire
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-3xl mx-auto font-sans leading-relaxed">
             <strong>Welcome!</strong> Thank you for choosing our website design and development services. Please complete this questionnaire so we can understand your business, expectations, design preferences, and technical requirements.
           </p>
         </div>
       </header>
 
       {/* ===================== MAIN FORM CONTAINER ===================== */}
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+      <main className="w-full max-w-[1560px] mx-auto px-6 sm:px-12 lg:px-[80px] xl:px-[100px] pb-16">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
 
           {/* ================= SECTION 01: BUSINESS INFORMATION ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Building2 className="w-4 h-4 text-[#0b4a8b]" />
               <span>1. PRIMARY INFORMATION</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
                   COMPANY / BUSINESS NAME <span className="text-red-500">*</span>
@@ -356,7 +356,7 @@ const WebQuestionnairePage = () => {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div className="sm:col-span-2 lg:col-span-2">
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
                   BUSINESS ADDRESS
                 </label>
@@ -369,7 +369,7 @@ const WebQuestionnairePage = () => {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div className="sm:col-span-2 lg:col-span-2">
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
                   INDUSTRY / BUSINESS CATEGORY <span className="text-red-500">*</span>
                 </label>
@@ -383,7 +383,7 @@ const WebQuestionnairePage = () => {
                 />
               </div>
 
-              <div className="md:col-span-2">
+              <div className="sm:col-span-2 lg:col-span-4">
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
                   BRIEFLY DESCRIBE YOUR BUSINESS AND SERVICES <span className="text-red-500">*</span>
                 </label>
@@ -400,7 +400,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 02: PROJECT OVERVIEW ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Target className="w-4 h-4 text-[#0b4a8b]" />
               <span>2. PROJECT OVERVIEW</span>
@@ -569,7 +569,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 03: WEBSITE STRUCTURE & PAGES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <LayoutGrid className="w-4 h-4 text-[#0b4a8b]" />
               <span>3. WEBSITE STRUCTURE & PAGES</span>
@@ -714,7 +714,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 04: DESIGN & BRANDING PREFERENCES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Palette className="w-4 h-4 text-[#0b4a8b]" />
               <span>4. DESIGN & BRANDING PREFERENCES</span>
@@ -900,7 +900,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 05: FUNCTIONALITY & FEATURES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Cpu className="w-4 h-4 text-[#0b4a8b]" />
               <span>5. FUNCTIONALITY & FEATURES</span>
@@ -977,7 +977,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 06: CONTENT & BRAND ASSETS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <FolderUp className="w-4 h-4 text-[#0b4a8b]" />
               <span>6. CONTENT & BRAND ASSETS</span>
@@ -1175,7 +1175,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 07: TECHNICAL REQUIREMENTS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Server className="w-4 h-4 text-[#0b4a8b]" />
               <span>7. TECHNICAL REQUIREMENTS</span>
@@ -1345,7 +1345,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 08: SEO & DIGITAL MARKETING ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Search className="w-4 h-4 text-[#0b4a8b]" />
               <span>8. SEO & DIGITAL MARKETING</span>
@@ -1453,7 +1453,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 09: E-COMMERCE REQUIREMENTS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase">
                 <ShoppingCart className="w-4 h-4 text-[#0b4a8b]" />
@@ -1628,7 +1628,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 10: BUDGET & PROJECT TIMELINE ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Calendar className="w-4 h-4 text-[#0b4a8b]" />
               <span>10. BUDGET & PROJECT TIMELINE</span>
@@ -1760,7 +1760,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 11: PROJECT MANAGEMENT & APPROVALS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <Users className="w-4 h-4 text-[#0b4a8b]" />
               <span>11. PROJECT MANAGEMENT & APPROVALS</span>
@@ -1861,7 +1861,7 @@ const WebQuestionnairePage = () => {
           </div>
 
           {/* ================= SECTION 12: FINAL NOTES & CONFIRMATION ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6">
+          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-4 sm:p-5 md:p-6 lg:p-7">
             <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
               <FileCheck className="w-4 h-4 text-[#0b4a8b]" />
               <span>12. FINAL NOTES & CONFIRMATION</span>
