@@ -156,7 +156,7 @@ const CommercialsPage = () => {
   });
 
   return (
-    <div className="bg-[#fafbfc] min-h-screen font-lora text-slate-900 overflow-x-hidden selection:bg-[#ffed4e] selection:text-slate-950">
+    <div className="bg-[#fafbfc] min-h-screen font-lora text-slate-900 overflow-x-hidden selection:bg-[#F58220] selection:text-white">
       {/* ===================== HERO SECTION WITH SUBTLE AMBIENT ANIMATION ===================== */}
       <section className="relative pt-12 pb-12 sm:pt-16 sm:pb-16 bg-gradient-to-b from-slate-100/80 via-white to-[#fafbfc] border-b border-slate-200/70 overflow-hidden">
         {/* Floating Animated Ambient Glows */}
@@ -193,12 +193,12 @@ const CommercialsPage = () => {
       </section>
 
       {/* ===================== 8 SERVICES SELECTION HUB ===================== */}
-      <section className="sticky top-20 z-40 bg-white border-b border-slate-200/90 shadow-xs py-3.5 sm:py-4 px-3 sm:px-6 lg:px-8">
+      <section className="sticky top-20 z-40 bg-[#fafbfc]/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] py-3.5 sm:py-4 px-3 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Bar */}
           <div className="flex items-center justify-between mb-2.5 sm:mb-3 text-xs sm:text-sm font-sans">
             <span className="font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-              <SlidersHorizontal className="w-4 h-4 text-[#0072BC]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#F58220]" />
               <span>Select Service (Total 8 Services):</span>
             </span>
             <span className="font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
@@ -227,18 +227,18 @@ const CommercialsPage = () => {
                   className={`group relative text-left p-3 sm:p-3.5 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[96px] sm:min-h-[104px] ${
                     isActive
                       ? 'bg-[#0072BC] text-white shadow-md shadow-blue-600/20 ring-2 ring-[#0072BC] border border-transparent'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-slate-300 shadow-2xs'
+                      : 'bg-white hover:bg-white text-slate-800 border border-slate-200 hover:border-slate-300 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
                   }`}
                 >
                   {/* Top Bar with Number & Icon */}
                   <div className="flex items-center justify-between w-full mb-1 sm:mb-1.5">
                     <span className={`text-[11px] sm:text-xs font-sans font-bold tracking-widest ${
-                      isActive ? 'text-[#ffed4e]' : 'text-slate-400'
+                      isActive ? 'text-[#F58220]' : 'text-slate-400'
                     }`}>
                       {tab.num}
                     </span>
                     <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors ${
-                      isActive ? 'bg-white/15 text-[#ffed4e]' : 'bg-slate-100 text-[#0072BC]'
+                      isActive ? 'bg-white/15 text-[#F58220]' : 'bg-slate-100 text-[#0072BC]'
                     }`}>
                       <Icon className="w-4 h-4" />
                     </div>
@@ -262,7 +262,7 @@ const CommercialsPage = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTabUnderline"
-                      className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#ffed4e] rounded-full shadow-sm"
+                      className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#F58220] rounded-full shadow-sm"
                     />
                   )}
                 </motion.button>
@@ -314,13 +314,13 @@ const CommercialsPage = () => {
                       transition={{ duration: 0.25 }}
                       className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
                         tier.popular
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border-2 border-[#ffb400]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border-2 border-[#F58220]'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
                       }`}
                     >
                       {tier.popular && (
-                        <span className="absolute -top-3 right-6 bg-[#ffed4e] text-slate-950 text-[11px] font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md tracking-wide flex items-center gap-1 border border-amber-300">
-                          <Flame className="w-3.5 h-3.5 text-amber-700" />
+                        <span className="absolute -top-3 right-6 bg-[#F58220] text-white text-[11px] font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md tracking-wide flex items-center gap-1 border border-orange-400">
+                          <Flame className="w-3.5 h-3.5 text-white fill-white" />
                           <span>Most Popular</span>
                         </span>
                       )}
@@ -513,13 +513,13 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#F58220] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1 border border-amber-300">
-                        <Star className="w-3 h-3 fill-slate-950" />
+                      <span className="absolute -top-3 right-5 bg-[#F58220] text-white text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1 border border-orange-400">
+                        <Star className="w-3 h-3 fill-white" />
                         <span>Recommended</span>
                       </span>
                     )}
@@ -673,7 +673,7 @@ const CommercialsPage = () => {
 
               {/* What is GEO/AEO Explainer */}
               <motion.div variants={itemVariants} className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-lg border border-blue-400/30">
-                <div className="flex items-center gap-2 text-[#ffed4e] text-xs font-bold uppercase tracking-wider font-sans mb-2">
+                <div className="flex items-center gap-2 text-[#F58220] text-xs font-bold uppercase tracking-wider font-sans mb-2">
                   <Sparkles className="w-4 h-4" />
                   <span>What is Generative Engine Optimization?</span>
                 </div>
@@ -683,7 +683,7 @@ const CommercialsPage = () => {
                 <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
                   {GEO_PACKAGES_DATA.keyAspects.map((aspect, idx) => (
                     <div key={idx} className="p-3.5 rounded-xl bg-white/10 border border-white/15">
-                      <div className="text-xs sm:text-sm font-bold text-[#ffed4e] mb-1">{aspect.title}</div>
+                      <div className="text-xs sm:text-sm font-bold text-[#F58220] mb-1">{aspect.title}</div>
                       <div className="text-xs text-blue-100 leading-snug">{aspect.desc}</div>
                     </div>
                   ))}
@@ -699,12 +699,12 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#F58220] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-amber-300">
+                      <span className="absolute -top-3 right-5 bg-[#F58220] text-white text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-orange-400">
                         Best Value
                       </span>
                     )}
@@ -819,12 +819,12 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#F58220] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-amber-300">
+                      <span className="absolute -top-3 right-5 bg-[#F58220] text-white text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-orange-400">
                         Recommended
                       </span>
                     )}
@@ -946,12 +946,12 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
                       plan.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#F58220] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {plan.popular && (
-                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-amber-300">
+                      <span className="absolute -top-3.5 right-6 bg-[#F58220] text-white text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-orange-400">
                         Most Popular
                       </span>
                     )}
@@ -981,7 +981,7 @@ const CommercialsPage = () => {
                         </div>
                         <div className="flex justify-between">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
-                          <span className={`font-semibold ${plan.popular ? 'text-[#ffed4e]' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
+                          <span className={`font-semibold ${plan.popular ? 'text-[#F58220]' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
@@ -1079,12 +1079,12 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#F58220] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-amber-300">
+                      <span className="absolute -top-3.5 right-6 bg-[#F58220] text-white text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-orange-400">
                         Recommended
                       </span>
                     )}
@@ -1101,7 +1101,7 @@ const CommercialsPage = () => {
                         {pkg.deliverables.map((deliv, idx) => (
                           <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
                             <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                              pkg.popular ? 'text-[#ffed4e]' : 'text-emerald-600'
+                              pkg.popular ? 'text-[#F58220]' : 'text-emerald-600'
                             }`} />
                             <span className={pkg.popular ? 'text-white' : 'text-slate-700'}>{deliv}</span>
                           </div>
