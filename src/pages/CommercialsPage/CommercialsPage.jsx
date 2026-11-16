@@ -193,12 +193,12 @@ const CommercialsPage = () => {
       </section>
 
       {/* ===================== 8 SERVICES SELECTION HUB ===================== */}
-      <section className="sticky top-20 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs py-3.5 px-3 sm:px-6 lg:px-8">
+      <section className="sticky top-20 z-40 bg-white border-b border-slate-200/90 shadow-xs py-3.5 sm:py-4 px-3 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Bar */}
-          <div className="flex items-center justify-between mb-2.5 text-xs font-sans">
+          <div className="flex items-center justify-between mb-2.5 sm:mb-3 text-xs sm:text-sm font-sans">
             <span className="font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#ffb400]" />
+              <SlidersHorizontal className="w-4 h-4 text-[#0072BC]" />
               <span>Select Service (Total 8 Services):</span>
             </span>
             <span className="font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
@@ -224,35 +224,35 @@ const CommercialsPage = () => {
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   type="button"
-                  className={`group relative text-left p-2.5 sm:p-3 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                  className={`group relative text-left p-3 sm:p-3.5 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[96px] sm:min-h-[104px] ${
                     isActive
-                      ? 'bg-[#030712] text-white shadow-lg ring-2 ring-[#ffb400]'
+                      ? 'bg-[#0072BC] text-white shadow-md shadow-blue-600/20 ring-2 ring-[#0072BC] border border-transparent'
                       : 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-slate-300 shadow-2xs'
                   }`}
                 >
                   {/* Top Bar with Number & Icon */}
-                  <div className="flex items-center justify-between w-full mb-1">
-                    <span className={`text-[10px] font-sans font-bold tracking-widest ${
+                  <div className="flex items-center justify-between w-full mb-1 sm:mb-1.5">
+                    <span className={`text-[11px] sm:text-xs font-sans font-bold tracking-widest ${
                       isActive ? 'text-[#ffed4e]' : 'text-slate-400'
                     }`}>
                       {tab.num}
                     </span>
-                    <div className={`w-6 h-6 rounded-md flex items-center justify-center transition-colors ${
-                      isActive ? 'bg-white/10 text-[#ffed4e]' : 'bg-slate-100 text-[#0072BC]'
+                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors ${
+                      isActive ? 'bg-white/15 text-[#ffed4e]' : 'bg-slate-100 text-[#0072BC]'
                     }`}>
-                      <Icon className="w-3.5 h-3.5" />
+                      <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
                   {/* Service Title & Desc */}
                   <div>
-                    <div className={`text-xs sm:text-sm font-bold font-lora leading-snug line-clamp-1 ${
+                    <div className={`text-[14px] sm:text-[16px] font-bold font-lora leading-snug line-clamp-1 ${
                       isActive ? 'text-white' : 'text-slate-900 group-hover:text-[#0072BC]'
                     }`}>
                       {tab.shortLabel}
                     </div>
-                    <div className={`text-[10px] sm:text-[11px] font-sans mt-0.5 line-clamp-1 ${
-                      isActive ? 'text-slate-300' : 'text-slate-500'
+                    <div className={`text-[12px] sm:text-[14px] font-sans mt-0.5 sm:mt-1 line-clamp-1 ${
+                      isActive ? 'text-blue-100' : 'text-slate-500'
                     }`}>
                       {tab.desc}
                     </div>
@@ -262,7 +262,7 @@ const CommercialsPage = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTabUnderline"
-                      className="absolute -bottom-1 left-2.5 right-2.5 h-0.5 bg-gradient-to-r from-[#ffed4e] via-[#ffb400] to-[#ffed4e] rounded-full shadow-sm"
+                      className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#ffed4e] rounded-full shadow-sm"
                     />
                   )}
                 </motion.button>
@@ -314,19 +314,19 @@ const CommercialsPage = () => {
                       transition={{ duration: 0.25 }}
                       className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
                         tier.popular
-                          ? 'bg-gradient-to-b from-[#030712] via-slate-900 to-[#030712] text-white shadow-xl scale-[1.02] border-2 border-[#ffed4e]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border-2 border-[#ffb400]'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
                       }`}
                     >
                       {tier.popular && (
-                        <span className="absolute -top-3 right-6 bg-[#ffed4e] text-slate-950 text-[11px] font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-sm tracking-wide flex items-center gap-1">
-                          <Flame className="w-3 h-3 text-amber-700" />
+                        <span className="absolute -top-3 right-6 bg-[#ffed4e] text-slate-950 text-[11px] font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md tracking-wide flex items-center gap-1 border border-amber-300">
+                          <Flame className="w-3.5 h-3.5 text-amber-700" />
                           <span>Most Popular</span>
                         </span>
                       )}
                       <div>
                         <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-2 ${
-                          tier.popular ? 'text-[#ffed4e]' : 'text-slate-500'
+                          tier.popular ? 'text-blue-100' : 'text-slate-500'
                         }`}>
                           Monthly Ad Spend Bracket
                         </div>
@@ -339,7 +339,7 @@ const CommercialsPage = () => {
                           {tier.managementFee}
                         </div>
                         <p className={`mt-2 text-xs sm:text-sm font-sans ${
-                          tier.popular ? 'text-slate-300' : 'text-slate-500'
+                          tier.popular ? 'text-blue-100' : 'text-slate-500'
                         }`}>
                           {tier.subtext}
                         </p>
@@ -513,32 +513,32 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-[#030712] text-white shadow-xl border-2 border-[#ffed4e] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1 border border-amber-300">
                         <Star className="w-3 h-3 fill-slate-950" />
                         <span>Recommended</span>
                       </span>
                     )}
                     <div>
                       <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-[#ffed4e]' : 'text-slate-500'
+                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
                       }`}>
                         {pkg.contract} Contract
                       </div>
                       <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name}</div>
                       <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
-                        pkg.popular ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-700'
+                        pkg.popular ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
                       }`}>
                         🎯 {pkg.keywords}
                       </div>
                       <div className="text-2xl sm:text-3xl font-black font-sans">
                         {pkg.cost}
                       </div>
-                      <div className={`text-xs font-sans ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <div className={`text-xs font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
                         {pkg.costPeriod}
                       </div>
                     </div>
@@ -672,19 +672,19 @@ const CommercialsPage = () => {
               </motion.div>
 
               {/* What is GEO/AEO Explainer */}
-              <motion.div variants={itemVariants} className="p-6 sm:p-7 rounded-2xl bg-[#030712] text-white shadow-lg">
+              <motion.div variants={itemVariants} className="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-lg border border-blue-400/30">
                 <div className="flex items-center gap-2 text-[#ffed4e] text-xs font-bold uppercase tracking-wider font-sans mb-2">
                   <Sparkles className="w-4 h-4" />
                   <span>What is Generative Engine Optimization?</span>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans max-w-4xl">
+                <p className="text-xs sm:text-sm text-blue-100 leading-relaxed font-sans max-w-4xl">
                   {GEO_PACKAGES_DATA.definition}
                 </p>
                 <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
                   {GEO_PACKAGES_DATA.keyAspects.map((aspect, idx) => (
-                    <div key={idx} className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                    <div key={idx} className="p-3.5 rounded-xl bg-white/10 border border-white/15">
                       <div className="text-xs sm:text-sm font-bold text-[#ffed4e] mb-1">{aspect.title}</div>
-                      <div className="text-xs text-slate-300 leading-snug">{aspect.desc}</div>
+                      <div className="text-xs text-blue-100 leading-snug">{aspect.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -699,31 +699,31 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-[#030712] text-white shadow-xl border-2 border-[#ffed4e] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-sm">
+                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-amber-300">
                         Best Value
                       </span>
                     )}
                     <div>
                       <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-[#ffed4e]' : 'text-slate-500'
+                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
                       }`}>
                         {pkg.contract} • {pkg.scope}
                       </div>
                       <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name} Plan</div>
                       <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
-                        pkg.popular ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-700'
+                        pkg.popular ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
                       }`}>
                         🤖 {pkg.keywords}
                       </div>
                       <div className="text-2xl sm:text-3xl font-black font-sans">
                         {pkg.cost}
                       </div>
-                      <div className={`text-xs font-sans ${pkg.popular ? 'text-slate-400' : 'text-slate-500'}`}>
+                      <div className={`text-xs font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
                         {pkg.costPeriod}
                       </div>
                     </div>
@@ -819,18 +819,18 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-[#030712] text-white shadow-xl border-2 border-[#ffed4e] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-sm">
+                      <span className="absolute -top-3 right-5 bg-[#ffed4e] text-slate-950 text-[10px] font-bold font-sans uppercase px-2.5 py-0.5 rounded-full shadow-md border border-amber-300">
                         Recommended
                       </span>
                     )}
                     <div>
                       <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-[#ffed4e]' : 'text-slate-500'
+                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
                       }`}>
                         {pkg.platforms}
                       </div>
@@ -841,19 +841,19 @@ const CommercialsPage = () => {
 
                       <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
                         <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>AI Image Creatives:</span>
+                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>AI Image Creatives:</span>
                           <span className="font-bold">{pkg.aiImages} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>Static Posts:</span>
+                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>Static Posts:</span>
                           <span className="font-bold">{pkg.staticPosts} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>Reels / Videos / GIFs:</span>
+                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>Reels / Videos / GIFs:</span>
                           <span className="font-bold">{pkg.videosReels} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>AI Videos:</span>
+                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>AI Videos:</span>
                           <span className="font-bold">{pkg.aiVideos} / mo</span>
                         </div>
                       </div>
@@ -946,18 +946,18 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
                       plan.popular
-                        ? 'bg-[#030712] text-white shadow-xl border-2 border-[#ffed4e] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {plan.popular && (
-                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-sm">
+                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-amber-300">
                         Most Popular
                       </span>
                     )}
                     <div>
                       <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        plan.popular ? 'text-[#ffed4e]' : 'text-slate-500'
+                        plan.popular ? 'text-blue-100' : 'text-slate-500'
                       }`}>
                         {plan.platform}
                       </div>
@@ -968,23 +968,23 @@ const CommercialsPage = () => {
 
                       <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs sm:text-sm font-sans">
                         <div className="flex justify-between">
-                          <span className={plan.popular ? 'text-slate-300' : 'text-slate-500'}>Theme:</span>
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Theme:</span>
                           <span className="font-semibold">{plan.themeType}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={plan.popular ? 'text-slate-300' : 'text-slate-500'}>Pages:</span>
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Pages:</span>
                           <span className="font-semibold">{plan.pages}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={plan.popular ? 'text-slate-300' : 'text-slate-500'}>Products:</span>
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Products:</span>
                           <span className="font-semibold">{plan.products}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={plan.popular ? 'text-slate-300' : 'text-slate-500'}>Timeline:</span>
-                          <span className="font-semibold text-emerald-500">{plan.timeToLive}</span>
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
+                          <span className={`font-semibold ${plan.popular ? 'text-[#ffed4e]' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className={plan.popular ? 'text-slate-300' : 'text-slate-500'}>Support:</span>
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
                           <span className="font-semibold">{plan.support}</span>
                         </div>
                       </div>
@@ -1079,18 +1079,18 @@ const CommercialsPage = () => {
                     transition={{ duration: 0.25 }}
                     className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
                       pkg.popular
-                        ? 'bg-[#030712] text-white shadow-xl border-2 border-[#ffed4e] scale-[1.02]'
+                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border-2 border-[#ffb400] scale-[1.02]'
                         : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                     }`}
                   >
                     {pkg.popular && (
-                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-sm">
+                      <span className="absolute -top-3.5 right-6 bg-[#ffed4e] text-slate-950 text-xs font-bold font-sans uppercase px-3 py-0.5 rounded-full shadow-md border border-amber-300">
                         Recommended
                       </span>
                     )}
                     <div>
                       <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                      <p className={`text-xs mb-3 font-sans ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`}>
+                      <p className={`text-xs mb-3 font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
                         {pkg.description}
                       </p>
                       <div className="text-2xl sm:text-3xl font-black font-sans mb-5">
@@ -1103,7 +1103,7 @@ const CommercialsPage = () => {
                             <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
                               pkg.popular ? 'text-[#ffed4e]' : 'text-emerald-600'
                             }`} />
-                            <span className={pkg.popular ? 'text-slate-200' : 'text-slate-700'}>{deliv}</span>
+                            <span className={pkg.popular ? 'text-white' : 'text-slate-700'}>{deliv}</span>
                           </div>
                         ))}
                       </div>
@@ -1223,7 +1223,7 @@ const CommercialsPage = () => {
                     type="button"
                     className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                       collateralsFilter === f.id
-                        ? 'bg-[#030712] text-white shadow-xs'
+                        ? 'bg-[#0072BC] text-white shadow-xs'
                         : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
                     }`}
                   >
