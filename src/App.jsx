@@ -27,6 +27,7 @@ import CaseStudiespage from './pages/CaseStudiespage/CaseStudiespage';
 import PortfolioPage from './pages/PortfolioPage/PortfolioPage';
 import CommercialsPage from './pages/CommercialsPage/CommercialsPage';
 import QuestionnairePage from './pages/QuestionnairePage/QuestionnairePage';
+import WebQuestionnairePage from './pages/WebQuestionnairePage/WebQuestionnairePage';
 import Contactpage from "./pages/Contactpage/Contactpage";
 import BlogPage from './pages/BlogPage/BlogPage';
 import ThankYouPage from './pages/ThankYouPage/Thankyou';
@@ -73,8 +74,9 @@ function App() {
         <Route path="/pricing" element={<CommercialsPage />} />
         <Route path="/plans" element={<Navigate to="/commercials" replace />} />
 
-        {/* Client Discovery Questionnaire Route */}
+        {/* Client Discovery Questionnaire Routes */}
         <Route path="/questionnaire" element={<QuestionnairePage />} />
+        <Route path="/web" element={<WebQuestionnairePage />} />
 
         <Route path="/contact" element={<Contactpage />} />
         <Route path="/request-quote" element={<RequestQuote />} />

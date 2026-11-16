@@ -1,2093 +1,1132 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
+  FileText,
   Building2,
   Target,
-  LayoutGrid,
-  Palette,
-  Cpu,
-  FolderUp,
-  Server,
-  Search,
-  ShoppingCart,
-  Calendar,
-  Users,
-  FileCheck,
-  Check,
+  Megaphone,
+  Globe,
+  BarChart3,
+  UploadCloud,
   CheckCircle2,
-  Printer,
-  Sparkles,
-  ArrowRight,
-  HelpCircle,
-  Briefcase,
+  Check,
   ChevronDown,
+  ArrowRight,
+  Sparkles,
+  Paperclip,
+  Trash2,
+  AlertCircle,
+  HelpCircle,
 } from 'lucide-react';
 
-const INITIAL_FORM = {
-  // Sec 01: Business Information
-  companyName: '',
-  contactPerson: '',
-  designation: '',
-  email: '',
-  phone: '',
-  alternatePhone: '',
-  existingWebsite: '',
-  businessAddress: '',
-  countryCity: '',
-  industryCategory: '',
-  businessDescription: '',
+const SERVICES_OPTIONS = [
+  'Website Design and Development',
+  'Search Engine Optimization (SEO)',
+  'Performance Marketing (PPC)',
+  'Social Media Marketing',
+  'Google Analytics',
+  'Affiliate Marketing',
+  'App Development',
+];
 
-  // Sec 02: Project Overview
-  websiteType: 'Corporate / Business Website',
-  projectNature: 'New Website',
-  primaryObjective: 'Generate Leads',
-  targetAudience: '',
-  targetLocations: '',
-  competitorDifference: '',
-  topExpectations: '',
+const GOALS_OPTIONS = [
+  'Sales',
+  'Leads',
+  'Branding',
+  'Signups',
+  'Phone Calls',
+];
 
-  // Sec 03: Website Structure & Pages
-  requiredPages: ['Home', 'About Us', 'Our Services', 'Contact Us'],
-  preferredSitemap: '',
-  approxPages: '',
-  separateLandingPages: 'No',
-  multilingual: 'No',
-  languages: '',
+const EXISTING_ACCOUNTS_OPTIONS = [
+  'Google ads account',
+  'Facebook ads Manager',
+  'Linkedin ads account',
+  'Advertising for the first time',
+];
 
-  // Sec 04: Design & Branding Preferences
-  existingBrandIdentity: ['Logo'],
-  designStyle: 'Modern & Minimal',
-  preferredColors: '',
-  referenceWebsites: '',
-  referenceLikes: '',
-  competitorsReview: '',
-  themePreference: 'Light Theme',
-  animationsInteractive: 'Subtle & Minimal',
-  specificDesignInstructions: '',
+const PLATFORMS_OPTIONS = [
+  'Google Search & Display',
+  'Meta (Facebook & Instagram)',
+  'LinkedIn Ads',
+  'YouTube Video Ads',
+  'Bing / Microsoft Ads',
+  'Amazon / Marketplaces',
+];
 
-  // Sec 05: Functionality & Features
-  requiredFeatures: [
-    'Contact / Enquiry Form',
-    'WhatsApp Integration',
-    'Social Media Integration',
-    'Google Maps Integration',
-  ],
-  additionalFunctionality: '',
+const DURATION_OPTIONS = [
+  '3 MONTHS',
+  '>6 MONTHS',
+  '>1 YEAR',
+  '<1YEAR',
+];
 
-  // Sec 06: Content & Brand Assets
-  contentProvider: 'Client',
-  readyContent: 'In Progress (Ready Soon)',
-  hasImages: 'Yes, High-Res Photos Available',
-  hasVideos: 'No, Need Video Production',
-  needsCopywriting: 'No, We have internal content',
-  needsStockAI: 'Yes, Curate / Generate Stock & AI',
-  assetsChecklist: ['Company Logo', 'Brand Guidelines'],
-  assetDriveLinks: '',
+const BUSINESS_TYPE_OPTIONS = [
+  'Online Only (E-Commerce / SaaS)',
+  'Retail Storefront (Physical Location)',
+  'Service Business (Local Area / Hybrid)',
+];
 
-  // Sec 07: Technical Requirements
-  ownsDomain: 'No',
-  domainName: '',
-  ownsHosting: 'No',
-  hostingProvider: '',
-  preferredTech: 'WordPress',
-  needsAdminPanel: 'Yes',
-  needsCMS: 'Yes',
-  needsBusinessEmail: 'Yes',
-  needsGA4: 'Yes',
-  needsGSC: 'Yes',
-  needsSEO: 'Yes',
-  thirdPartyAPIs: '',
-  existingCredentials: 'No',
+const GA_ACCESS_OPTIONS = [
+  'Yes',
+  'No',
+  'No GA Account',
+];
 
-  // Sec 08: SEO & Digital Marketing
-  seoServicesRequired: ['Technical SEO', 'On-Page SEO', 'Local SEO'],
-  hasKeywordResearch: 'No, Need iBraine to do research',
-  targetKeywords: '',
-  needsGoogleBusiness: 'Yes',
-  needsPixelAdsTracking: 'Yes',
-  needsBlogSystem: 'Yes',
-  hasExistingAgency: 'No',
+const DDM_OPTIONS_YES_NO = ['YES', 'NO'];
+const DDM_OPTIONS_PENALTY = ['YES', 'NO', 'NOT SURE'];
 
-  // Sec 09: E-Commerce Requirements
-  isEcommerce: 'No',
-  approxProducts: '',
-  productCategories: '',
-  productVariations: 'No',
-  paymentMethods: ['Razorpay', 'Stripe'],
-  shippingIntegration: '',
-  inventoryManagement: 'Yes',
-  discountCoupons: 'Yes',
-  customerAccounts: 'Yes',
-  orderManagement: 'Yes',
-  gstInvoice: 'Yes',
-  erpMarketplaceIntegration: '',
+const DigitalMarketingQuestionnaire = () => {
+  // Form State
+  const [formData, setFormData] = useState({
+    // Contact & Business Information
+    fullName: '',
+    email: '',
+    phone: '',
+    companyName: '',
+    websiteUrl: '',
+    businessDescription: '',
+    websiteActiveDuration: '',
+    totalPages: '',
+    businessType: '',
+    businessTypeOther: '',
 
-  // Sec 10: Budget & Project Timeline
-  budgetTier: '₹50,000–₹1,00,000',
-  startDate: '',
-  launchDate: '',
-  fixedDeadline: 'No',
-  deadlineReason: '',
-  ongoingSupport: 'Yes',
-  additionalServices: '',
+    // Services & Goals
+    services: [],
+    servicesOther: '',
+    projectGoals: [],
+    projectGoalsOther: '',
+    projectDuration: '3 MONTHS',
+    monthlyBudget: '',
 
-  // Sec 11: Project Management & Approvals
-  primaryContact: '',
-  designApprover: '',
-  contentProviderName: '',
-  communicationChannel: ['Email', 'WhatsApp'],
-  meetingFrequency: 'Weekly',
-  approvalProcess: '',
-  specialDependencies: '',
+    // Accounts, Targeting & Platforms
+    existingAccounts: [],
+    existingAccountsOther: '',
+    targetPlatforms: ['Google Search & Display', 'Meta (Facebook & Instagram)'],
+    targetPlatformsOther: '',
+    locationTargeting: '',
+    specificAudience: '',
+    unpromotableItems: '',
 
-  // Sec 12: Final Notes & Confirmation
-  idealWebsiteDescription: '',
-  threeImportantFocus: '',
-  thingsToAvoid: '',
-  additionalRequirements: '',
-  confirmAccurate: false,
-  confirmProposalTerms: false,
-  confirmTimelineDependency: false,
-  clientSignName: '',
-  clientSignCompany: '',
-  signDate: new Date().toISOString().split('T')[0],
-  authorizedAgreement: false,
-};
+    // Market & Competitors
+    competitors: '',
+    usp: '',
+    initialKeywordsServices: '',
+    socialMediaLinks: '',
 
-const QuestionnairePage = () => {
-  const [formData, setFormData] = useState(INITIAL_FORM);
+    // Analytics, Readiness & Creative
+    gaAccess: 'Yes',
+    gaAccessOther: '',
+    currentPerformance: '',
+    creativeTeamAvailable: 'YES',
+    sitePenalised: 'NO',
+    socialMediaUsedWithSite: 'YES',
+
+    // Additional Info & Upload
+    additionalInfo: '',
+  });
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    document.title = 'Website Design & Development Questionnaire | iBraine';
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
-
-  const handleInputChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+  // Handle standard input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleArrayToggle = (field, item) => {
+  // Toggle multi-select array (for Services, Goals, Accounts, Platforms)
+  const toggleArrayOption = (field, option) => {
     setFormData((prev) => {
-      const currentList = prev[field] || [];
-      if (currentList.includes(item)) {
-        return { ...prev, [field]: currentList.filter((i) => i !== item) };
+      const current = prev[field] || [];
+      if (current.includes(option)) {
+        return {
+          ...prev,
+          [field]: current.filter((item) => item !== option),
+        };
       } else {
-        return { ...prev, [field]: [...currentList, item] };
+        return {
+          ...prev,
+          [field]: [...current, option],
+        };
       }
     });
   };
 
+  // Handle file selection
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 25 * 1024 * 1024) {
+        setErrorMessage('File size exceeds the 25MB limit. Please upload a smaller file.');
+        return;
+      }
+      setSelectedFile(file);
+      setErrorMessage('');
+    }
+  };
+
+  const removeFile = () => {
+    setSelectedFile(null);
+  };
+
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
-      alert('Please fill out the required primary contact information in Section 01.');
-      window.scrollTo({ top: 120, behavior: 'smooth' });
+    setErrorMessage('');
+
+    // Basic Validation
+    if (!formData.fullName.trim()) {
+      setErrorMessage('Please enter your full name.');
       return;
     }
-    if (!formData.authorizedAgreement) {
-      alert('Please check the Authorized Confirmation in Section 12 before submitting.');
+    if (!formData.email.trim()) {
+      setErrorMessage('Please enter a valid email address.');
       return;
     }
-    setIsSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!formData.phone.trim()) {
+      setErrorMessage('Please enter your phone/WhatsApp number.');
+      return;
+    }
+    if (!formData.websiteUrl.trim()) {
+      setErrorMessage('Please enter the name or URL of your website.');
+      return;
+    }
+    if (formData.services.length === 0 && !formData.servicesOther.trim()) {
+      setErrorMessage('Please select at least one service you are looking for.');
+      return;
+    }
+    if (formData.projectGoals.length === 0 && !formData.projectGoalsOther.trim()) {
+      setErrorMessage('Please select at least one project goal.');
+      return;
+    }
+    if (!formData.businessDescription.trim()) {
+      setErrorMessage('Please provide a short description about your business.');
+      return;
+    }
+    if (!formData.monthlyBudget.trim()) {
+      setErrorMessage('Please specify your monthly project budget.');
+      return;
+    }
+    if (!formData.locationTargeting.trim()) {
+      setErrorMessage('Please specify your target locations.');
+      return;
+    }
+    if (!formData.competitors.trim()) {
+      setErrorMessage('Please share your top competitors.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate API submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 900);
   };
 
   return (
-    <div className="bg-[#f0f4f8] min-h-screen text-slate-800 pb-24 selection:bg-[#0b4a8b] selection:text-white font-sans antialiased">
-      {/* High-visibility placeholder styling */}
-      <style>{`
-        input::placeholder, textarea::placeholder {
-          color: #94a3b8 !important;
-          opacity: 1 !important;
-          font-weight: 400 !important;
-        }
-      `}</style>
-
-      {/* ===================== HERO BANNER ===================== */}
-      <header className="relative pt-14 pb-12 sm:pt-20 sm:pb-16 bg-gradient-to-b from-slate-100/90 via-white to-[#f0f4f8] border-b border-slate-200/70 overflow-hidden mb-8 sm:mb-10 text-center">
-        {/* Soft Ambient Brand Glows */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[300px] bg-gradient-to-r from-[#ffed4e]/20 via-[#ffb400]/15 to-[#0072BC]/15 rounded-full blur-3xl pointer-events-none -z-10" />
+    <div className="bg-[#fafbfc] min-h-screen font-lora text-slate-900 pb-16 selection:bg-[#ffed4e] selection:text-slate-950">
+      {/* ===================== HERO HEADER BANNER ===================== */}
+      <header className="relative pt-10 pb-8 sm:pt-14 sm:pb-10 bg-gradient-to-b from-slate-100/90 via-white to-[#f0f4f8] border-b border-slate-200/80 overflow-hidden mb-6 sm:mb-8 text-center">
+        {/* Soft Ambient Brand Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[260px] bg-gradient-to-r from-[#ffed4e]/20 via-[#ffb400]/15 to-[#0072BC]/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-[#0072BC] text-xs font-sans font-bold uppercase tracking-wider mb-4 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-[#0072BC] text-xs font-sans font-bold uppercase tracking-wider mb-3 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#ffb400]" />
-            <span>WEBSITE DESIGN & DEVELOPMENT</span>
+            <span>Digital Performance & Marketing Discovery</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-lora text-slate-950 tracking-tight leading-tight">
-            Client Project Discovery Questionnaire
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold font-lora text-slate-950 tracking-tight leading-tight">
+            Digital Marketing Initial Questionnaire
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed">
-            <strong>Welcome!</strong> Thank you for choosing our website design and development services. Please complete this questionnaire so we can understand your business, expectations, design preferences, and technical requirements.
+          <p className="mt-3 text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed">
+            Please fill in this initial discovery form with your project parameters, campaign objectives, and targeting preferences so our strategy team can engineer a tailored marketing plan.
           </p>
         </div>
       </header>
 
-      {/* ===================== MAIN FORM CONTAINER ===================== */}
+      {/* ===================== MAIN FORM WORKFLOW CONTAINER ===================== */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
-
-          {/* ================= SECTION 01: BUSINESS INFORMATION ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Building2 className="w-4 h-4 text-[#0b4a8b]" />
-              <span>1. PRIMARY INFORMATION</span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  COMPANY / BUSINESS NAME <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.companyName}
-                  onChange={(e) => handleInputChange('companyName', e.target.value)}
-                  placeholder="e.g. Acme Innovations Pvt Ltd"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  CONTACT PERSON NAME <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.contactPerson}
-                  onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                  placeholder="e.g. Rahul Sharma"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  DESIGNATION
-                </label>
-                <input
-                  type="text"
-                  value={formData.designation}
-                  onChange={(e) => handleInputChange('designation', e.target.value)}
-                  placeholder="e.g. Founder / Marketing Director"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  OFFICIAL EMAIL ADDRESS <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  placeholder="name@company.com"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  WHATSAPP NUMBER <span className="text-red-500">*</span>
-                </label>
-                <div className="flex rounded-lg border border-slate-200 bg-white overflow-hidden focus-within:ring-2 focus-within:ring-[#0b4a8b]/20 focus-within:border-[#0b4a8b] transition-all">
-                  <div className="flex items-center gap-1.5 px-3 bg-slate-50 border-r border-slate-200 text-xs font-semibold text-slate-700 select-none">
-                    <span className="text-base leading-none">🇮🇳</span>
-                    <span>+91</span>
-                  </div>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
-                    placeholder="98765 43210"
-                    className="w-full h-11 px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  ALTERNATE PHONE NUMBER
-                </label>
-                <div className="flex rounded-lg border border-slate-200 bg-white overflow-hidden focus-within:ring-2 focus-within:ring-[#0b4a8b]/20 focus-within:border-[#0b4a8b] transition-all">
-                  <div className="flex items-center gap-1.5 px-3 bg-slate-50 border-r border-slate-200 text-xs font-semibold text-slate-700 select-none">
-                    <span className="text-base leading-none">🇮🇳</span>
-                    <span>+91</span>
-                  </div>
-                  <input
-                    type="tel"
-                    value={formData.alternatePhone}
-                    onChange={(e) => handleInputChange('alternatePhone', e.target.value)}
-                    placeholder="Optional contact number"
-                    className="w-full h-11 px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  COMPANY WEBSITE (IF EXISTING)
-                </label>
-                <input
-                  type="text"
-                  value={formData.existingWebsite}
-                  onChange={(e) => handleInputChange('existingWebsite', e.target.value)}
-                  placeholder="https://www.yourdomain.com"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  COUNTRY / CITY
-                </label>
-                <input
-                  type="text"
-                  value={formData.countryCity}
-                  onChange={(e) => handleInputChange('countryCity', e.target.value)}
-                  placeholder="e.g. Mumbai, India / Dubai, UAE"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  BUSINESS ADDRESS
-                </label>
-                <input
-                  type="text"
-                  value={formData.businessAddress}
-                  onChange={(e) => handleInputChange('businessAddress', e.target.value)}
-                  placeholder="Full office address with postal code"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  INDUSTRY / BUSINESS CATEGORY <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.industryCategory}
-                  onChange={(e) => handleInputChange('industryCategory', e.target.value)}
-                  placeholder="e.g. Healthcare, B2B SaaS, E-commerce, Real Estate, Fashion"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  BRIEFLY DESCRIBE YOUR BUSINESS AND SERVICES <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  rows={3}
-                  required
-                  value={formData.businessDescription}
-                  onChange={(e) => handleInputChange('businessDescription', e.target.value)}
-                  placeholder="Provide a 2-3 sentence overview of what your business does and key solutions you offer..."
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 02: PROJECT OVERVIEW ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Target className="w-4 h-4 text-[#0b4a8b]" />
-              <span>2. PROJECT OVERVIEW</span>
-            </div>
-
-            <div className="space-y-5">
-              {/* Website Type */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  WHAT TYPE OF WEBSITE DO YOU REQUIRE? <span className="text-red-500">*</span>
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
-                  {[
-                    'Corporate / Business Website',
-                    'E-commerce Website',
-                    'Portfolio Website',
-                    'Landing Page',
-                    'Educational Website',
-                    'Healthcare / Hospital Website',
-                    'Real Estate Website',
-                    'Blog / News Website',
-                    'Web Application / Portal',
-                    'Other',
-                  ].map((type) => {
-                    const active = formData.websiteType === type;
-                    return (
-                      <button
-                        type="button"
-                        key={type}
-                        onClick={() => handleInputChange('websiteType', type)}
-                        className={`h-11 px-2.5 rounded-lg border text-[11px] sm:text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          active
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Is this a new website or redesign? */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  IS THIS A NEW WEBSITE OR REDESIGN?
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  {[
-                    'New Website',
-                    'Existing Website Redesign',
-                    'Website Migration',
-                    'New Features in Existing',
-                  ].map((nature) => {
-                    const active = formData.projectNature === nature;
-                    return (
-                      <button
-                        type="button"
-                        key={nature}
-                        onClick={() => handleInputChange('projectNature', nature)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          active
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {nature}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Primary Objective */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  WHAT IS THE PRIMARY OBJECTIVE OF YOUR WEBSITE? <span className="text-red-500">*</span>
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  {[
-                    'Generate Leads',
-                    'Sell Products Online',
-                    'Promote Services',
-                    'Build Brand Awareness',
-                    'Provide Information',
-                    'Online Bookings',
-                    'Customer Portal',
-                    'Other',
-                  ].map((obj) => {
-                    const active = formData.primaryObjective === obj;
-                    return (
-                      <button
-                        type="button"
-                        key={obj}
-                        onClick={() => handleInputChange('primaryObjective', obj)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          active
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {obj}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Target Audience & Locations */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    WHO IS YOUR TARGET AUDIENCE?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.targetAudience}
-                    onChange={(e) => handleInputChange('targetAudience', e.target.value)}
-                    placeholder="e.g. B2B CXOs, Homebuyers 25-45, Students, Direct Consumers"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    WHICH LOCATIONS OR MARKETS DO YOU WANT TO TARGET?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.targetLocations}
-                    onChange={(e) => handleInputChange('targetLocations', e.target.value)}
-                    placeholder="e.g. PAN India, Tier-1 Metro Cities, USA & UK Global"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Differences & Expectations */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  WHAT MAKES YOUR BUSINESS DIFFERENT FROM COMPETITORS?
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.competitorDifference}
-                  onChange={(e) => handleInputChange('competitorDifference', e.target.value)}
-                  placeholder="Your unique selling propositions, proprietary process, awards, pricing, customer service..."
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  WHAT ARE YOUR TOP THREE EXPECTATIONS FROM THIS WEBSITE?
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.topExpectations}
-                  onChange={(e) => handleInputChange('topExpectations', e.target.value)}
-                  placeholder="1. High conversion rate on ads, 2. Fast 2s load time, 3. Modern premium visual identity..."
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 03: WEBSITE STRUCTURE & PAGES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <LayoutGrid className="w-4 h-4 text-[#0b4a8b]" />
-              <span>3. WEBSITE STRUCTURE & PAGES</span>
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  WHICH PAGES DO YOU REQUIRE? (SELECT MULTIPLE) <span className="text-red-500">*</span>
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-                  {[
-                    'Home',
-                    'About Us',
-                    'Our Services',
-                    'Service Detail Pages',
-                    'Products',
-                    'Product Detail Pages',
-                    'Our Team',
-                    'Portfolio / Projects',
-                    'Case Studies',
-                    'Testimonials / Reviews',
-                    'Blog / News',
-                    'Contact Us',
-                    'FAQ',
-                    'Privacy Policy',
-                    'Terms & Conditions',
-                    'Other Custom Pages',
-                  ].map((page) => {
-                    const checked = formData.requiredPages.includes(page);
-                    return (
-                      <label
-                        key={page}
-                        className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs font-medium cursor-pointer transition-all select-none ${
-                          checked
-                            ? 'bg-blue-50/70 border-[#0b4a8b] text-[#0b4a8b] font-semibold'
-                            : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => handleArrayToggle('requiredPages', page)}
-                          className="w-4 h-4 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                        />
-                        <span>{page}</span>
-                      </label>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    PREFERRED SITEMAP OR WEBSITE STRUCTURE
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.preferredSitemap}
-                    onChange={(e) => handleInputChange('preferredSitemap', e.target.value)}
-                    placeholder="e.g. Header Nav: Home, Solutions, Company, Case Studies, Contact"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    APPROXIMATELY HOW MANY PAGES ARE REQUIRED?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.approxPages}
-                    onChange={(e) => handleInputChange('approxPages', e.target.value)}
-                    placeholder="e.g. 5-10 pages, 15-20 pages, 30+ pages"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU NEED SEPARATE CAMPAIGN LANDING PAGES?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('separateLandingPages', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.separateLandingPages === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU NEED MULTILINGUAL FUNCTIONALITY?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('multilingual', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.multilingual === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {formData.multilingual === 'Yes' && (
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    SPECIFY LANGUAGES REQUIRED
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.languages}
-                    onChange={(e) => handleInputChange('languages', e.target.value)}
-                    placeholder="e.g. English, Hindi, Arabic, Spanish"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* ================= SECTION 04: DESIGN & BRANDING PREFERENCES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Palette className="w-4 h-4 text-[#0b4a8b]" />
-              <span>4. DESIGN & BRANDING PREFERENCES</span>
-            </div>
-
-            <div className="space-y-6">
-              {/* Existing Brand Identity */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  DO YOU HAVE AN EXISTING BRAND IDENTITY?
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-                  {['Logo', 'Brand Guidelines', 'Brand Colours', 'Typography / Fonts', 'None'].map((asset) => {
-                    const checked = formData.existingBrandIdentity.includes(asset);
-                    return (
-                      <button
-                        type="button"
-                        key={asset}
-                        onClick={() => handleArrayToggle('existingBrandIdentity', asset)}
-                        className={`h-11 px-3 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          checked
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {asset}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Design Style */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  PREFERRED WEBSITE DESIGN STYLE
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-                  {[
-                    'Modern & Minimal',
-                    'Premium & Luxury',
-                    'Corporate & Pro',
-                    'Creative & Interactive',
-                    'Bold & Contemporary',
-                    'Clean & Simple',
-                  ].map((style) => {
-                    const active = formData.designStyle === style;
-                    return (
-                      <button
-                        type="button"
-                        key={style}
-                        onClick={() => handleInputChange('designStyle', style)}
-                        className={`h-11 px-2.5 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          active
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {style}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Theme Preference & Animations */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    THEME PREFERENCE
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Light Theme', 'Dark Theme', 'Both / Mixed'].map((theme) => (
-                      <button
-                        type="button"
-                        key={theme}
-                        onClick={() => handleInputChange('themePreference', theme)}
-                        className={`h-11 px-2.5 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.themePreference === theme
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {theme}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    ANIMATIONS & INTERACTIVE ELEMENTS
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Subtle & Minimal', 'Rich & Interactive', 'None'].map((anim) => (
-                      <button
-                        type="button"
-                        key={anim}
-                        onClick={() => handleInputChange('animationsInteractive', anim)}
-                        className={`h-11 px-2.5 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.animationsInteractive === anim
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {anim}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Colours & References */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    PREFERRED COLOUR COMBINATION
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.preferredColors}
-                    onChange={(e) => handleInputChange('preferredColors', e.target.value)}
-                    placeholder="e.g. Navy Blue #0072BC, White, Gold Accents"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    REFERENCE WEBSITES (SHARE 2–5 URLS)
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.referenceWebsites}
-                    onChange={(e) => handleInputChange('referenceWebsites', e.target.value)}
-                    placeholder="https://example1.com, https://example2.com"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  WHAT DO YOU LIKE ABOUT THOSE REFERENCE WEBSITES?
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.referenceLikes}
-                  onChange={(e) => handleInputChange('referenceLikes', e.target.value)}
-                  placeholder="e.g. Typography, clear product navigation, card design, seamless checkout..."
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    COMPETITOR WEBSITES WE SHOULD REVIEW
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.competitorsReview}
-                    onChange={(e) => handleInputChange('competitorsReview', e.target.value)}
-                    placeholder="e.g. competitor1.com, competitor2.com"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    SPECIFIC DESIGN INSTRUCTIONS
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.specificDesignInstructions}
-                    onChange={(e) => handleInputChange('specificDesignInstructions', e.target.value)}
-                    placeholder="Any specific dos and don'ts for layout or imagery"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 05: FUNCTIONALITY & FEATURES ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Cpu className="w-4 h-4 text-[#0b4a8b]" />
-              <span>5. FUNCTIONALITY & FEATURES</span>
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  SELECT ALL REQUIRED FEATURES (CHECK ALL THAT APPLY)
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-                  {[
-                    'Contact / Enquiry Form',
-                    'WhatsApp Integration',
-                    'Click-to-Call',
-                    'Newsletter Subscription',
-                    'Live Chat / Chatbot',
-                    'Appointment Booking',
-                    'Payment Gateway',
-                    'User Registration / Login',
-                    'Admin Dashboard',
-                    'CMS for Page Content',
-                    'Product / Service Catalog',
-                    'Search & Filters',
-                    'Customer Dashboard',
-                    'CRM Integration',
-                    'Google Maps Integration',
-                    'Social Media Feeds',
-                    'Blog Management',
-                    'Reviews & Ratings',
-                    'File Upload / Download',
-                    'Email Notifications',
-                    'SMS / WhatsApp Alerts',
-                    'Multi-language Support',
-                    'Custom API Integration',
-                    'Custom Workflow Features',
-                  ].map((feat) => {
-                    const checked = formData.requiredFeatures.includes(feat);
-                    return (
-                      <label
-                        key={feat}
-                        className={`flex items-center gap-2.5 p-2.5 rounded-lg border text-xs font-medium cursor-pointer transition-all select-none ${
-                          checked
-                            ? 'bg-blue-50/70 border-[#0b4a8b] text-[#0b4a8b] font-semibold'
-                            : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => handleArrayToggle('requiredFeatures', feat)}
-                          className="w-4 h-4 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                        />
-                        <span>{feat}</span>
-                      </label>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  ADDITIONAL FUNCTIONALITY REQUIREMENTS / SPECIFIC WORKFLOW
-                </label>
-                <textarea
-                  rows={3}
-                  value={formData.additionalFunctionality}
-                  onChange={(e) => handleInputChange('additionalFunctionality', e.target.value)}
-                  placeholder="Describe any custom calculator, multi-step quotation form, automated invoice generation, or third-party CRM sync..."
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 06: CONTENT & BRAND ASSETS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <FolderUp className="w-4 h-4 text-[#0b4a8b]" />
-              <span>6. CONTENT & BRAND ASSETS</span>
-            </div>
-
-            <div className="space-y-6">
-              {/* Content Provider */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  WHO WILL PROVIDE THE WEBSITE CONTENT?
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {['Client', 'Development Team', 'Content Writing Service'].map((prov) => (
-                    <button
-                      type="button"
-                      key={prov}
-                      onClick={() => handleInputChange('contentProvider', prov)}
-                      className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                        formData.contentProvider === prov
-                          ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      {prov}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Ready Content & Images */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU HAVE READY CONTENT FOR ALL PAGES?
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Yes - Ready', 'In Progress', 'No - Need Help'].map((item) => (
-                      <button
-                        type="button"
-                        key={item}
-                        onClick={() => handleInputChange('readyContent', item)}
-                        className={`h-11 px-2 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.readyContent === item
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    HIGH-QUALITY BUSINESS / PRODUCT IMAGES?
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Yes - Available', 'Need Photoshoot', 'Need Stock/AI'].map((item) => (
-                      <button
-                        type="button"
-                        key={item}
-                        onClick={() => handleInputChange('hasImages', item)}
-                        className={`h-11 px-2 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.hasImages === item
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Videos, Copywriting, Stock/AI */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    PROFESSIONAL VIDEOS?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('hasVideos', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.hasVideos === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    REQUIRE COPYWRITING?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('needsCopywriting', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.needsCopywriting === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    REQUIRE STOCK / AI CREATIVES?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('needsStockAI', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.needsStockAI === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Upload Checklist & Drive Link */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  UPLOAD OR SHARE ASSETS CHECKLIST
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-3">
-                  {[
-                    'Company Logo',
-                    'Brand Guidelines',
-                    'Company Brochure',
-                    'Product Images',
-                    'Team Photos',
-                    'Service Info',
-                    'Marketing Materials',
-                  ].map((asset) => {
-                    const checked = formData.assetsChecklist.includes(asset);
-                    return (
-                      <label
-                        key={asset}
-                        className={`flex items-center gap-2 p-2.5 rounded-lg border text-xs font-medium cursor-pointer transition-all select-none ${
-                          checked
-                            ? 'bg-blue-50/70 border-[#0b4a8b] text-[#0b4a8b] font-semibold'
-                            : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => handleArrayToggle('assetsChecklist', asset)}
-                          className="w-4 h-4 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                        />
-                        <span>{asset}</span>
-                      </label>
-                    );
-                  })}
-                </div>
-
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  GOOGLE DRIVE / DROPBOX SHAREABLE LINK
-                </label>
-                <input
-                  type="text"
-                  value={formData.assetDriveLinks}
-                  onChange={(e) => handleInputChange('assetDriveLinks', e.target.value)}
-                  placeholder="https://drive.google.com/drive/folders/your-asset-folder"
-                  className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 07: TECHNICAL REQUIREMENTS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Server className="w-4 h-4 text-[#0b4a8b]" />
-              <span>7. TECHNICAL REQUIREMENTS</span>
-            </div>
-
-            <div className="space-y-6">
-              {/* Domain & Hosting */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU ALREADY OWN A DOMAIN?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5 mb-2">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('ownsDomain', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.ownsDomain === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                  {formData.ownsDomain === 'Yes' && (
-                    <input
-                      type="text"
-                      value={formData.domainName}
-                      onChange={(e) => handleInputChange('domainName', e.target.value)}
-                      placeholder="Enter registered domain name (e.g. acme.com)"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU ALREADY HAVE HOSTING?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5 mb-2">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('ownsHosting', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.ownsHosting === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                  {formData.ownsHosting === 'Yes' && (
-                    <input
-                      type="text"
-                      value={formData.hostingProvider}
-                      onChange={(e) => handleInputChange('hostingProvider', e.target.value)}
-                      placeholder="Hosting provider (e.g. Hostinger, AWS, GoDaddy)"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Preferred Technology */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  PREFERRED TECHNOLOGY (IF ANY)
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-                  {['WordPress', 'Shopify', 'React.js', 'Next.js', 'Custom Dev', 'No Preference'].map((tech) => (
-                    <button
-                      type="button"
-                      key={tech}
-                      onClick={() => handleInputChange('preferredTech', tech)}
-                      className={`h-11 px-2.5 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                        formData.preferredTech === tech
-                          ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                          : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      {tech}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Requirements Grid (Admin, CMS, Email, GA4, GSC, SEO) */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-                {[
-                  { label: 'Admin Panel', field: 'needsAdminPanel' },
-                  { label: 'CMS Editor', field: 'needsCMS' },
-                  { label: 'Business Email', field: 'needsBusinessEmail' },
-                  { label: 'Google Analytics 4', field: 'needsGA4' },
-                  { label: 'Search Console', field: 'needsGSC' },
-                  { label: 'Initial SEO Setup', field: 'needsSEO' },
-                ].map((item) => (
-                  <div key={item.field} className="p-3 rounded-lg border border-slate-100 bg-slate-50/50">
-                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 truncate">
-                      {item.label}
-                    </span>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {['Yes', 'No'].map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => handleInputChange(item.field, opt)}
-                          className={`h-8 rounded text-xs font-semibold transition-all flex items-center justify-center cursor-pointer ${
-                            formData[item.field] === opt
-                              ? 'bg-[#0b4a8b] text-white'
-                              : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Third Party APIs & Existing Source Code */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    THIRD-PARTY SOFTWARE / API INTEGRATIONS
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.thirdPartyAPIs}
-                    onChange={(e) => handleInputChange('thirdPartyAPIs', e.target.value)}
-                    placeholder="e.g. Zoho CRM, Salesforce, ERP, Hubspot, WhatsApp API"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    EXISTING WEBSITE CREDENTIALS / SOURCE CODE?
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Yes', 'No', 'N/A'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('existingCredentials', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.existingCredentials === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 08: SEO & DIGITAL MARKETING ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Search className="w-4 h-4 text-[#0b4a8b]" />
-              <span>8. SEO & DIGITAL MARKETING</span>
-            </div>
-
-            <div className="space-y-6">
-              {/* SEO Services */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  DO YOU REQUIRE SEO SERVICES? (CHECK ALL THAT APPLY)
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-                  {['Technical SEO', 'On-Page SEO', 'Off-Page SEO', 'Local SEO', 'GEO / AEO', 'Not Required'].map(
-                    (seo) => {
-                      const checked = formData.seoServicesRequired.includes(seo);
-                      return (
-                        <button
-                          type="button"
-                          key={seo}
-                          onClick={() => handleArrayToggle('seoServicesRequired', seo)}
-                          className={`h-11 px-2 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                            checked
-                              ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                              : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {seo}
-                        </button>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-
-              {/* Keywords & Research */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    DO YOU HAVE EXISTING KEYWORD RESEARCH?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No - Need Research'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('hasKeywordResearch', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.hasKeywordResearch === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    WHICH KEYWORDS OR SERVICES DO YOU WANT TO TARGET?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.targetKeywords}
-                    onChange={(e) => handleInputChange('targetKeywords', e.target.value)}
-                    placeholder="e.g. Best dental clinic in Mumbai, buy organic coffee online"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* GMB, Pixel, Blog, Existing Agency */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  { label: 'Google Business Profile', field: 'needsGoogleBusiness' },
-                  { label: 'Meta Pixel / Ads Tracking', field: 'needsPixelAdsTracking' },
-                  { label: 'Blog Publishing System', field: 'needsBlogSystem' },
-                  { label: 'Existing SEO Agency?', field: 'hasExistingAgency' },
-                ].map((item) => (
-                  <div key={item.field} className="p-3 rounded-lg border border-slate-100 bg-slate-50/50">
-                    <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 truncate">
-                      {item.label}
-                    </span>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {['Yes', 'No'].map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => handleInputChange(item.field, opt)}
-                          className={`h-8 rounded text-xs font-semibold transition-all flex items-center justify-center cursor-pointer ${
-                            formData[item.field] === opt
-                              ? 'bg-[#0b4a8b] text-white'
-                              : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 09: E-COMMERCE REQUIREMENTS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase">
-                <ShoppingCart className="w-4 h-4 text-[#0b4a8b]" />
-                <span>9. E-COMMERCE REQUIREMENTS</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">IS E-COMMERCE?</span>
-                <div className="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
-                  {['No', 'Yes'].map((opt) => (
-                    <button
-                      type="button"
-                      key={opt}
-                      onClick={() => handleInputChange('isEcommerce', opt)}
-                      className={`px-3 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
-                        formData.isEcommerce === opt
-                          ? 'bg-[#0b4a8b] text-white shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {formData.isEcommerce === 'Yes' ? (
-              <div className="space-y-6 pt-2">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                      APPROXIMATE NUMBER OF PRODUCTS
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.approxProducts}
-                      onChange={(e) => handleInputChange('approxProducts', e.target.value)}
-                      placeholder="e.g. 50-100 SKUs, 500+ items"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                      PRODUCT CATEGORIES
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.productCategories}
-                      onChange={(e) => handleInputChange('productCategories', e.target.value)}
-                      placeholder="e.g. Men, Women, Accessories, Shoes"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                      PRODUCT VARIATIONS (SIZE, COLOR)?
-                    </label>
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {['Yes', 'No'].map((opt) => (
-                        <button
-                          type="button"
-                          key={opt}
-                          onClick={() => handleInputChange('productVariations', opt)}
-                          className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                            formData.productVariations === opt
-                              ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                              : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Payment Methods */}
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    PAYMENT METHODS
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-                    {['Razorpay', 'Stripe', 'PayPal', 'Cash on Delivery', 'Bank Transfer', 'Other'].map((method) => {
-                      const checked = formData.paymentMethods.includes(method);
-                      return (
-                        <button
-                          type="button"
-                          key={method}
-                          onClick={() => handleArrayToggle('paymentMethods', method)}
-                          className={`h-11 px-2 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                            checked
-                              ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                              : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {method}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* E-Com Modules Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                  {[
-                    { label: 'Inventory Tracking', field: 'inventoryManagement' },
-                    { label: 'Discount Coupons', field: 'discountCoupons' },
-                    { label: 'Customer Accounts', field: 'customerAccounts' },
-                    { label: 'Order Tracking', field: 'orderManagement' },
-                    { label: 'GST Tax Invoices', field: 'gstInvoice' },
-                  ].map((item) => (
-                    <div key={item.field} className="p-3 rounded-lg border border-slate-100 bg-slate-50/50">
-                      <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 truncate">
-                        {item.label}
-                      </span>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        {['Yes', 'No'].map((opt) => (
-                          <button
-                            type="button"
-                            key={opt}
-                            onClick={() => handleInputChange(item.field, opt)}
-                            className={`h-8 rounded text-xs font-semibold transition-all flex items-center justify-center cursor-pointer ${
-                              formData[item.field] === opt
-                                ? 'bg-[#0b4a8b] text-white'
-                                : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Shipping & ERP */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                      SHIPPING / DELIVERY INTEGRATION
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.shippingIntegration}
-                      onChange={(e) => handleInputChange('shippingIntegration', e.target.value)}
-                      placeholder="e.g. Shiprocket, Delhivery, Bluedart, FedEx"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                      MARKETPLACE / ERP INTEGRATION
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.erpMarketplaceIntegration}
-                      onChange={(e) => handleInputChange('erpMarketplaceIntegration', e.target.value)}
-                      placeholder="e.g. Amazon, Flipkart, Tally, Unicommerce"
-                      className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <p className="text-xs text-slate-500 italic py-2">
-                This project is marked as a corporate/lead-generation website. Click "Yes" above if e-commerce checkout or product catalog features are required.
-              </p>
-            )}
-          </div>
-
-          {/* ================= SECTION 10: BUDGET & PROJECT TIMELINE ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Calendar className="w-4 h-4 text-[#0b4a8b]" />
-              <span>10. BUDGET & PROJECT TIMELINE</span>
-            </div>
-
-            <div className="space-y-6">
-              {/* Estimated Budget */}
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                  ESTIMATED PROJECT BUDGET <span className="text-red-500">*</span>
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-                  {[
-                    'Below ₹25,000',
-                    '₹25,000–₹50,000',
-                    '₹50,000–₹1,00,000',
-                    '₹1,00,000–₹2,50,000',
-                    '₹2,50,000–₹5,00,000',
-                    'Above ₹5,00,000',
-                    'To Be Discussed',
-                  ].map((tier) => {
-                    const active = formData.budgetTier === tier;
-                    return (
-                      <button
-                        type="button"
-                        key={tier}
-                        onClick={() => handleInputChange('budgetTier', tier)}
-                        className={`h-11 px-2 rounded-lg border text-[11px] font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          active
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {tier}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Dates */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    EXPECTED PROJECT START DATE
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.startDate}
-                    onChange={(e) => handleInputChange('startDate', e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    PREFERRED WEBSITE LAUNCH DATE <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    value={formData.launchDate}
-                    onChange={(e) => handleInputChange('launchDate', e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Fixed Deadline & Support */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    IS THERE A FIXED DEADLINE?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('fixedDeadline', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.fixedDeadline === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    ONGOING MAINTENANCE & AMC?
-                  </label>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {['Yes', 'No'].map((opt) => (
-                      <button
-                        type="button"
-                        key={opt}
-                        onClick={() => handleInputChange('ongoingSupport', opt)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.ongoingSupport === opt
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    EVENT / CAMPAIGN DEPENDENCY
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.deadlineReason}
-                    onChange={(e) => handleInputChange('deadlineReason', e.target.value)}
-                    placeholder="e.g. Product launch, Expo exhibition"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 11: PROJECT MANAGEMENT & APPROVALS ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <Users className="w-4 h-4 text-[#0b4a8b]" />
-              <span>11. PROJECT MANAGEMENT & APPROVALS</span>
-            </div>
-
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    PRIMARY POINT OF CONTACT
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.primaryContact}
-                    onChange={(e) => handleInputChange('primaryContact', e.target.value)}
-                    placeholder="Name & Designation"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    WHO WILL APPROVE DESIGN?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.designApprover}
-                    onChange={(e) => handleInputChange('designApprover', e.target.value)}
-                    placeholder="Design Decision Maker"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    WHO WILL PROVIDE ASSETS?
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.contentProviderName}
-                    onChange={(e) => handleInputChange('contentProviderName', e.target.value)}
-                    placeholder="Content Coordinator"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Channels & Frequency */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    PREFERRED COMMUNICATION CHANNELS
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    {['Email', 'WhatsApp', 'Phone', 'Online Meetings'].map((ch) => {
-                      const checked = formData.communicationChannel.includes(ch);
-                      return (
-                        <button
-                          type="button"
-                          key={ch}
-                          onClick={() => handleArrayToggle('communicationChannel', ch)}
-                          className={`h-11 px-2 rounded-lg border text-xs font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                            checked
-                              ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                              : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                          }`}
-                        >
-                          {ch}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">
-                    PREFERRED MEETING FREQUENCY
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Weekly', 'Bi-weekly', 'As Needed'].map((freq) => (
-                      <button
-                        type="button"
-                        key={freq}
-                        onClick={() => handleInputChange('meetingFrequency', freq)}
-                        className={`h-11 px-3 rounded-lg border text-xs sm:text-sm font-medium transition-all text-center flex items-center justify-center cursor-pointer ${
-                          formData.meetingFrequency === freq
-                            ? 'bg-[#0b4a8b] text-white border-[#0b4a8b] font-bold shadow-xs'
-                            : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
-                        }`}
-                      >
-                        {freq}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= SECTION 12: FINAL NOTES & CONFIRMATION ================= */}
-          <div className="bg-white rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-6 sm:p-7 md:p-8">
-            <div className="flex items-center gap-2 text-[#0b4a8b] font-bold text-xs sm:text-sm tracking-wider uppercase mb-6">
-              <FileCheck className="w-4 h-4 text-[#0b4a8b]" />
-              <span>12. FINAL NOTES & CONFIRMATION</span>
-            </div>
-
-            <div className="space-y-5">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                  DESCRIBE YOUR IDEAL WEBSITE IN YOUR OWN WORDS
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.idealWebsiteDescription}
-                  onChange={(e) => handleInputChange('idealWebsiteDescription', e.target.value)}
-                  placeholder="In a sentence or two, what feeling and results should your new site deliver?"
-                  className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    THREE MOST IMPORTANT THINGS TO FOCUS ON
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={formData.threeImportantFocus}
-                    onChange={(e) => handleInputChange('threeImportantFocus', e.target.value)}
-                    placeholder="1. Fast loading speed, 2. Mobile responsiveness, 3. Strong call-to-action"
-                    className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    IS THERE ANYTHING WE SHOULD AVOID?
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={formData.thingsToAvoid}
-                    onChange={(e) => handleInputChange('thingsToAvoid', e.target.value)}
-                    placeholder="e.g. Cluttered popups, heavy stock photography, slow slider carousels..."
-                    className="w-full p-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Confirmation Agreements */}
-              <div className="mt-4 p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-3">
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-800">
-                  CLIENT CONFIRMATION & TERMS
-                </span>
-
-                <label className="flex items-start gap-3 text-xs text-slate-700 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={formData.confirmAccurate}
-                    onChange={(e) => handleInputChange('confirmAccurate', e.target.checked)}
-                    className="w-4 h-4 mt-0.5 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                  />
-                  <span>I confirm that the information provided is accurate to the best of my knowledge.</span>
-                </label>
-
-                <label className="flex items-start gap-3 text-xs text-slate-700 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={formData.confirmProposalTerms}
-                    onChange={(e) => handleInputChange('confirmProposalTerms', e.target.checked)}
-                    className="w-4 h-4 mt-0.5 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                  />
-                  <span>
-                    I understand that the final project scope, deliverables, pricing, and timeline will be confirmed in the project proposal.
-                  </span>
-                </label>
-
-                <label className="flex items-start gap-3 text-xs text-slate-700 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={formData.confirmTimelineDependency}
-                    onChange={(e) => handleInputChange('confirmTimelineDependency', e.target.checked)}
-                    className="w-4 h-4 mt-0.5 rounded border-slate-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                  />
-                  <span>
-                    I understand that project timelines depend on timely provision of content, assets, access, and approvals.
-                  </span>
-                </label>
-              </div>
-
-              {/* Signatures */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-2">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    CLIENT NAME <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.clientSignName}
-                    onChange={(e) => handleInputChange('clientSignName', e.target.value)}
-                    placeholder="Authorized Signatory Name"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    COMPANY NAME
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.clientSignCompany}
-                    onChange={(e) => handleInputChange('clientSignCompany', e.target.value)}
-                    placeholder="Company Legal Name"
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
-                    DATE
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.signDate}
-                    onChange={(e) => handleInputChange('signDate', e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-lg bg-white border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0b4a8b]/20 focus:border-[#0b4a8b] transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <label className="flex items-center gap-3 p-3 rounded-lg border border-blue-200 bg-blue-50/60 text-xs font-semibold text-[#0b4a8b] cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    required
-                    checked={formData.authorizedAgreement}
-                    onChange={(e) => handleInputChange('authorizedAgreement', e.target.checked)}
-                    className="w-4 h-4 rounded border-blue-300 text-[#0b4a8b] focus:ring-0 cursor-pointer accent-[#0b4a8b]"
-                  />
-                  <span>AUTHORIZED CONFIRMATION: I authorize iBraine Digital to review these project requirements and prepare the formal proposal.</span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          {/* ================= MASSIVE SOLID NAVY SUBMIT BUTTON ================= */}
-          <div className="pt-2 pb-6">
-            <button
-              type="submit"
-              className="w-full h-13 py-3.5 rounded-xl bg-[#093566] hover:bg-[#072a52] active:scale-[0.99] text-white font-bold text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer select-none"
+        <AnimatePresence mode="wait">
+          {isSubmitted ? (
+            /* ================= SUCCESS BANNER ================= */
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-white rounded-2xl border border-slate-200/90 p-8 sm:p-12 text-center shadow-lg max-w-2xl mx-auto my-12"
             >
-              <span>SUBMIT QUESTIONNAIRE</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <p className="mt-3 text-center text-xs text-slate-500">
-              Our team will review your requirements and prepare the project scope, estimated timeline, and commercial proposal within 24 hours.
-            </p>
-          </div>
-        </form>
-      </main>
-
-      {/* ===================== SUBMISSION SUCCESS MODAL ===================== */}
-      {isSubmitted && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 text-center animate-in fade-in zoom-in-95 duration-200">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="w-9 h-9" />
-            </div>
-
-            <h3 className="text-xl sm:text-2xl font-bold font-lora text-slate-900">
-              Questionnaire Submitted Successfully!
-            </h3>
-
-            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              Thank you, <strong className="text-slate-900">{formData.contactPerson || 'Valued Client'}</strong>! We have received your discovery requirements for <strong className="text-slate-900">{formData.companyName || 'your business'}</strong>.
-            </p>
-
-            <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2">
-              <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
-                <span className="text-slate-500">Company:</span>
-                <span className="font-semibold text-slate-800">{formData.companyName}</span>
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-5 shadow-xs">
+                <CheckCircle2 className="w-9 h-9" />
               </div>
-              <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
-                <span className="text-slate-500">Email:</span>
-                <span className="font-semibold text-slate-800">{formData.email}</span>
+              <h2 className="text-2xl sm:text-3xl font-bold font-lora text-slate-950 mb-3">
+                Questionnaire Submitted Successfully!
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 font-sans max-w-lg mx-auto mb-6 leading-relaxed">
+                Thank you, <strong>{formData.fullName}</strong>. Our digital marketing team has received your campaign brief for <strong>{formData.websiteUrl || 'your website'}</strong> and will review your objectives within 24 business hours.
+              </p>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 font-sans text-left max-w-md mx-auto mb-8 space-y-1.5">
+                <div><strong>Services:</strong> {formData.services.concat(formData.servicesOther ? [formData.servicesOther] : []).join(', ') || 'N/A'}</div>
+                <div><strong>Goals:</strong> {formData.projectGoals.concat(formData.projectGoalsOther ? [formData.projectGoalsOther] : []).join(', ') || 'N/A'}</div>
+                <div><strong>Duration:</strong> {formData.projectDuration}</div>
+                <div><strong>Monthly Budget:</strong> {formData.monthlyBudget}</div>
               </div>
-              <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
-                <span className="text-slate-500">Project Type:</span>
-                <span className="font-semibold text-slate-800">{formData.websiteType}</span>
-              </div>
-              <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
-                <span className="text-slate-500">Budget Range:</span>
-                <span className="font-semibold text-slate-800">{formData.budgetTier}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Target Launch:</span>
-                <span className="font-semibold text-slate-800">{formData.launchDate || 'To be scheduled'}</span>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="flex-1 py-3 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 font-bold text-xs uppercase tracking-wider text-slate-700 flex items-center justify-center gap-2 cursor-pointer transition-all"
-              >
-                <Printer className="w-4 h-4" />
-                <span>Print Copy</span>
-              </button>
               <button
                 type="button"
                 onClick={() => {
                   setIsSubmitted(false);
-                  window.location.href = '/';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex-1 py-3 px-4 rounded-xl bg-[#093566] hover:bg-[#072a52] font-bold text-xs uppercase tracking-wider text-white flex items-center justify-center gap-2 cursor-pointer transition-all"
+                className="px-6 py-2.5 rounded-xl bg-[#0072BC] text-white font-sans font-bold text-sm hover:bg-[#005ea6] transition-all cursor-pointer shadow-sm"
               >
-                <span>Back to Homepage</span>
-                <ArrowRight className="w-4 h-4" />
+                Submit Another Response
               </button>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          ) : (
+            /* ================= THE OPERATING MEDIA STYLE WORKFLOW FORM ================= */
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
+              {/* Error Alert */}
+              {errorMessage && (
+                <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-sans flex items-center gap-2 shadow-xs">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              {/* ============================================================== */}
+              {/* CARD 1: PRIMARY INFORMATION & BUSINESS OVERVIEW              */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                {/* Card Head */}
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <Building2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      1. Primary Information & Business Overview
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Tell us about your company, brand domain, and core offerings.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Grid Inputs */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Rahul Sharma"
+                      required
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Work Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="e.g. rahul@company.com"
+                      required
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Phone / WhatsApp Number <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="e.g. +91 98765 43210"
+                      required
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Company / Business Name
+                    </label>
+                    <input
+                      type="text"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Acme Innovations Pvt Ltd"
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Website Name / URL */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    Name of your website <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="websiteUrl"
+                    value={formData.websiteUrl}
+                    onChange={handleInputChange}
+                    placeholder="e.g. www.yourcompany.com or YourBrand.com"
+                    required
+                    className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Business Description */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    A short description about the business <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="businessDescription"
+                    value={formData.businessDescription}
+                    onChange={handleInputChange}
+                    rows="3"
+                    placeholder="Briefly describe what your business does, your flagship products/services, and value proposition..."
+                    required
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none leading-relaxed"
+                  />
+                </div>
+
+                {/* Additional site details: active duration, total pages, business model */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-2">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      How long has your website been active?
+                    </label>
+                    <input
+                      type="text"
+                      name="websiteActiveDuration"
+                      value={formData.websiteActiveDuration}
+                      onChange={handleInputChange}
+                      placeholder="e.g. 2 years, Brand new / Not yet live"
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Total no of pages in site
+                    </label>
+                    <input
+                      type="text"
+                      name="totalPages"
+                      value={formData.totalPages}
+                      onChange={handleInputChange}
+                      placeholder="e.g. 10 - 25 pages, 100+ SKU pages"
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Business Model / Storefront */}
+                <div className="pt-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2 font-sans">
+                    Is your business (online only) or do you have a retail storefront or service business? <span className="text-slate-400 font-normal lowercase">(imp for local listing)</span>
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    {BUSINESS_TYPE_OPTIONS.map((type) => {
+                      const isSelected = formData.businessType === type;
+                      return (
+                        <div
+                          key={type}
+                          onClick={() => setFormData((prev) => ({ ...prev, businessType: type }))}
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isSelected
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span className="line-clamp-2">{type}</span>
+                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-2 ${
+                            isSelected ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* CARD 2: SERVICES & GOALS MATRIX                              */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <Target className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      2. Services & Project Objectives
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Select all deliverables, desired outcomes, timeline, and monthly budget.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Which services are we looking for? */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 font-sans">
+                      Which services are we looking for? <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-[11px] text-[#0072BC] font-sans font-bold bg-blue-50 px-2 py-0.5 rounded-full">
+                      Select all that apply
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {SERVICES_OPTIONS.map((srv) => {
+                      const isChecked = formData.services.includes(srv);
+                      return (
+                        <div
+                          key={srv}
+                          onClick={() => toggleArrayOption('services', srv)}
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isChecked
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span>{srv}</span>
+                          <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ml-2 transition-colors ${
+                            isChecked ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Other Input Checkbox */}
+                  <div className="mt-3 p-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/60 flex flex-col sm:flex-row sm:items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 font-sans whitespace-nowrap">
+                      Other Service:
+                    </span>
+                    <input
+                      type="text"
+                      name="servicesOther"
+                      value={formData.servicesOther}
+                      onChange={handleInputChange}
+                      placeholder="Specify other service (e.g. CRO, Influencer Marketing, Video Ads)..."
+                      className="w-full h-9 px-3 rounded-lg border border-slate-300 focus:border-[#0072BC] bg-white text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-sans outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* What is the goal of the project? */}
+                <div className="pt-3 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 font-sans">
+                      What is the goal of the project? <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-[11px] text-[#0072BC] font-sans font-bold bg-blue-50 px-2 py-0.5 rounded-full">
+                      Select primary goals
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    {GOALS_OPTIONS.map((goal) => {
+                      const isChecked = formData.projectGoals.includes(goal);
+                      return (
+                        <div
+                          key={goal}
+                          onClick={() => toggleArrayOption('projectGoals', goal)}
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isChecked
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span>{goal}</span>
+                          <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ml-2 transition-colors ${
+                            isChecked ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Other Goal Input */}
+                  <div className="mt-3 p-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/60 flex flex-col sm:flex-row sm:items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 font-sans whitespace-nowrap">
+                      Other Goal:
+                    </span>
+                    <input
+                      type="text"
+                      name="projectGoalsOther"
+                      value={formData.projectGoalsOther}
+                      onChange={handleInputChange}
+                      placeholder="Specify other objective (e.g. App Installs, ROAS 4x, Local Walk-ins)..."
+                      className="w-full h-9 px-3 rounded-lg border border-slate-300 focus:border-[#0072BC] bg-white text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-sans outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Duration & Budget Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-3 border-t border-slate-100">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      What will be duration of project? <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="projectDuration"
+                        value={formData.projectDuration}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full h-11 px-3.5 pr-10 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 font-sans transition-all outline-none appearance-none cursor-pointer"
+                      >
+                        {DURATION_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      What is the monthly budget for the project? <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="monthlyBudget"
+                      value={formData.monthlyBudget}
+                      onChange={handleInputChange}
+                      placeholder="e.g. ₹50,000 / mo or $2,500 / month"
+                      required
+                      className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* CARD 3: ADVERTISING ACCOUNTS, TARGETING & PLATFORMS          */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <Megaphone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      3. Advertising Accounts, Targeting & Platforms
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Existing marketing channels, location targeting, and campaign parameters.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Do you have an existing account from the following? */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 font-sans">
+                    Do you have an existing account from the following?
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {EXISTING_ACCOUNTS_OPTIONS.map((acc) => {
+                      const isChecked = formData.existingAccounts.includes(acc);
+                      return (
+                        <div
+                          key={acc}
+                          onClick={() => toggleArrayOption('existingAccounts', acc)}
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isChecked
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span>{acc}</span>
+                          <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ml-2 transition-colors ${
+                            isChecked ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Other Existing Account */}
+                  <div className="mt-3 p-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/60 flex flex-col sm:flex-row sm:items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 font-sans whitespace-nowrap">
+                      Other Account:
+                    </span>
+                    <input
+                      type="text"
+                      name="existingAccountsOther"
+                      value={formData.existingAccountsOther}
+                      onChange={handleInputChange}
+                      placeholder="Specify other ad account (e.g. TikTok Ads, Quora Ads, Pinterest)..."
+                      className="w-full h-9 px-3 rounded-lg border border-slate-300 focus:border-[#0072BC] bg-white text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-sans outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Platforms to advertise on */}
+                <div className="pt-3 border-t border-slate-100">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 font-sans">
+                    What Search engines or platforms should we advertise on?
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    {PLATFORMS_OPTIONS.map((plat) => {
+                      const isChecked = formData.targetPlatforms.includes(plat);
+                      return (
+                        <div
+                          key={plat}
+                          onClick={() => toggleArrayOption('targetPlatforms', plat)}
+                          className={`p-2.5 sm:p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isChecked
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span className="line-clamp-1">{plat}</span>
+                          <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ml-1.5 transition-colors ${
+                            isChecked ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Location Targeting */}
+                <div className="pt-3 border-t border-slate-100">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    What will be the location targeting? The places where you want to show your ads <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="locationTargeting"
+                    value={formData.locationTargeting}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. Mumbai, Delhi NCR, Bangalore, or Specific Tier 1 cities in India / Global (US, UK, UAE)..."
+                    required
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Specific Audience */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    If there is any specific audience which you would like to target then please let us know
+                  </label>
+                  <textarea
+                    name="specificAudience"
+                    value={formData.specificAudience}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. Founders, CTOs, B2B Decision makers, Age 25-45, High-income households, Fitness enthusiasts..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Restrictions: Can't or shouldn't promote */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    Is there anything on website that we can’t or shouldn’t promote?
+                  </label>
+                  <input
+                    type="text"
+                    name="unpromotableItems"
+                    value={formData.unpromotableItems}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Out of stock products, discontinued services, restricted categories..."
+                    className="w-full h-11 px-3.5 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* CARD 4: MARKET POSITIONING & COMPETITORS                     */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <Globe className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      4. Market Positioning & Competitors
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Define your competitive advantages, market rivals, and brand handles.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Competitors */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    Who are your top competitors? <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="competitors"
+                    value={formData.competitors}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="List 3 to 5 key competitors and their website links if available..."
+                    required
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* USP */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    What is your USP? What keeps you over your competitors?
+                  </label>
+                  <textarea
+                    name="usp"
+                    value={formData.usp}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. 24/7 dedicated support, patent-pending technology, direct factory pricing, 10x faster delivery..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Main Keywords and Services */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    List of main keywords and services which you would like to target at initial stage
+                  </label>
+                  <textarea
+                    name="initialKeywordsServices"
+                    value={formData.initialKeywordsServices}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. Best corporate catering in Mumbai, buy organic coffee online, enterprise cloud ERP..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Social Media Links */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    Share the Links to all the social media business pages we have over platforms like facebook, twitter, linkedin, etc?
+                  </label>
+                  <textarea
+                    name="socialMediaLinks"
+                    value={formData.socialMediaLinks}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. Instagram: instagram.com/brand, LinkedIn: linkedin.com/company/brand, Facebook: fb.com/brand..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* CARD 5: ANALYTICS, CREATIVE & TECHNICAL READINESS            */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <BarChart3 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      5. Analytics, Creative & Technical Readiness
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Account permissions, historical reporting, and creative assets.
+                    </p>
+                  </div>
+                </div>
+
+                {/* GA Account Access */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 font-sans">
+                    Can we have access to your google analytics account?
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    {GA_ACCESS_OPTIONS.map((opt) => {
+                      const isSelected = formData.gaAccess === opt;
+                      return (
+                        <div
+                          key={opt}
+                          onClick={() => setFormData((prev) => ({ ...prev, gaAccess: opt }))}
+                          className={`p-3 rounded-xl border text-left cursor-pointer transition-all duration-200 flex items-center justify-between text-xs sm:text-sm font-sans ${
+                            isSelected
+                              ? 'bg-blue-50/90 border-[#0072BC] text-[#0072BC] font-bold shadow-2xs ring-1 ring-[#0072BC]/20'
+                              : 'bg-slate-50/70 hover:bg-slate-100/80 border-slate-200 text-slate-700'
+                          }`}
+                        >
+                          <span>{opt}</span>
+                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-2 ${
+                            isSelected ? 'border-[#0072BC] bg-[#0072BC] text-white' : 'border-slate-300 bg-white'
+                          }`}>
+                            {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Other GA input */}
+                  <div className="mt-3 p-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/60 flex flex-col sm:flex-row sm:items-center gap-2">
+                    <span className="text-xs font-bold text-slate-700 font-sans whitespace-nowrap">
+                      Other / Note:
+                    </span>
+                    <input
+                      type="text"
+                      name="gaAccessOther"
+                      value={formData.gaAccessOther}
+                      onChange={handleInputChange}
+                      placeholder="Specify GA4 access details or alternate tracking..."
+                      className="w-full h-9 px-3 rounded-lg border border-slate-300 focus:border-[#0072BC] bg-white text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-sans outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Current Performance Measurement */}
+                <div className="pt-3 border-t border-slate-100">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    How do you measure your current performance? What is the current performance report?
+                  </label>
+                  <textarea
+                    name="currentPerformance"
+                    value={formData.currentPerformance}
+                    onChange={handleInputChange}
+                    rows="2"
+                    placeholder="e.g. Current monthly leads: 40, CAC: ₹1,200, Conversion Rate: 1.8%, GA4 E-commerce revenue..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none"
+                  />
+                </div>
+
+                {/* Creative Team Available (DROPDOWN) */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-slate-100">
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Creative Team for Ads? <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="creativeTeamAvailable"
+                        value={formData.creativeTeamAvailable}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full h-11 px-3.5 pr-10 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 font-sans transition-all outline-none appearance-none cursor-pointer"
+                      >
+                        {DDM_OPTIONS_YES_NO.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      Site ever penalised?
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="sitePenalised"
+                        value={formData.sitePenalised}
+                        onChange={handleInputChange}
+                        className="w-full h-11 px-3.5 pr-10 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 font-sans transition-all outline-none appearance-none cursor-pointer"
+                      >
+                        {DDM_OPTIONS_PENALTY.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                      SMM with website?
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="socialMediaUsedWithSite"
+                        value={formData.socialMediaUsedWithSite}
+                        onChange={handleInputChange}
+                        className="w-full h-11 px-3.5 pr-10 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 font-sans transition-all outline-none appearance-none cursor-pointer"
+                      >
+                        {DDM_OPTIONS_PENALTY.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* CARD 6: BRIEF UPLOAD & ADDITIONAL INFORMATION                */}
+              {/* ============================================================== */}
+              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8 space-y-5">
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-lora text-slate-900 tracking-tight">
+                      6. Project Brief Upload & Additional Information
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Attach existing briefs, media kits, or specific notes.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Upload Doc Area */}
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5 font-sans">
+                    If you have a project brief, you can upload here
+                  </label>
+                  
+                  {selectedFile ? (
+                    <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 flex items-center justify-between font-sans">
+                      <div className="flex items-center gap-3 overflow-hidden">
+                        <div className="w-10 h-10 rounded-lg bg-white border border-blue-200 text-[#0072BC] flex items-center justify-center shrink-0 shadow-2xs">
+                          <Paperclip className="w-5 h-5" />
+                        </div>
+                        <div className="truncate">
+                          <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">
+                            {selectedFile.name}
+                          </div>
+                          <div className="text-[11px] text-slate-500">
+                            {(selectedFile.size / 1024).toFixed(1)} KB
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={removeFile}
+                        className="p-2 text-slate-400 hover:text-red-500 transition-colors cursor-pointer"
+                        title="Remove file"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="border-2 border-dashed border-slate-300 hover:border-[#0072BC] rounded-xl p-6 sm:p-8 text-center transition-all bg-slate-50/50 hover:bg-blue-50/20 group">
+                      <input
+                        type="file"
+                        id="brief-file-input"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.png,.jpg"
+                        className="hidden"
+                      />
+                      <label htmlFor="brief-file-input" className="cursor-pointer block">
+                        <UploadCloud className="w-10 h-10 text-slate-400 group-hover:text-[#0072BC] mx-auto mb-2 transition-colors" />
+                        <div className="text-xs sm:text-sm font-bold text-slate-800 font-sans">
+                          Drag and drop your project brief or{' '}
+                          <span className="text-[#0072BC] underline underline-offset-2">Browse file</span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 font-sans mt-1">
+                          Supported formats: PDF, DOCX, PPTX, XLSX, ZIP, PNG, JPG (Max 25MB)
+                        </p>
+                        <div className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-700 font-sans shadow-2xs hover:border-[#0072BC] group-hover:text-[#0072BC] transition-all">
+                          <Paperclip className="w-3.5 h-3.5" />
+                          <span>Add file</span>
+                        </div>
+                      </label>
+                    </div>
+                  )}
+                </div>
+
+                {/* Any Other Information */}
+                <div className="pt-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 font-sans">
+                    Any other information that you would like to share?
+                  </label>
+                  <textarea
+                    name="additionalInfo"
+                    value={formData.additionalInfo}
+                    onChange={handleInputChange}
+                    rows="3"
+                    placeholder="Provide any additional expectations, timeline milestones, or context that will help us craft the best proposal..."
+                    className="w-full p-3 rounded-lg border border-slate-300 focus:border-[#0072BC] focus:ring-2 focus:ring-[#0072BC]/15 bg-white text-sm text-slate-900 placeholder:text-slate-400 font-sans transition-all outline-none leading-relaxed"
+                  />
+                </div>
+              </div>
+
+              {/* ============================================================== */}
+              {/* SUBMIT BUTTON BAR                                            */}
+              {/* ============================================================== */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#0072BC] via-[#0060a0] to-[#0052e6] hover:from-[#005ea6] hover:to-[#004880] text-white font-sans font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-lg shadow-blue-600/25 transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed uppercase"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Processing Submission...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Submit Digital Marketing Questionnaire</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </button>
+                <p className="text-center text-[11px] text-slate-400 font-sans mt-2.5">
+                  Your information is kept 100% confidential under iBraine Non-Disclosure terms.
+                </p>
+              </div>
+            </form>
+          )}
+        </AnimatePresence>
+      </main>
     </div>
   );
 };
 
-export default QuestionnairePage;
+export default DigitalMarketingQuestionnaire;
