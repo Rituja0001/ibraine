@@ -721,7 +721,7 @@ const CommercialsPage = () => {
                   {/* PILLAR 1: On-Page Optimization (14 Factors) */}
                   {(seoCategoryFilter === 'all' || seoCategoryFilter === 'onpage') && (
                     <div className="space-y-4">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
                             <Layers className="w-4 h-4" />
@@ -765,13 +765,16 @@ const CommercialsPage = () => {
                           );
                         })}
                       </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
                   )}
 
                   {/* PILLAR 2: SEO Friendly Content Writing (5 Factors) */}
                   {(seoCategoryFilter === 'all' || seoCategoryFilter === 'content') && (
                     <div className="space-y-4 pt-2">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
                             <PenTool className="w-4 h-4" />
@@ -817,13 +820,16 @@ const CommercialsPage = () => {
                           );
                         })}
                       </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
                   )}
 
                   {/* PILLAR 3: Local Search Optimization (1 Factor) */}
                   {(seoCategoryFilter === 'all' || seoCategoryFilter === 'local') && (
                     <div className="space-y-4 pt-2">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
                             <Globe className="w-4 h-4" />
@@ -857,13 +863,16 @@ const CommercialsPage = () => {
                           </div>
                         ))}
                       </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
                   )}
 
                   {/* PILLAR 4: Link Strategy & Off-Page (10 Factors) */}
                   {(seoCategoryFilter === 'all' || seoCategoryFilter === 'link') && (
                     <div className="space-y-4 pt-2">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
                             <Share2 className="w-4 h-4" />
@@ -897,13 +906,16 @@ const CommercialsPage = () => {
                           </div>
                         ))}
                       </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
                   )}
 
                   {/* PILLAR 5: Granular Monthly Reporting (3 Factors) */}
                   {(seoCategoryFilter === 'all' || seoCategoryFilter === 'reporting') && (
                     <div className="space-y-4 pt-2">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
                             <BarChart3 className="w-4 h-4" />
@@ -937,6 +949,9 @@ const CommercialsPage = () => {
                           </div>
                         ))}
                       </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
                   )}
                 </div>
@@ -1188,7 +1203,7 @@ const CommercialsPage = () => {
                 {/* PILLAR 1: Domain Optimization Scope (10 Protocols) */}
                 {(geoCategoryFilter === 'all' || geoCategoryFilter === 'scope') && (
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex items-start gap-3 pb-4 border-b border-slate-100">
+                    <div className="flex items-start gap-3 pb-2">
                       <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                         <Layers className="w-5 h-5" />
                       </div>
@@ -1263,7 +1278,7 @@ const CommercialsPage = () => {
                 {/* PILLAR 2: Technical AI Architecture (9 Factors) */}
                 {(geoCategoryFilter === 'all' || geoCategoryFilter === 'technical') && (
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                           <SlidersHorizontal className="w-5 h-5" />
@@ -1306,7 +1321,7 @@ const CommercialsPage = () => {
                 {/* PILLAR 3: High-Authority AI Outreach & Citations (5 Factors) */}
                 {(geoCategoryFilter === 'all' || geoCategoryFilter === 'outreach') && (
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                           <Share2 className="w-5 h-5" />
@@ -1359,7 +1374,7 @@ const CommercialsPage = () => {
                 {/* PILLAR 4: Content Hubs & Conversational Entities (4 Factors) */}
                 {(geoCategoryFilter === 'all' || geoCategoryFilter === 'content') && (
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
                       <div className="flex items-start gap-3">
                         <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                           <PenTool className="w-5 h-5" />
