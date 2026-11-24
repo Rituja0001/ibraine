@@ -318,9 +318,9 @@ const CommercialsPage = () => {
                         onClick={() => setSelectedPerfTier(idx)}
                         whileHover={{ y: -4 }}
                         transition={{ duration: 0.25 }}
-                        className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                        className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer ${
                           isSelected
-                            ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border border-blue-400/30'
+                            ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                             : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
                         }`}
                       >
@@ -515,9 +515,9 @@ const CommercialsPage = () => {
                       onClick={() => setSelectedSeoPackage(pkg.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                       }`}
                     >
@@ -699,9 +699,9 @@ const CommercialsPage = () => {
                       onClick={() => setSelectedGeoPackage(pkg.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                       }`}
                     >
@@ -818,9 +818,9 @@ const CommercialsPage = () => {
                       onClick={() => setSelectedSmmPackage(pkg.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                       }`}
                     >
@@ -944,9 +944,9 @@ const CommercialsPage = () => {
                       onClick={() => setSelectedWebPlan(plan.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative cursor-pointer ${
+                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                       }`}
                     >
@@ -1066,9 +1066,9 @@ const CommercialsPage = () => {
                       onClick={() => setSelectedGa4Package(pkg.id)}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative cursor-pointer ${
+                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer ${
                         isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
                           : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
                       }`}
                     >
