@@ -889,10 +889,10 @@ const CommercialsPage = () => {
                       <div className="flex items-center gap-2.5">
                         <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC] shrink-0" />
                         <div>
-                          <div className="text-[10px] uppercase font-bold tracking-wider text-[#0072BC]">
+                          <div className="text-[11px] uppercase font-semibold tracking-wider text-[#0072BC]">
                             Active Plan Scope ({selectedGeoPackage.toUpperCase()})
                           </div>
-                          <div className="text-xs sm:text-sm font-extrabold text-slate-900 tracking-tight">
+                          <div className="text-sm sm:text-base font-semibold text-slate-800">
                             {selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}
                           </div>
                         </div>
@@ -930,7 +930,7 @@ const CommercialsPage = () => {
                           <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-3.5 h-3.5" />
                           </div>
-                          <span className="text-xs sm:text-sm font-medium text-slate-800 leading-snug">
+                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
                             {protocol.feature}
                           </span>
                         </div>
@@ -973,7 +973,7 @@ const CommercialsPage = () => {
                           <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-3.5 h-3.5" />
                           </div>
-                          <span className="text-xs sm:text-sm font-medium text-slate-800 leading-snug">
+                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
                             {item.feature}
                           </span>
                         </div>
@@ -1018,10 +1018,10 @@ const CommercialsPage = () => {
                             <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-3.5 h-3.5" />
                             </div>
-                            <div className="text-xs sm:text-sm font-medium text-slate-800 leading-snug">
+                            <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
                               <span>{item.feature}</span>
                               {isWiki && (
-                                <span className="ml-2 text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                                <span className="ml-2 text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                                   Optional Add-on @ Rs. 2,000
                                 </span>
                               )}
@@ -1067,7 +1067,7 @@ const CommercialsPage = () => {
                           <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-3.5 h-3.5" />
                           </div>
-                          <div className="text-xs sm:text-sm font-medium text-slate-800 leading-snug">
+                          <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
                             <span>{item.feature}</span>
                             <span className="ml-1.5 text-slate-400 font-normal">
                               ({item.values[0]})
