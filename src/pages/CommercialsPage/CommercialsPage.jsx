@@ -937,23 +937,31 @@ const CommercialsPage = () => {
                       </div>
 
                       <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs sm:text-sm font-sans">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-start gap-2">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Theme:</span>
-                          <span className="font-semibold">{plan.themeType}</span>
+                          <span className="font-semibold text-right">{plan.themeType}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-center">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Pages:</span>
                           <span className="font-semibold">{plan.pages}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-center">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Products:</span>
                           <span className="font-semibold">{plan.products}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-start gap-2">
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>E-Commerce:</span>
+                          <span className="font-semibold text-right">{plan.ecommerceScope}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Additional:</span>
+                          <span className="font-semibold">{plan.additionalScope}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
                           <span className={`font-semibold ${plan.popular ? 'text-white' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between items-center">
                           <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
                           <span className="font-semibold">{plan.support}</span>
                         </div>
@@ -963,40 +971,22 @@ const CommercialsPage = () => {
                 ))}
               </motion.div>
 
-              {/* Feature Checklist Table */}
-              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
-                <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200">
-                  <h3 className="font-bold text-sm sm:text-base text-slate-950">
-                    Standard Built-in Features Comparison
-                  </h3>
-                </div>
-                <div className="overflow-x-auto scrollbar-thin">
-                  <table className="w-full text-left border-collapse text-xs sm:text-sm font-sans">
-                    <thead>
-                      <tr className="border-b border-slate-200 bg-slate-100/80 uppercase tracking-wider text-[11px] text-slate-600">
-                        <th className="py-3 px-4 font-bold min-w-[220px]">Feature</th>
-                        <th className="py-3 px-4 font-bold text-center">Non-Ecommerce</th>
-                        <th className="py-3 px-4 font-bold text-center bg-amber-50/70 text-slate-950">E-Commerce</th>
-                        <th className="py-3 px-4 font-bold text-center">Custom Website</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {WEBSITE_DEVELOPMENT_DATA.features.map((feat, idx) => (
-                        <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50/50">
-                          <td className="py-2.5 px-4 font-medium text-slate-800">{feat.feature}</td>
-                          <td className="py-2.5 px-4 text-center">
-                            {feat.nonEcom === 'YES' ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : feat.nonEcom}
-                          </td>
-                          <td className="py-2.5 px-4 text-center bg-amber-50/30 font-semibold">
-                            {feat.ecom === 'YES' ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : feat.ecom}
-                          </td>
-                          <td className="py-2.5 px-4 text-center">
-                            {feat.custom === 'YES' ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : feat.custom}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+              {/* Common Features Grid (Matching SMM layout) */}
+              <motion.div variants={itemVariants} className="p-5 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
+                <h3 className="text-sm sm:text-base font-bold text-slate-950 mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Standard Built-in Features — Included in All Website Plans</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
+                  {WEBSITE_DEVELOPMENT_DATA.commonDeliverables.map((feat, idx) => (
+                    <div key={idx} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                      <div className="text-xs sm:text-sm font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span>{feat.title}</span>
+                      </div>
+                      <div className="text-xs text-slate-500 leading-snug">{feat.desc}</div>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
 
