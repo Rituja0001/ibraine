@@ -160,21 +160,12 @@ const CommercialsPage = () => {
     });
   });
 
-  // Filter out items already showcased in main GEO plan cards (Keywords, Submissions & Bookmarking)
-  const geoBreakdownCategories = GEO_PACKAGES_DATA.categories
-    .map((cat) => ({
-      ...cat,
-      items: cat.items.filter(
-        (item) =>
-          item.feature !== 'Total Keywords Research' &&
-          item.feature !== 'Primary Keywords' &&
-          item.feature !== 'AI Searched Keywords' &&
-          item.feature !== 'People Also Search For (PASF)' &&
-          item.feature !== 'Social Bookmarking' &&
-          item.feature !== 'Article Submission'
-      ),
-    }))
-    .filter((cat) => cat.items.length > 0);
+  // Filter out categories already showcased in main GEO plan cards (Keywords Research & Off-Page Submissions)
+  const geoBreakdownCategories = GEO_PACKAGES_DATA.categories.filter(
+    (cat) =>
+      cat.category !== 'Keywords Research & Distribution' &&
+      cat.category !== 'Off-Page Optimization & Submissions'
+  );
 
   const geoTotalFactors = geoBreakdownCategories.reduce((acc, c) => acc + c.items.length, 0);
 
@@ -730,7 +721,13 @@ const CommercialsPage = () => {
                           per month
                         </div>
 
-                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
+                        {/* Keywords Research & Distribution */}
+                        <div className="space-y-1.5 pt-3 border-t border-slate-200/20 text-xs font-sans">
+                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
+                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
+                          }`}>
+                            Keywords Research & Distribution
+                          </div>
                           <div className="flex justify-between items-center">
                             <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Total Keywords:</span>
                             <span className="font-bold">{pkg.keywords}</span>
@@ -747,18 +744,40 @@ const CommercialsPage = () => {
                             <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>PASF Queries:</span>
                             <span className="font-bold">{pkg.pasfKeywords}</span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Article Submissions:</span>
-                            <span className="font-bold">{pkg.articleSubmissions}</span>
+                        </div>
+
+                        {/* Off-Page Optimization & Submissions */}
+                        <div className="space-y-1.5 pt-2.5 border-t border-slate-200/20 text-xs font-sans">
+                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
+                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
+                          }`}>
+                            Off-Page Optimization & Submissions
                           </div>
                           <div className="flex justify-between items-center">
                             <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Social Bookmarking:</span>
                             <span className="font-bold">{pkg.socialBookmarking}</span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Optimization Scope:</span>
-                            <span className="font-bold">{pkg.scope}</span>
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Article Submissions:</span>
+                            <span className="font-bold">{pkg.articleSubmissions}</span>
                           </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Web 2.0 Submissions:</span>
+                            <span className="font-bold">{pkg.web2Submissions}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Image Submissions:</span>
+                            <span className="font-bold">{pkg.imageSubmissions}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Search Engine Submissions:</span>
+                            <span className="font-bold">{pkg.searchEngineSubmissions}</span>
+                          </div>
+                        </div>
+
+                        <div className="pt-2 border-t border-slate-200/20 flex justify-between items-center text-xs font-sans">
+                          <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Optimization Scope:</span>
+                          <span className="font-bold">{pkg.scope}</span>
                         </div>
                       </div>
                     </motion.div>
