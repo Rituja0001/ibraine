@@ -443,7 +443,7 @@ export const WEBSITE_DEVELOPMENT_DATA = {
     {
       id: "non-ecommerce",
       name: "Non-Ecommerce Website",
-      cost: "INR 25,000",
+      cost: "Custom Quote",
       platform: "WordPress",
       themeType: "Premium theme (Included)",
       pages: "Up to 20 Pages",
@@ -455,7 +455,7 @@ export const WEBSITE_DEVELOPMENT_DATA = {
     {
       id: "ecommerce",
       name: "E-Commerce Website",
-      cost: "INR 85,000",
+      cost: "Custom Quote",
       platform: "WooCommerce / Shopify",
       themeType: "Premium theme (Included)",
       pages: "Unlimited",
@@ -467,7 +467,7 @@ export const WEBSITE_DEVELOPMENT_DATA = {
     {
       id: "custom",
       name: "Custom Website",
-      cost: "Custom Quote (TBD)",
+      cost: "Custom Quote",
       platform: "React JS, Python, Node, CSS",
       themeType: "Created from Scratch (Custom Architecture)",
       pages: "Unlimited",
