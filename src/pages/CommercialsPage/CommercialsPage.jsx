@@ -182,13 +182,13 @@ const CommercialsPage = () => {
     ? technicalCat.items.filter((i) => i.values[0] === i.values[1])
     : [];
 
-  // 5 Paid Media & AI Outreach Protocols (Sequenced so standard items pair cleanly and largest 2-line item is at the bottom)
+  // 5 Paid Media & AI Outreach Protocols (Wikidata 1st, standard items paired, and largest 2-line item at the bottom)
   const geoOutreachProtocols = paidMediaCat
     ? [
+        paidMediaCat.items.find((i) => i.feature.includes('Wikipedia')),
         paidMediaCat.items.find((i) => i.feature.includes('Articles Writing')),
         paidMediaCat.items.find((i) => i.feature.includes('Paid PR')),
         paidMediaCat.items.find((i) => i.feature.includes('Product reviews')),
-        paidMediaCat.items.find((i) => i.feature.includes('Wikipedia')),
         paidMediaCat.items.find((i) => i.feature.includes('Reddit')),
       ].filter(Boolean)
     : [];
