@@ -1018,13 +1018,15 @@ const CommercialsPage = () => {
                             <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-3.5 h-3.5" />
                             </div>
-                            <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                              <span>{item.feature}</span>
-                              {isWiki && (
-                                <span className="ml-2 text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                                  Optional Add-on @ Rs. 2,000
-                                </span>
-                              )}
+                            <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                <span>{isWiki ? 'Wikidata / Wikipedia' : item.feature}</span>
+                                {isWiki && (
+                                  <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
+                                    Rs. 2,000 (Optional)
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                         );
@@ -1067,11 +1069,13 @@ const CommercialsPage = () => {
                           <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-3.5 h-3.5" />
                           </div>
-                          <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            <span>{item.feature}</span>
-                            <span className="ml-1.5 text-slate-400 font-normal">
-                              ({item.values[0]})
-                            </span>
+                          <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                              <span>{item.feature}</span>
+                              <span className="text-slate-400 font-normal whitespace-nowrap">
+                                ({item.values[0]})
+                              </span>
+                            </div>
                           </div>
                         </div>
                       ))}
