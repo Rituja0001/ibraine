@@ -848,7 +848,7 @@ const CommercialsPage = () => {
                         </div>
                         <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5 mt-0.5">
                           <span className={`w-2 h-2 rounded-full ${selectedGeoPackage === 'silver' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
-                          <span>{selectedGeoPackage === 'silver' ? 'Targeted Priority Landing Pages' : 'Entire Website (Full Domain Coverage)'}</span>
+                          <span>{selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}</span>
                         </div>
                       </div>
                     </div>
@@ -901,7 +901,7 @@ const CommercialsPage = () => {
                       </div>
 
                       <div className="flex items-center gap-1.5 self-start sm:self-auto shrink-0">
-                        <span className="text-xs text-slate-500 font-medium mr-1">Coverage:</span>
+                        <span className="text-xs text-slate-500 font-medium mr-1">Switch View:</span>
                         <button
                           type="button"
                           onClick={() => setSelectedGeoPackage('silver')}
@@ -911,7 +911,7 @@ const CommercialsPage = () => {
                               : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                           }`}
                         >
-                          Silver: Priority Pages
+                          Silver Scope
                         </button>
                         <button
                           type="button"
@@ -919,6 +919,52 @@ const CommercialsPage = () => {
                           className={`px-3 py-1 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
                             selectedGeoPackage !== 'silver'
                               ? 'bg-emerald-100 text-emerald-900 border-emerald-300 shadow-2xs'
+                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                          }`}
+                        >
+                          Gold/Plat/Tit Scope
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Highlighting Point Just Above the List in 1. Domain */}
+                    <div className={`mt-5 mb-5 p-3.5 sm:p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                      selectedGeoPackage === 'silver'
+                        ? 'bg-amber-50/90 border-amber-200/90 text-amber-950 shadow-2xs'
+                        : 'bg-emerald-50/90 border-emerald-200/90 text-emerald-950 shadow-2xs'
+                    }`}>
+                      <div className="flex items-center gap-2.5">
+                        <span className={`w-3 h-3 rounded-full shrink-0 ${
+                          selectedGeoPackage === 'silver' ? 'bg-amber-500' : 'bg-emerald-500'
+                        }`} />
+                        <div>
+                          <div className="text-[10px] uppercase font-bold tracking-wider opacity-75">
+                            Active Plan Scope ({selectedGeoPackage.toUpperCase()})
+                          </div>
+                          <div className="text-xs sm:text-sm font-extrabold tracking-tight">
+                            {selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 self-start sm:self-auto shrink-0 text-xs">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedGeoPackage('silver')}
+                          className={`px-3 py-1 rounded-lg font-bold border transition-colors cursor-pointer ${
+                            selectedGeoPackage === 'silver'
+                              ? 'bg-amber-200/90 text-amber-950 border-amber-300 shadow-2xs'
+                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                          }`}
+                        >
+                          Silver: Targeted Pages
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedGeoPackage(selectedGeoPackage === 'silver' ? 'gold' : selectedGeoPackage)}
+                          className={`px-3 py-1 rounded-lg font-bold border transition-colors cursor-pointer ${
+                            selectedGeoPackage !== 'silver'
+                              ? 'bg-emerald-200/90 text-emerald-950 border-emerald-300 shadow-2xs'
                               : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                           }`}
                         >
