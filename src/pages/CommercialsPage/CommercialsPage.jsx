@@ -236,9 +236,9 @@ const CommercialsPage = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold font-lora text-black tracking-tight leading-[1.18] max-w-4xl mx-auto"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold font-lora tracking-tight leading-[1.18] max-w-4xl mx-auto"
           >
-            iBraine <span className="text-[#0072BC] italic">Commercial Plans</span>
+            <span className="text-[#ffb400]">i</span><span className="text-[#0072BC]">Braine</span> <span className="text-black">Commercial Plans</span>
           </motion.h1>
 
           <motion.p
@@ -1162,262 +1162,268 @@ const CommercialsPage = () => {
               </motion.div>
 
               {/* Complete Categorized Deliverables Breakdown (28 Factors across 4 Strategic Pillars) */}
-              <motion.div variants={itemVariants} className="space-y-5 font-sans">
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs font-sans">
                 {/* Header & Pillar Navigation Bar */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs">
-                  <div className="pb-5 border-b border-slate-100">
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
-                      <Layers className="w-5 h-5 text-[#0072BC]" />
-                      <span>What iBraine Delivers in Your GEO Package (28 Factors)</span>
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1 max-w-3xl leading-relaxed">
-                      Comprehensive Generative Engine Optimization architecture organized into 4 strategic delivery pillars. Clear deliverables, zero tag clutter, and 100% built for AI search dominance.
-                    </p>
-                  </div>
-
-                  {/* Pillar Filter Tabs */}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {[
-                      { id: 'all', label: 'All 4 Pillars (28)' },
-                      { id: 'scope', label: `1. Domain Scope (${geoScopeProtocols.length})` },
-                      { id: 'technical', label: `2. Technical AI (${geoTechnicalProtocols.length})` },
-                      { id: 'outreach', label: `3. AI Citations & PR (${geoOutreachProtocols.length})` },
-                      { id: 'content', label: `4. Content Hubs (${geoContentProtocols.length})` },
-                    ].map((tab) => (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() => setGeoCategoryFilter(tab.id)}
-                        className={`text-xs px-3.5 py-2 rounded-xl font-bold transition-all cursor-pointer ${
-                          geoCategoryFilter === tab.id
-                            ? 'bg-[#0072BC] text-white shadow-xs'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
+                <div className="pb-5 border-b border-slate-100">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
+                    <Layers className="w-5 h-5 text-[#0072BC]" />
+                    <span>What iBraine Delivers in Your GEO Package (28 Factors)</span>
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 max-w-3xl leading-relaxed">
+                    Comprehensive Generative Engine Optimization architecture organized into 4 strategic delivery pillars. Clear deliverables, zero tag clutter, and 100% built for AI search dominance.
+                  </p>
                 </div>
 
-                {/* PILLAR 1: Domain Optimization Scope (10 Protocols) */}
-                {(geoCategoryFilter === 'all' || geoCategoryFilter === 'scope') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex items-start gap-3 pb-2">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                        <Layers className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                            1. Domain Optimization Scope
-                          </h4>
-                          <span className="text-xs text-slate-400 font-medium">({geoScopeProtocols.length} Protocols)</span>
+                {/* Pillar Filter Tabs */}
+                <div className="mt-4 pb-2 flex flex-wrap gap-2">
+                  {[
+                    { id: 'all', label: 'All 4 Pillars (28)' },
+                    { id: 'scope', label: `1. Domain Scope (${geoScopeProtocols.length})` },
+                    { id: 'technical', label: `2. Technical AI (${geoTechnicalProtocols.length})` },
+                    { id: 'outreach', label: `3. AI Citations & PR (${geoOutreachProtocols.length})` },
+                    { id: 'content', label: `4. Content Hubs (${geoContentProtocols.length})` },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setGeoCategoryFilter(tab.id)}
+                      className={`text-xs px-3.5 py-2 rounded-xl font-bold transition-all cursor-pointer ${
+                        geoCategoryFilter === tab.id
+                          ? 'bg-[#0072BC] text-white shadow-xs'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Deliverables Body inside the single unified container */}
+                <div className="pt-6 space-y-8">
+                  {/* PILLAR 1: Domain Optimization Scope (10 Protocols) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'scope') && (
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <Layers className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                1. Domain Optimization Scope
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({geoScopeProtocols.length} Protocols)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Core on-page and technical optimizations scaled to your selected plan.
+                            </p>
+                          </div>
                         </div>
-                        <p className="text-xs text-slate-500 mt-0.5">
-                          Core on-page and technical optimizations scaled to your selected plan.
-                        </p>
                       </div>
+
+                      {/* Highlighting Point Just Above the List in 1. Domain */}
+                      <div className="p-3.5 sm:p-4 rounded-xl border border-blue-200/90 bg-blue-50/70 text-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs font-sans">
+                        <div className="flex items-center gap-2.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC] shrink-0" />
+                          <div>
+                            <div className="text-[11px] uppercase font-semibold tracking-wider text-[#0072BC]">
+                              Active Plan Scope ({selectedGeoPackage.toUpperCase()})
+                            </div>
+                            <div className="text-sm sm:text-base font-semibold text-slate-800">
+                              {selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 self-start sm:self-auto shrink-0 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedGeoPackage('silver')}
+                            className={`px-3 py-1.5 rounded-lg font-bold border transition-colors cursor-pointer ${
+                              selectedGeoPackage === 'silver'
+                                ? 'bg-[#0072BC] text-white border-[#0072BC] shadow-2xs'
+                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                            }`}
+                          >
+                            Silver: Targeted Pages
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedGeoPackage(selectedGeoPackage === 'silver' ? 'gold' : selectedGeoPackage)}
+                            className={`px-3 py-1.5 rounded-lg font-bold border transition-colors cursor-pointer ${
+                              selectedGeoPackage !== 'silver'
+                                ? 'bg-[#0072BC] text-white border-[#0072BC] shadow-2xs'
+                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                            }`}
+                          >
+                            Gold/Plat/Tit: Entire Website
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {geoScopeProtocols.map((protocol, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                              {protocol.feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
+                  )}
 
-                    {/* Highlighting Point Just Above the List in 1. Domain */}
-                    <div className="mt-5 mb-5 p-3.5 sm:p-4 rounded-xl border border-blue-200/90 bg-blue-50/70 text-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs font-sans">
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC] shrink-0" />
-                        <div>
-                          <div className="text-[11px] uppercase font-semibold tracking-wider text-[#0072BC]">
-                            Active Plan Scope ({selectedGeoPackage.toUpperCase()})
+                  {/* PILLAR 2: Technical AI Architecture (9 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'technical') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <SlidersHorizontal className="w-4 h-4" />
                           </div>
-                          <div className="text-sm sm:text-base font-semibold text-slate-800">
-                            {selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                2. Technical AI Architecture Protocols
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({geoTechnicalProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Built-in site-wide across all packages for AI bot crawling, indexing speed, and Core Web Vitals stability.
+                            </p>
                           </div>
                         </div>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 self-start sm:self-auto shrink-0 text-xs">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedGeoPackage('silver')}
-                          className={`px-3 py-1.5 rounded-lg font-bold border transition-colors cursor-pointer ${
-                            selectedGeoPackage === 'silver'
-                              ? 'bg-[#0072BC] text-white border-[#0072BC] shadow-2xs'
-                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
-                          }`}
-                        >
-                          Silver: Targeted Pages
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedGeoPackage(selectedGeoPackage === 'silver' ? 'gold' : selectedGeoPackage)}
-                          className={`px-3 py-1.5 rounded-lg font-bold border transition-colors cursor-pointer ${
-                            selectedGeoPackage !== 'silver'
-                              ? 'bg-[#0072BC] text-white border-[#0072BC] shadow-2xs'
-                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
-                          }`}
-                        >
-                          Gold/Plat/Tit: Entire Website
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {geoScopeProtocols.map((protocol, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            {protocol.feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 2: Technical AI Architecture (9 Factors) */}
-                {(geoCategoryFilter === 'all' || geoCategoryFilter === 'technical') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <SlidersHorizontal className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              2. Technical AI Architecture Protocols
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({geoTechnicalProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Built-in site-wide across all packages for AI bot crawling, indexing speed, and Core Web Vitals stability.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           ✓ Included Across All Plans
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3.5">
-                      {geoTechnicalProtocols.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+                        {geoTechnicalProtocols.map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                              {item.feature}
+                            </span>
                           </div>
-                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            {item.feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 3: High-Authority AI Outreach & Citations (5 Factors) */}
-                {(geoCategoryFilter === 'all' || geoCategoryFilter === 'outreach') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <Share2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              3. High-Authority AI Outreach & Citations
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({geoOutreachProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Establishing external brand authority, PR mentions, and discussions across LLM training grounds.
-                          </p>
-                        </div>
+                        ))}
                       </div>
 
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
+                    </div>
+                  )}
+
+                  {/* PILLAR 3: High-Authority AI Outreach & Citations (5 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'outreach') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <Share2 className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                3. High-Authority AI Outreach & Citations
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({geoOutreachProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Establishing external brand authority, PR mentions, and discussions across LLM training grounds.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           Authority & LLM Citations
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {geoOutreachProtocols.map((item, idx) => {
-                        const isWiki = item.feature.includes('Wikipedia');
-                        return (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {geoOutreachProtocols.map((item, idx) => {
+                          const isWiki = item.feature.includes('Wikipedia');
+                          return (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                              <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                  <span>{isWiki ? 'Wikidata / Wikipedia' : item.feature}</span>
+                                  {isWiki && (
+                                    <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
+                                      Rs. 2,000 (Optional)
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
+                    </div>
+                  )}
+
+                  {/* PILLAR 4: Content Hubs & Conversational Entities (4 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'content') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-1 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <PenTool className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                4. Content Hubs & Conversational Entities
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({geoContentProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Engineered for direct answer snippets in Perplexity, ChatGPT, Gemini, and ongoing freshness.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
+                          Answer Engine Optimization
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {geoContentProtocols.map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
                             <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-3.5 h-3.5" />
                             </div>
                             <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                                <span>{isWiki ? 'Wikidata / Wikipedia' : item.feature}</span>
-                                {isWiki && (
-                                  <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
-                                    Rs. 2,000 (Optional)
-                                  </span>
-                                )}
+                              <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                                <span>{item.feature}</span>
+                                <span className="text-slate-400 font-normal whitespace-nowrap">
+                                  ({item.values[0]})
+                                </span>
                               </div>
                             </div>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 4: Content Hubs & Conversational Entities (4 Factors) */}
-                {(geoCategoryFilter === 'all' || geoCategoryFilter === 'content') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <PenTool className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              4. Content Hubs & Conversational Entities
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({geoContentProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Engineered for direct answer snippets in Perplexity, ChatGPT, Gemini, and ongoing freshness.
-                          </p>
-                        </div>
+                        ))}
                       </div>
 
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
-                          Answer Engine Optimization
-                        </span>
-                      </div>
+                      {/* Line below category */}
+                      <div className="border-b border-slate-200 pt-6" />
                     </div>
-
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {geoContentProtocols.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
-                          </div>
-                          <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
-                              <span>{item.feature}</span>
-                              <span className="text-slate-400 font-normal whitespace-nowrap">
-                                ({item.values[0]})
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </motion.div>
             </motion.div>
           )}
