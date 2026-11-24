@@ -666,282 +666,280 @@ const CommercialsPage = () => {
                 </div>
               </motion.div>
 
-              {/* Complete Categorized SEO Deliverables Breakdown (33 Factors across 5 Strategic Pillars) */}
-              <motion.div variants={itemVariants} className="space-y-5 font-sans">
-                {/* Header & Pillar Navigation Bar */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs">
-                  <div className="pb-5 border-b border-slate-100">
+              {/* Complete Categorized SEO Deliverables Breakdown (33 Factors in One Unified Master Container) */}
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs font-sans">
+                {/* Header & Pillar Navigation Bar inside the container */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-5 border-b border-slate-100 gap-4">
+                  <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
                       <Layers className="w-5 h-5 text-[#0072BC]" />
                       <span>What iBraine Delivers in Your SEO Package (33 Factors)</span>
                     </h3>
                     <p className="text-xs text-slate-500 mt-1 max-w-3xl leading-relaxed">
-                      Comprehensive Search Engine Optimization architecture organized into 5 strategic delivery pillars. Clear deliverables, zero tag clutter, and 100% built for search dominance.
+                      Comprehensive Search Engine Optimization architecture across all 5 strategic delivery pillars. Unified scope, zero tag clutter, and 100% built for organic search dominance.
                     </p>
                   </div>
 
-                  {/* Pillar Filter Tabs */}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {[
-                      { id: 'all', label: 'All 5 Pillars (33)' },
-                      { id: 'onpage', label: `1. On-Page (${seoOnPageProtocols.length})` },
-                      { id: 'content', label: `2. Content Writing (${seoContentProtocols.length})` },
-                      { id: 'local', label: `3. Local SEO (${seoLocalProtocols.length})` },
-                      { id: 'link', label: `4. Link Strategy & Off-Page (${seoLinkProtocols.length})` },
-                      { id: 'reporting', label: `5. Reporting (${seoReportingProtocols.length})` },
-                    ].map((tab) => (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        onClick={() => setSeoCategoryFilter(tab.id)}
-                        className={`text-xs px-3.5 py-2 rounded-xl font-bold transition-all cursor-pointer ${
-                          seoCategoryFilter === tab.id
-                            ? 'bg-[#0072BC] text-white shadow-xs'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
+                  {/* Active Plan Indicator */}
+                  <div className="self-start lg:self-auto shrink-0 bg-blue-50/70 px-3 py-1.5 rounded-xl border border-blue-200/80">
+                    <div className="text-[10px] uppercase font-bold text-[#0072BC] tracking-wider">
+                      Active Plan: {activeSeoPackageObj.name} Plan
+                    </div>
+                    <div className="text-xs font-bold text-slate-900">
+                      {activeSeoPackageObj.cost}/month • {activeSeoPackageObj.contract} Contract
+                    </div>
                   </div>
                 </div>
 
-                {/* PILLAR 1: On-Page Optimization (14 Factors) */}
-                {(seoCategoryFilter === 'all' || seoCategoryFilter === 'onpage') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <Layers className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              1. On-Page Optimization
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({seoOnPageProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Comprehensive on-page, HTML source code, structured schema, and technical indexing hygiene.
-                          </p>
-                        </div>
-                      </div>
+                {/* Pillar Filter Tabs */}
+                <div className="pt-4 pb-5 border-b border-slate-100 flex flex-wrap gap-2">
+                  {[
+                    { id: 'all', label: 'All 5 Pillars (33)' },
+                    { id: 'onpage', label: `1. On-Page (${seoOnPageProtocols.length})` },
+                    { id: 'content', label: `2. Content Writing (${seoContentProtocols.length})` },
+                    { id: 'local', label: `3. Local SEO (${seoLocalProtocols.length})` },
+                    { id: 'link', label: `4. Link Strategy & Off-Page (${seoLinkProtocols.length})` },
+                    { id: 'reporting', label: `5. Reporting (${seoReportingProtocols.length})` },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setSeoCategoryFilter(tab.id)}
+                      className={`text-xs px-3.5 py-2 rounded-xl font-bold transition-all cursor-pointer ${
+                        seoCategoryFilter === tab.id
+                          ? 'bg-[#0072BC] text-white shadow-xs'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
 
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                {/* Deliverables Body inside the single unified container */}
+                <div className="pt-6 space-y-8">
+                  {/* PILLAR 1: On-Page Optimization (14 Factors) */}
+                  {(seoCategoryFilter === 'all' || seoCategoryFilter === 'onpage') && (
+                    <div className="space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <Layers className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                1. On-Page Optimization
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({seoOnPageProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Comprehensive on-page, HTML source code, structured schema, and technical indexing hygiene.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           ✓ Included Across All Plans
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {seoOnPageProtocols.map((protocol, idx) => {
-                        const isGA = protocol.feature.includes('Google Analytics Basic');
-                        return (
-                          <div key={idx} className="flex items-start gap-2.5">
-                            <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                              <Check className="w-3.5 h-3.5" />
-                            </div>
-                            <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                                <span>{protocol.feature}</span>
-                                {isGA && (
-                                  <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
-                                    Standard & Premium Plans
-                                  </span>
-                                )}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {seoOnPageProtocols.map((protocol, idx) => {
+                          const isGA = protocol.feature.includes('Google Analytics Basic');
+                          return (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                              <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                  <span>{protocol.feature}</span>
+                                  {isGA && (
+                                    <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
+                                      Standard & Premium Plans
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 2: SEO Friendly Content Writing (5 Factors) */}
-                {(seoCategoryFilter === 'all' || seoCategoryFilter === 'content') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <PenTool className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              2. SEO Friendly Content Writing
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({seoContentProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            High-quality editorial content produced monthly to establish topical relevance and organic depth.
-                          </p>
-                        </div>
+                          );
+                        })}
                       </div>
+                    </div>
+                  )}
 
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                  {/* PILLAR 2: SEO Friendly Content Writing (5 Factors) */}
+                  {(seoCategoryFilter === 'all' || seoCategoryFilter === 'content') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <PenTool className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                2. SEO Friendly Content Writing
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({seoContentProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              High-quality editorial content produced monthly to establish topical relevance and organic depth.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           Content Authority
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {seoContentProtocols.map((item, idx) => {
-                        const isPR = item.feature.includes('Press Release');
-                        const isInfographic = item.feature.includes('Infographic');
-                        const isQA = item.feature.includes('Q&A');
-                        return (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {seoContentProtocols.map((item, idx) => {
+                          const isPR = item.feature.includes('Press Release');
+                          const isInfographic = item.feature.includes('Infographic');
+                          const isQA = item.feature.includes('Q&A');
+                          return (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                              <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                  <span>{item.feature}</span>
+                                  {(isPR || isInfographic || isQA) && (
+                                    <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
+                                      Premium Plan Included
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* PILLAR 3: Local Search Optimization (1 Factor) */}
+                  {(seoCategoryFilter === 'all' || seoCategoryFilter === 'local') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <Globe className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                3. Local Search Optimization
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({seoLocalProtocols.length} Factor)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Local presence optimization for regional search visibility and Google Map pack rankings.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
+                          Local Authority
+                        </span>
+                      </div>
+
+                      <div className="mt-2">
+                        {seoLocalProtocols.map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
                             <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-3.5 h-3.5" />
                             </div>
-                            <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                                <span>{item.feature}</span>
-                                {(isPR || isInfographic || isQA) && (
-                                  <span className="whitespace-nowrap text-xs font-bold text-[#0072BC] bg-blue-50 px-2 py-0.5 rounded border border-blue-200 shrink-0">
-                                    Premium Plan Included
-                                  </span>
-                                )}
-                              </div>
+                            <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                              {item.feature} (Setup, Verification & Ongoing Optimization)
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* PILLAR 4: Link Strategy & Off-Page (10 Factors) */}
+                  {(seoCategoryFilter === 'all' || seoCategoryFilter === 'link') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <Share2 className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                4. Link Strategy & Off-Page Submissions
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({seoLinkProtocols.length} Factors)</span>
                             </div>
+                            <p className="text-xs text-slate-500">
+                              High-authority multi-channel backlinks portfolio creation, syndication, and bookmarking.
+                            </p>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 3: Local Search Optimization (1 Factor) */}
-                {(seoCategoryFilter === 'all' || seoCategoryFilter === 'local') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <Globe className="w-5 h-5" />
                         </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              3. Local Search Optimization
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({seoLocalProtocols.length} Factor)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Local presence optimization for regional search visibility and Google Map pack rankings.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
-                          Local Authority
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="mt-5">
-                      {seoLocalProtocols.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            {item.feature} (Setup, Verification & Ongoing Optimization)
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 4: Link Strategy & Off-Page (10 Factors) */}
-                {(seoCategoryFilter === 'all' || seoCategoryFilter === 'link') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <Share2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              4. Link Strategy & Off-Page Submissions
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({seoLinkProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            High-authority multi-channel backlinks portfolio creation, syndication, and bookmarking.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           Off-Page Authority
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {seoLinkProtocols.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        {seoLinkProtocols.map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                              {item.feature}
+                            </span>
                           </div>
-                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            {item.feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* PILLAR 5: Granular Monthly Reporting (3 Factors) */}
-                {(seoCategoryFilter === 'all' || seoCategoryFilter === 'reporting') && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <BarChart3 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              5. Granular Monthly Reporting
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({seoReportingProtocols.length} Factors)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Transparent monthly tracking of keyword progression, backlink portfolio growth, and organic traffic.
-                          </p>
-                        </div>
+                        ))}
                       </div>
+                    </div>
+                  )}
 
-                      <div className="self-start sm:self-auto shrink-0">
-                        <span className="px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-[#0072BC] border border-blue-200">
+                  {/* PILLAR 5: Granular Monthly Reporting (3 Factors) */}
+                  {(seoCategoryFilter === 'all' || seoCategoryFilter === 'reporting') && (
+                    <div className="space-y-4 pt-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0">
+                            <BarChart3 className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                                5. Granular Monthly Reporting
+                              </h4>
+                              <span className="text-xs text-slate-400 font-medium">({seoReportingProtocols.length} Factors)</span>
+                            </div>
+                            <p className="text-xs text-slate-500">
+                              Transparent monthly tracking of keyword progression, backlink portfolio growth, and organic traffic.
+                            </p>
+                          </div>
+                        </div>
+                        <span className="self-start sm:self-auto text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-0.5 rounded-lg border border-blue-200 shrink-0">
                           Full Transparency
                         </span>
                       </div>
-                    </div>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3.5">
-                      {seoReportingProtocols.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-3.5 h-3.5" />
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3">
+                        {seoReportingProtocols.map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                              {item.feature}
+                            </span>
                           </div>
-                          <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
-                            {item.feature}
-                          </span>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </motion.div>
 
               {/* Optional Paid Link Building */}
