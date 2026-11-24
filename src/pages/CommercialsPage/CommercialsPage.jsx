@@ -137,6 +137,12 @@ const CommercialsPage = () => {
   const [collateralsFilter, setCollateralsFilter] = useState('all');
   const [collateralsSearch, setCollateralsSearch] = useState('');
   const [expandedDelivGroup, setExpandedDelivGroup] = useState('Campaign Setup');
+  const [selectedWebPlan, setSelectedWebPlan] = useState('ecommerce');
+  const [selectedSmmPackage, setSelectedSmmPackage] = useState('gold');
+  const [selectedSeoPackage, setSelectedSeoPackage] = useState('standard');
+  const [selectedPerfTier, setSelectedPerfTier] = useState(1);
+  const [selectedGeoPackage, setSelectedGeoPackage] = useState('gold');
+  const [selectedGa4Package, setSelectedGa4Package] = useState('gold');
 
   useEffect(() => {
     document.title = 'Commercials & Deliverables Plans | iBraine Digital Marketing';
@@ -304,39 +310,43 @@ const CommercialsPage = () => {
                   <span>Monthly Management Fees (Based on Ad Spends)</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {PERFORMANCE_MARKETING_DATA.pricingTiers.map((tier, idx) => (
-                    <motion.div
-                      key={idx}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 ${
-                        tier.popular
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
-                      }`}
-                    >
-                      <div>
-                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-2 ${
-                          tier.popular ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          Monthly Ad Spend Bracket
+                  {PERFORMANCE_MARKETING_DATA.pricingTiers.map((tier, idx) => {
+                    const isSelected = selectedPerfTier === idx;
+                    return (
+                      <motion.div
+                        key={idx}
+                        onClick={() => setSelectedPerfTier(idx)}
+                        whileHover={{ y: -4 }}
+                        transition={{ duration: 0.25 }}
+                        className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                          isSelected
+                            ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 scale-[1.02] border border-blue-400/30'
+                            : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
+                        }`}
+                      >
+                        <div>
+                          <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-2 ${
+                            isSelected ? 'text-blue-100' : 'text-slate-500'
+                          }`}>
+                            Monthly Ad Spend Bracket
+                          </div>
+                          <div className="text-lg sm:text-xl font-bold font-lora mb-3">
+                            {tier.spendTier}
+                          </div>
+                          <div className={`text-2xl sm:text-3xl font-black font-sans ${
+                            isSelected ? 'text-white' : 'text-[#0072BC]'
+                          }`}>
+                            {tier.managementFee}
+                          </div>
+                          <p className={`mt-2 text-xs sm:text-sm font-sans ${
+                            isSelected ? 'text-blue-100' : 'text-slate-500'
+                          }`}>
+                            {tier.subtext}
+                          </p>
                         </div>
-                        <div className="text-lg sm:text-xl font-bold font-lora mb-3">
-                          {tier.spendTier}
-                        </div>
-                        <div className={`text-2xl sm:text-3xl font-black font-sans ${
-                          tier.popular ? 'text-white' : 'text-[#0072BC]'
-                        }`}>
-                          {tier.managementFee}
-                        </div>
-                        <p className={`mt-2 text-xs sm:text-sm font-sans ${
-                          tier.popular ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          {tier.subtext}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </motion.div>
 
@@ -497,38 +507,42 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {SEO_PACKAGES_DATA.packages.map((pkg) => (
-                  <motion.div
-                    key={pkg.id}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
-                      pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
-                        : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                    }`}
-                  >
-                    <div>
-                      <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
-                      }`}>
-                        {pkg.contract} Contract
+                {SEO_PACKAGES_DATA.packages.map((pkg) => {
+                  const isSelected = selectedSeoPackage === pkg.id;
+                  return (
+                    <motion.div
+                      key={pkg.id}
+                      onClick={() => setSelectedSeoPackage(pkg.id)}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
+                      }`}
+                    >
+                      <div>
+                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
+                          isSelected ? 'text-blue-100' : 'text-slate-500'
+                        }`}>
+                          {pkg.contract} Contract
+                        </div>
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name}</div>
+                        <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
+                          isSelected ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
+                        }`}>
+                          🎯 {pkg.keywords}
+                        </div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans">
+                          {pkg.cost}
+                        </div>
+                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
+                          {pkg.costPeriod}
+                        </div>
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name}</div>
-                      <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
-                        pkg.popular ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
-                      }`}>
-                        🎯 {pkg.keywords}
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans">
-                        {pkg.cost}
-                      </div>
-                      <div className={`text-xs font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
-                        {pkg.costPeriod}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* Deliverables Matrix */}
@@ -677,38 +691,42 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {GEO_PACKAGES_DATA.packages.map((pkg) => (
-                  <motion.div
-                    key={pkg.id}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
-                      pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
-                        : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                    }`}
-                  >
-                    <div>
-                      <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
-                      }`}>
-                        {pkg.contract} • {pkg.scope}
+                {GEO_PACKAGES_DATA.packages.map((pkg) => {
+                  const isSelected = selectedGeoPackage === pkg.id;
+                  return (
+                    <motion.div
+                      key={pkg.id}
+                      onClick={() => setSelectedGeoPackage(pkg.id)}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
+                      }`}
+                    >
+                      <div>
+                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
+                          isSelected ? 'text-blue-100' : 'text-slate-500'
+                        }`}>
+                          {pkg.contract} • {pkg.scope}
+                        </div>
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name} Plan</div>
+                        <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
+                          isSelected ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
+                        }`}>
+                          🤖 {pkg.keywords}
+                        </div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans">
+                          {pkg.cost}
+                        </div>
+                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
+                          {pkg.costPeriod}
+                        </div>
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name} Plan</div>
-                      <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
-                        pkg.popular ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
-                      }`}>
-                        🤖 {pkg.keywords}
-                      </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans">
-                        {pkg.cost}
-                      </div>
-                      <div className={`text-xs font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
-                        {pkg.costPeriod}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* Deliverables Matrix */}
@@ -792,49 +810,53 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {SOCIAL_MEDIA_DATA.packages.map((pkg) => (
-                  <motion.div
-                    key={pkg.id}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
-                      pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
-                        : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                    }`}
-                  >
-                    <div>
-                      <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        pkg.popular ? 'text-blue-100' : 'text-slate-500'
-                      }`}>
-                        {pkg.platforms}
-                      </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
-                        {pkg.cost}
-                      </div>
+                {SOCIAL_MEDIA_DATA.packages.map((pkg) => {
+                  const isSelected = selectedSmmPackage === pkg.id;
+                  return (
+                    <motion.div
+                      key={pkg.id}
+                      onClick={() => setSelectedSmmPackage(pkg.id)}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
+                      }`}
+                    >
+                      <div>
+                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
+                          isSelected ? 'text-blue-100' : 'text-slate-500'
+                        }`}>
+                          {pkg.platforms}
+                        </div>
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
+                          {pkg.cost}
+                        </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
-                        <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>AI Image Creatives:</span>
-                          <span className="font-bold">{pkg.aiImages} / mo</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>Static Posts:</span>
-                          <span className="font-bold">{pkg.staticPosts} / mo</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>Reels / Videos / GIFs:</span>
-                          <span className="font-bold">{pkg.videosReels} / mo</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className={pkg.popular ? 'text-blue-100' : 'text-slate-600'}>AI Videos:</span>
-                          <span className="font-bold">{pkg.aiVideos} / mo</span>
+                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
+                          <div className="flex justify-between">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Image Creatives:</span>
+                            <span className="font-bold">{pkg.aiImages} / mo</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Static Posts:</span>
+                            <span className="font-bold">{pkg.staticPosts} / mo</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Reels / Videos / GIFs:</span>
+                            <span className="font-bold">{pkg.videosReels} / mo</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Videos:</span>
+                            <span className="font-bold">{pkg.aiVideos} / mo</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* Common Deliverables Grid */}
@@ -914,61 +936,65 @@ const CommercialsPage = () => {
 
               {/* 3 Main Plans */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {WEBSITE_DEVELOPMENT_DATA.plans.map((plan) => (
-                  <motion.div
-                    key={plan.id}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
-                      plan.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
-                        : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                    }`}
-                  >
-                    <div>
-                      <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                        plan.popular ? 'text-blue-100' : 'text-slate-500'
-                      }`}>
-                        {plan.platform}
-                      </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{plan.name}</div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-4">
-                        {plan.cost}
-                      </div>
+                {WEBSITE_DEVELOPMENT_DATA.plans.map((plan) => {
+                  const isSelected = selectedWebPlan === plan.id;
+                  return (
+                    <motion.div
+                      key={plan.id}
+                      onClick={() => setSelectedWebPlan(plan.id)}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
+                      }`}
+                    >
+                      <div>
+                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
+                          isSelected ? 'text-blue-100' : 'text-slate-500'
+                        }`}>
+                          {plan.platform}
+                        </div>
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{plan.name}</div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans mb-4">
+                          {plan.cost}
+                        </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs sm:text-sm font-sans">
-                        <div className="flex justify-between items-start gap-2">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Theme:</span>
-                          <span className="font-semibold text-right">{plan.themeType}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Pages:</span>
-                          <span className="font-semibold">{plan.pages}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Products:</span>
-                          <span className="font-semibold">{plan.products}</span>
-                        </div>
-                        <div className="flex justify-between items-start gap-2">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>E-Commerce:</span>
-                          <span className="font-semibold text-right">{plan.ecommerceScope}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Additional:</span>
-                          <span className="font-semibold">{plan.additionalScope}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
-                          <span className={`font-semibold ${plan.popular ? 'text-white' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className={plan.popular ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
-                          <span className="font-semibold">{plan.support}</span>
+                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs sm:text-sm font-sans">
+                          <div className="flex justify-between items-start gap-2">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Theme:</span>
+                            <span className="font-semibold text-right">{plan.themeType}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Pages:</span>
+                            <span className="font-semibold">{plan.pages}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Products:</span>
+                            <span className="font-semibold">{plan.products}</span>
+                          </div>
+                          <div className="flex justify-between items-start gap-2">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>E-Commerce:</span>
+                            <span className="font-semibold text-right">{plan.ecommerceScope}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Additional:</span>
+                            <span className="font-semibold">{plan.additionalScope}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
+                            <span className={`font-semibold ${isSelected ? 'text-white' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
+                            <span className="font-semibold">{plan.support}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* Common Features Grid (Matching SMM layout) */}
@@ -1032,39 +1058,43 @@ const CommercialsPage = () => {
 
               {/* 3 GA4 Plans */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {GA4_PACKAGES_DATA.packages.map((pkg) => (
-                  <motion.div
-                    key={pkg.id}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.25 }}
-                    className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
-                      pkg.popular
-                        ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
-                        : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                    }`}
-                  >
-                    <div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                      <p className={`text-xs mb-3 font-sans ${pkg.popular ? 'text-blue-100' : 'text-slate-500'}`}>
-                        {pkg.description}
-                      </p>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-5">
-                        {pkg.cost}
-                      </div>
+                {GA4_PACKAGES_DATA.packages.map((pkg) => {
+                  const isSelected = selectedGa4Package === pkg.id;
+                  return (
+                    <motion.div
+                      key={pkg.id}
+                      onClick={() => setSelectedGa4Package(pkg.id)}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all relative cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30 scale-[1.02]'
+                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
+                      }`}
+                    >
+                      <div>
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
+                        <p className={`text-xs mb-3 font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
+                          {pkg.description}
+                        </p>
+                        <div className="text-2xl sm:text-3xl font-black font-sans mb-5">
+                          {pkg.cost}
+                        </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/20 font-sans">
-                        {pkg.deliverables.map((deliv, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
-                            <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                              pkg.popular ? 'text-white' : 'text-emerald-600'
-                            }`} />
-                            <span className={pkg.popular ? 'text-white' : 'text-slate-700'}>{deliv}</span>
-                          </div>
-                        ))}
+                        <div className="space-y-2 pt-3 border-t border-slate-200/20 font-sans">
+                          {pkg.deliverables.map((deliv, idx) => (
+                            <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
+                              <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
+                                isSelected ? 'text-white' : 'text-emerald-600'
+                              }`} />
+                              <span className={isSelected ? 'text-white' : 'text-slate-700'}>{deliv}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
             </motion.div>
           )}
