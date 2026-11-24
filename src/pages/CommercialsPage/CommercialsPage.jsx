@@ -711,17 +711,40 @@ const CommercialsPage = () => {
                         }`}>
                           {pkg.contract} • {pkg.scope}
                         </div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{pkg.name} Plan</div>
-                        <div className={`text-xs font-semibold px-2.5 py-1 rounded-md inline-block mb-4 font-sans ${
-                          isSelected ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'
-                        }`}>
-                          🤖 {pkg.keywords}
-                        </div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans">
+                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
                           {pkg.cost}
                         </div>
-                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
-                          {pkg.costPeriod}
+
+                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Total Keywords:</span>
+                            <span className="font-bold">{pkg.keywords}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Primary Keywords:</span>
+                            <span className="font-bold">{pkg.primaryKeywords}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Searched Terms:</span>
+                            <span className="font-bold">{pkg.aiKeywords}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>PASF Queries:</span>
+                            <span className="font-bold">{pkg.pasfKeywords}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Article Submissions:</span>
+                            <span className="font-bold">{pkg.articleSubmissions}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Social Bookmarking:</span>
+                            <span className="font-bold">{pkg.socialBookmarking}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Optimization Scope:</span>
+                            <span className="font-bold">{pkg.scope}</span>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -729,55 +752,22 @@ const CommercialsPage = () => {
                 })}
               </motion.div>
 
-              {/* Deliverables Matrix */}
-              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
-                <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <h3 className="font-bold text-sm sm:text-base text-slate-950">
-                    Full GEO / AEO Deliverables Matrix
-                  </h3>
-                  <span className="text-xs text-slate-500 font-sans">Contract: 1 Year • Swipe horizontally →</span>
-                </div>
-
-                <div className="overflow-x-auto scrollbar-thin">
-                  <table className="w-full text-left border-collapse text-xs sm:text-sm font-sans">
-                    <thead>
-                      <tr className="border-b border-slate-200 bg-slate-100/80 uppercase tracking-wider text-[11px] text-slate-600">
-                        <th className="py-3 px-4 font-bold min-w-[240px]">Activity / Deliverable</th>
-                        <th className="py-3 px-4 font-bold text-center">Silver (25)</th>
-                        <th className="py-3 px-4 font-bold text-center bg-amber-50/70 text-slate-950">Gold (50)</th>
-                        <th className="py-3 px-4 font-bold text-center">Platinum (75)</th>
-                        <th className="py-3 px-4 font-bold text-center">Titanium (100)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {GEO_PACKAGES_DATA.categories.map((cat, catIdx) => (
-                        <React.Fragment key={catIdx}>
-                          <tr className="bg-slate-50 border-y border-slate-200">
-                            <td colSpan={5} className="py-2 px-4 font-bold text-xs text-[#0072BC] uppercase tracking-wider">
-                              {cat.category}
-                            </td>
-                          </tr>
-                          {cat.items.map((item, itemIdx) => (
-                            <tr key={itemIdx} className="border-b border-slate-100 hover:bg-slate-50/50">
-                              <td className="py-2.5 px-4 text-slate-800 font-medium">{item.feature}</td>
-                              {item.values.map((val, valIdx) => (
-                                <td key={valIdx} className={`py-2.5 px-4 text-center ${valIdx === 1 ? 'bg-amber-50/30 font-bold' : ''}`}>
-                                  {val === 'YES' || val === 'Included' ? (
-                                    <span className="inline-flex items-center gap-1 text-emerald-600 font-semibold">
-                                      <Check className="w-3.5 h-3.5" />
-                                      <span>{val}</span>
-                                    </span>
-                                  ) : (
-                                    <span className="font-semibold text-slate-700">{val}</span>
-                                  )}
-                                </td>
-                              ))}
-                            </tr>
-                          ))}
-                        </React.Fragment>
-                      ))}
-                    </tbody>
-                  </table>
+              {/* Common Deliverables Grid (Matching SMM & Web Dev layout) */}
+              <motion.div variants={itemVariants} className="p-5 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
+                <h3 className="text-sm sm:text-base font-bold text-slate-950 mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Common Deliverables — Included in All GEO / AEO Packages</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
+                  {GEO_PACKAGES_DATA.commonDeliverables.map((deliv, idx) => (
+                    <div key={idx} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                      <div className="text-xs sm:text-sm font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span>{deliv.title}</span>
+                      </div>
+                      <div className="text-xs text-slate-500 leading-snug">{deliv.desc}</div>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             </motion.div>
