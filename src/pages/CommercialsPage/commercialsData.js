@@ -37,14 +37,6 @@ export const PERFORMANCE_MARKETING_DATA = {
   platformsNote: "Pricing includes any 3 platforms of your choice. Extra platforms charged at INR 10,000 extra per platform over and above commission on spends.",
   deliverablesGroups: [
     {
-      group: "Initializing the Project",
-      items: [
-        { name: "Basic Setup", status: "Yes" },
-        { name: "Account Setup", status: "Yes" },
-        { name: "Profile Setup", status: "Yes" },
-      ],
-    },
-    {
       group: "Campaign Setup",
       items: [
         { name: "Conducting in-depth keyword research to identify high-value terms", status: "Yes" },
