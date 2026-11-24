@@ -160,14 +160,35 @@ const CommercialsPage = () => {
     });
   });
 
-  // Filter out categories already showcased in main GEO plan cards (Keywords Research & Off-Page Submissions)
-  const geoBreakdownCategories = GEO_PACKAGES_DATA.categories.filter(
-    (cat) =>
-      cat.category !== 'Keywords Research & Distribution' &&
-      cat.category !== 'Off-Page Optimization & Submissions'
+  // Partition the remaining 28 GEO deliverables into Tiered Scope (10) and Standard Protocols (18)
+  const paidMediaCat = GEO_PACKAGES_DATA.categories.find(
+    (c) => c.category === 'Paid Media / High-Authority AI Outreach'
+  );
+  const technicalCat = GEO_PACKAGES_DATA.categories.find(
+    (c) => c.category === 'Technical SEO for AI Architecture'
+  );
+  const onPageCat = GEO_PACKAGES_DATA.categories.find(
+    (c) => c.category === 'On-Page & Entity Optimization'
   );
 
-  const geoTotalFactors = geoBreakdownCategories.reduce((acc, c) => acc + c.items.length, 0);
+  // 10 Scope-Differentiating Protocols (Silver: Targeted Pages | Gold/Plat/Tit: Entire Website)
+  const geoScopeProtocols = [
+    ...(technicalCat ? technicalCat.items.filter((i) => i.values[0] !== i.values[1]) : []),
+    ...(onPageCat ? onPageCat.items.filter((i) => i.values[0] !== i.values[1]) : []),
+  ];
+
+  // 9 Technical AI Architecture Protocols (Included Site-wide across all plans)
+  const geoTechnicalProtocols = technicalCat
+    ? technicalCat.items.filter((i) => i.values[0] === i.values[1])
+    : [];
+
+  // 5 Paid Media & AI Outreach Protocols
+  const geoOutreachProtocols = paidMediaCat ? paidMediaCat.items : [];
+
+  // 4 Content Hubs & Specific Architecture Protocols (Blog, Products, Footer)
+  const geoContentProtocols = onPageCat
+    ? onPageCat.items.filter((i) => i.values[0] === i.values[1])
+    : [];
 
   return (
     <div className="bg-[#fafbfc] min-h-screen font-lora text-slate-900 overflow-x-hidden selection:bg-[#ffed4e] selection:text-slate-950">
@@ -804,122 +825,218 @@ const CommercialsPage = () => {
                 </div>
               </motion.div>
 
-              {/* Complete Categorized Deliverables Breakdown (Excluding Items Already in Main Cards) */}
-              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
+              {/* Complete Categorized Deliverables Breakdown (28 Factors) */}
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs font-sans">
+                {/* Header & Filter Controls */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-5 border-b border-slate-200 gap-3">
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
                       <Layers className="w-5 h-5 text-[#0072BC]" />
-                      <span>Complete GEO Deliverables Breakdown ({geoTotalFactors} Factors)</span>
+                      <span>Complete GEO Deliverables Breakdown (28 Factors)</span>
                     </h3>
-                    <p className="text-xs text-slate-500 font-sans mt-0.5">
-                      Detailed scope not already shown in the main cards above. Tap category pills to filter. Active plan ({selectedGeoPackage.toUpperCase()}) is highlighted.
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      Streamlined protocol view • Zero horizontal scrolling • Active plan (<span className="font-bold text-[#0072BC]">{selectedGeoPackage.toUpperCase()}</span>) automatically reflected.
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 font-sans">
-                    <button
-                      type="button"
-                      onClick={() => setGeoCategoryFilter('all')}
-                      className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${
-                        geoCategoryFilter === 'all'
-                          ? 'bg-[#0072BC] text-white shadow-xs'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
-                    >
-                      All Factors ({geoTotalFactors})
-                    </button>
-                    {geoBreakdownCategories.map((cat) => (
+                  {/* Filter Pills */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {[
+                      { id: 'all', label: 'All Protocols', count: 28 },
+                      { id: 'scope', label: 'Tiered Scope', count: geoScopeProtocols.length },
+                      { id: 'technical', label: 'Technical AI', count: geoTechnicalProtocols.length },
+                      { id: 'outreach', label: 'AI Outreach', count: geoOutreachProtocols.length },
+                      { id: 'content', label: 'Content Hubs', count: geoContentProtocols.length },
+                    ].map((tab) => (
                       <button
-                        key={cat.category}
+                        key={tab.id}
                         type="button"
-                        onClick={() => setGeoCategoryFilter(cat.category)}
+                        onClick={() => setGeoCategoryFilter(tab.id)}
                         className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${
-                          geoCategoryFilter === cat.category
+                          geoCategoryFilter === tab.id
                             ? 'bg-[#0072BC] text-white shadow-xs'
                             : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                         }`}
                       >
-                        {cat.category} ({cat.items.length})
+                        {tab.label} ({tab.count})
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div className="mt-6 space-y-6">
-                  {geoBreakdownCategories
-                    .filter((cat) => geoCategoryFilter === 'all' || geoCategoryFilter === cat.category)
-                    .map((cat, catIdx) => (
-                      <div key={catIdx} className="space-y-2.5">
-                        <div className="text-xs font-bold text-[#0072BC] uppercase tracking-wider font-sans flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
-                          <span>{cat.category}</span>
-                          <span className="text-slate-400 font-normal">({cat.items.length} factors)</span>
+                  {/* MODULE 1: Tiered Optimization Scope (10 Protocols) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'scope') && (
+                    <div className="space-y-3">
+                      <div className="p-4 rounded-xl bg-gradient-to-r from-blue-50/90 via-indigo-50/50 to-slate-50 border border-blue-100/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                          <div className="text-xs font-bold uppercase tracking-wider text-[#0072BC] flex items-center gap-1.5 mb-0.5">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>Tiered Optimization Scope (10 Protocols)</span>
+                          </div>
+                          <p className="text-xs text-slate-600 leading-snug">
+                            These 10 core optimization protocols scale based on your selected plan. Tap tiers below to preview:
+                          </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 font-sans">
-                          {cat.items.map((item, itemIdx) => {
-                            const allSame = item.values.every((v) => v === item.values[0]);
-                            const val0 = item.values[0];
-                            const isIncluded = val0 === 'YES' || val0 === 'Included';
-
-                            return (
-                              <div
-                                key={itemIdx}
-                                className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/80 hover:bg-slate-100/70 transition-colors flex flex-col justify-between gap-2.5"
-                              >
-                                <div className="flex items-start gap-2.5">
-                                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                                    <Check className="w-3.5 h-3.5" />
-                                  </div>
-                                  <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
-                                    {item.feature}
-                                  </span>
-                                </div>
-
-                                <div className="pl-7.5">
-                                  {allSame ? (
-                                    <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${
-                                      isIncluded
-                                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                        : val0.includes('Rs.')
-                                        ? 'bg-amber-50 text-amber-800 border-amber-200'
-                                        : 'bg-blue-50 text-[#0072BC] border-blue-200'
-                                    }`}>
-                                      {isIncluded ? '✓ Included in All Plans' : `${val0} (All Plans)`}
-                                    </span>
-                                  ) : (
-                                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                                      {[
-                                        { plan: 'Silver', id: 'silver', val: item.values[0] },
-                                        { plan: 'Gold', id: 'gold', val: item.values[1] },
-                                        { plan: 'Platinum', id: 'platinum', val: item.values[2] },
-                                        { plan: 'Titanium', id: 'titanium', val: item.values[3] },
-                                      ].map((tier) => {
-                                        const isActive = selectedGeoPackage === tier.id;
-                                        return (
-                                          <span
-                                            key={tier.id}
-                                            className={`px-2 py-0.5 rounded-md border text-[11px] font-medium transition-colors ${
-                                              isActive
-                                                ? 'bg-[#0072BC] text-white font-bold border-[#0072BC] shadow-2xs'
-                                                : 'bg-white text-slate-600 border-slate-200'
-                                            }`}
-                                          >
-                                            <span className="opacity-75 mr-1 font-normal">{tier.plan}:</span>
-                                            {tier.val}
-                                          </span>
-                                        );
-                                      })}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })}
+                        {/* Interactive Scope Switcher Pills */}
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedGeoPackage('silver')}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer border ${
+                              selectedGeoPackage === 'silver'
+                                ? 'bg-amber-100 text-amber-900 border-amber-300 shadow-2xs'
+                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            }`}
+                          >
+                            Silver: Targeted Pages
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedGeoPackage(selectedGeoPackage === 'silver' ? 'gold' : selectedGeoPackage)}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors cursor-pointer border ${
+                              selectedGeoPackage !== 'silver'
+                                ? 'bg-emerald-100 text-emerald-900 border-emerald-300 shadow-2xs'
+                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                            }`}
+                          >
+                            Gold/Plat/Tit: Entire Website
+                          </button>
                         </div>
                       </div>
-                    ))}
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {geoScopeProtocols.map((protocol, idx) => {
+                          const isSilver = selectedGeoPackage === 'silver';
+                          return (
+                            <div
+                              key={idx}
+                              className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:bg-slate-100/70 transition-colors flex items-center justify-between gap-3"
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <div className="w-5 h-5 rounded-full bg-blue-100 text-[#0072BC] flex items-center justify-center shrink-0">
+                                  <Check className="w-3.5 h-3.5" />
+                                </div>
+                                <span className="text-xs sm:text-sm font-semibold text-slate-800 truncate">
+                                  {protocol.feature}
+                                </span>
+                              </div>
+
+                              <span
+                                className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border shrink-0 ${
+                                  isSilver
+                                    ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                    : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                }`}
+                              >
+                                {isSilver ? 'Targeted Pages' : 'Entire Website'}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* MODULE 2A: Technical AI Architecture (9 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'technical') && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-bold text-[#0072BC] uppercase tracking-wider flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
+                        <span>Technical AI Architecture Protocols</span>
+                        <span className="text-slate-400 font-normal">(9 Factors — Included Site-wide in All Plans)</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                        {geoTechnicalProtocols.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:bg-slate-100/70 transition-colors flex items-center justify-between gap-2"
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                              <span className="text-xs font-medium text-slate-800 leading-snug">
+                                {item.feature}
+                              </span>
+                            </div>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+                              ✓ Included
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* MODULE 2B: Paid Media / High-Authority AI Outreach (5 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'outreach') && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-bold text-[#0072BC] uppercase tracking-wider flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
+                        <span>Paid Media & High-Authority AI Outreach</span>
+                        <span className="text-slate-400 font-normal">(5 Factors — Authority & LLM Citations)</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {geoOutreachProtocols.map((item, idx) => {
+                          const isWiki = item.feature.includes('Wikipedia');
+                          return (
+                            <div
+                              key={idx}
+                              className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:bg-slate-100/70 transition-colors flex items-center justify-between gap-2"
+                            >
+                              <div className="flex items-center gap-2 min-w-0">
+                                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                                <span className="text-xs font-medium text-slate-800 leading-snug">
+                                  {item.feature}
+                                </span>
+                              </div>
+                              <span
+                                className={`text-[10px] font-bold px-2 py-0.5 rounded border shrink-0 ${
+                                  isWiki
+                                    ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                    : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                }`}
+                              >
+                                {isWiki ? 'Rs. 2,000 (Optional)' : '✓ Included'}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* MODULE 2C: Content Hubs & Specific Architecture (4 Factors) */}
+                  {(geoCategoryFilter === 'all' || geoCategoryFilter === 'content') && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-bold text-[#0072BC] uppercase tracking-wider flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
+                        <span>Content Hubs & Conversational Entities</span>
+                        <span className="text-slate-400 font-normal">(4 Factors — Answer Engine Optimization)</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {geoContentProtocols.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:bg-slate-100/70 transition-colors flex items-center justify-between gap-2"
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                              <span className="text-xs font-medium text-slate-800 leading-snug">
+                                {item.feature}
+                              </span>
+                            </div>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-[#0072BC] border border-blue-200 shrink-0">
+                              {item.values[0]}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
