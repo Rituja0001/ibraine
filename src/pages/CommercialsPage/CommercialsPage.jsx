@@ -160,6 +160,24 @@ const CommercialsPage = () => {
     });
   });
 
+  // Filter out items already showcased in main GEO plan cards (Keywords, Submissions & Bookmarking)
+  const geoBreakdownCategories = GEO_PACKAGES_DATA.categories
+    .map((cat) => ({
+      ...cat,
+      items: cat.items.filter(
+        (item) =>
+          item.feature !== 'Total Keywords Research' &&
+          item.feature !== 'Primary Keywords' &&
+          item.feature !== 'AI Searched Keywords' &&
+          item.feature !== 'People Also Search For (PASF)' &&
+          item.feature !== 'Social Bookmarking' &&
+          item.feature !== 'Article Submission'
+      ),
+    }))
+    .filter((cat) => cat.items.length > 0);
+
+  const geoTotalFactors = geoBreakdownCategories.reduce((acc, c) => acc + c.items.length, 0);
+
   return (
     <div className="bg-[#fafbfc] min-h-screen font-lora text-slate-900 overflow-x-hidden selection:bg-[#ffed4e] selection:text-slate-950">
       {/* ===================== HERO SECTION WITH SUBTLE AMBIENT ANIMATION ===================== */}
@@ -767,16 +785,16 @@ const CommercialsPage = () => {
                 </div>
               </motion.div>
 
-              {/* Complete Categorized Deliverables Breakdown (37 Factors Across 5 Categories) */}
+              {/* Complete Categorized Deliverables Breakdown (Excluding Items Already in Main Cards) */}
               <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-5 border-b border-slate-200 gap-3">
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
                       <Layers className="w-5 h-5 text-[#0072BC]" />
-                      <span>Complete GEO Deliverables Breakdown (37 Factors)</span>
+                      <span>Complete GEO Deliverables Breakdown ({geoTotalFactors} Factors)</span>
                     </h3>
                     <p className="text-xs text-slate-500 font-sans mt-0.5">
-                      Tap any category pill below to filter. Active plan ({selectedGeoPackage.toUpperCase()}) is highlighted on each factor.
+                      Detailed scope not already shown in the main cards above. Tap category pills to filter. Active plan ({selectedGeoPackage.toUpperCase()}) is highlighted.
                     </p>
                   </div>
 
@@ -790,9 +808,9 @@ const CommercialsPage = () => {
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                       }`}
                     >
-                      All Factors ({GEO_PACKAGES_DATA.categories.reduce((acc, c) => acc + c.items.length, 0)})
+                      All Factors ({geoTotalFactors})
                     </button>
-                    {GEO_PACKAGES_DATA.categories.map((cat) => (
+                    {geoBreakdownCategories.map((cat) => (
                       <button
                         key={cat.category}
                         type="button"
@@ -810,7 +828,7 @@ const CommercialsPage = () => {
                 </div>
 
                 <div className="mt-6 space-y-6">
-                  {GEO_PACKAGES_DATA.categories
+                  {geoBreakdownCategories
                     .filter((cat) => geoCategoryFilter === 'all' || geoCategoryFilter === cat.category)
                     .map((cat, catIdx) => (
                       <div key={catIdx} className="space-y-2.5">
