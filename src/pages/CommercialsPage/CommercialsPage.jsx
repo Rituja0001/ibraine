@@ -528,8 +528,11 @@ const CommercialsPage = () => {
                           {pkg.contract} Contract
                         </div>
                         <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
+                        <div className="text-2xl sm:text-3xl font-black font-sans">
                           {pkg.cost}
+                        </div>
+                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'} -mt-0.5 mb-3`}>
+                          per month
                         </div>
 
                         <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
@@ -701,8 +704,11 @@ const CommercialsPage = () => {
                           {pkg.contract} • {pkg.scope}
                         </div>
                         <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
+                        <div className="text-2xl sm:text-3xl font-black font-sans">
                           {pkg.cost}
+                        </div>
+                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'} -mt-0.5 mb-3`}>
+                          per month
                         </div>
 
                         <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
