@@ -175,10 +175,9 @@ const CommercialsPage = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold font-lora text-slate-950 tracking-tight leading-[1.18] max-w-4xl mx-auto"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold font-lora text-black tracking-tight leading-[1.18] max-w-4xl mx-auto"
           >
-            Transparent Pricing Built for <br className="hidden sm:inline" />
-            <span className="text-[#0072BC] italic">Scalable Digital Growth.</span>
+            iBraine <span className="text-[#0072BC] italic">Commercial Plans</span>
           </motion.h1>
 
           <motion.p
