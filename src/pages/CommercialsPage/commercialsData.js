@@ -443,7 +443,7 @@ export const WEBSITE_DEVELOPMENT_DATA = {
     {
       id: "non-ecommerce",
       name: "Non-Ecommerce Website",
-      cost: "Custom Quote",
+      cost: "Get a Quote",
       platform: "WordPress",
       themeType: "Premium theme (Included)",
       pages: "Up to 20 Pages",
@@ -455,7 +455,7 @@ export const WEBSITE_DEVELOPMENT_DATA = {
     {
       id: "ecommerce",
       name: "E-Commerce Website",
-      cost: "Custom Quote",
+      cost: "Request a Quote",
       platform: "WooCommerce / Shopify",
       themeType: "Premium theme (Included)",
       pages: "Unlimited",
