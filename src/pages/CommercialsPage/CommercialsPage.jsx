@@ -829,29 +829,14 @@ const CommercialsPage = () => {
               <motion.div variants={itemVariants} className="space-y-5 font-sans">
                 {/* Header & Pillar Navigation Bar */}
                 <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-100">
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
-                        <Layers className="w-5 h-5 text-[#0072BC]" />
-                        <span>What iBraine Delivers in Your GEO Package (28 Factors)</span>
-                      </h3>
-                      <p className="text-xs text-slate-500 mt-1 max-w-2xl leading-relaxed">
-                        Comprehensive Generative Engine Optimization architecture organized into 4 strategic delivery pillars. Clear deliverables, zero tag clutter, and 100% built for AI search dominance.
-                      </p>
-                    </div>
-
-                    {/* Plan Scope Summary Pill */}
-                    <div className="flex items-center gap-2 self-start lg:self-auto shrink-0 bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
-                      <div className="text-left">
-                        <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                          Active Plan Scope ({selectedGeoPackage.toUpperCase()})
-                        </div>
-                        <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5 mt-0.5">
-                          <span className={`w-2 h-2 rounded-full ${selectedGeoPackage === 'silver' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
-                          <span>{selectedGeoPackage === 'silver' ? 'Targeted Landing Pages' : 'Entire Website (Full Domain Coverage)'}</span>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="pb-5 border-b border-slate-100">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
+                      <Layers className="w-5 h-5 text-[#0072BC]" />
+                      <span>What iBraine Delivers in Your GEO Package (28 Factors)</span>
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1 max-w-3xl leading-relaxed">
+                      Comprehensive Generative Engine Optimization architecture organized into 4 strategic delivery pillars. Clear deliverables, zero tag clutter, and 100% built for AI search dominance.
+                    </p>
                   </div>
 
                   {/* Pillar Filter Tabs */}
@@ -882,48 +867,20 @@ const CommercialsPage = () => {
                 {/* PILLAR 1: Domain Optimization Scope (10 Protocols) */}
                 {(geoCategoryFilter === 'all' || geoCategoryFilter === 'scope') && (
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
-                          <Layers className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm sm:text-base font-bold text-slate-950">
-                              1. Domain Optimization Scope
-                            </h4>
-                            <span className="text-xs text-slate-400 font-medium">({geoScopeProtocols.length} Protocols)</span>
-                          </div>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Core on-page and technical optimizations scaled to your selected plan.
-                          </p>
-                        </div>
+                    <div className="flex items-start gap-3 pb-4 border-b border-slate-100">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                        <Layers className="w-5 h-5" />
                       </div>
-
-                      <div className="flex items-center gap-1.5 self-start sm:self-auto shrink-0">
-                        <span className="text-xs text-slate-500 font-medium mr-1">Switch View:</span>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedGeoPackage('silver')}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
-                            selectedGeoPackage === 'silver'
-                              ? 'bg-amber-100 text-amber-900 border-amber-300 shadow-2xs'
-                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                          }`}
-                        >
-                          Silver Scope
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedGeoPackage(selectedGeoPackage === 'silver' ? 'gold' : selectedGeoPackage)}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
-                            selectedGeoPackage !== 'silver'
-                              ? 'bg-emerald-100 text-emerald-900 border-emerald-300 shadow-2xs'
-                              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
-                          }`}
-                        >
-                          Gold/Plat/Tit Scope
-                        </button>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                            1. Domain Optimization Scope
+                          </h4>
+                          <span className="text-xs text-slate-400 font-medium">({geoScopeProtocols.length} Protocols)</span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-0.5">
+                          Core on-page and technical optimizations scaled to your selected plan.
+                        </p>
                       </div>
                     </div>
 
