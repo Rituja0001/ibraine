@@ -142,6 +142,7 @@ const CommercialsPage = () => {
   const [selectedSeoPackage, setSelectedSeoPackage] = useState('standard');
   const [selectedPerfTier, setSelectedPerfTier] = useState(1);
   const [selectedGeoPackage, setSelectedGeoPackage] = useState('gold');
+  const [geoCategoryFilter, setGeoCategoryFilter] = useState('all');
   const [selectedGa4Package, setSelectedGa4Package] = useState('gold');
 
   useEffect(() => {
@@ -751,7 +752,7 @@ const CommercialsPage = () => {
               <motion.div variants={itemVariants} className="p-5 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
                 <h3 className="text-sm sm:text-base font-bold text-slate-950 mb-3 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Common Deliverables — Included in All GEO / AEO Packages</span>
+                  <span>Standard Built-in Deliverables — Included in All GEO Packages</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-sans">
                   {GEO_PACKAGES_DATA.commonDeliverables.map((deliv, idx) => (
@@ -763,6 +764,125 @@ const CommercialsPage = () => {
                       <div className="text-xs text-slate-500 leading-snug">{deliv.desc}</div>
                     </div>
                   ))}
+                </div>
+              </motion.div>
+
+              {/* Complete Categorized Deliverables Breakdown (37 Factors Across 5 Categories) */}
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-5 border-b border-slate-200 gap-3">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
+                      <Layers className="w-5 h-5 text-[#0072BC]" />
+                      <span>Complete GEO Deliverables Breakdown (37 Factors)</span>
+                    </h3>
+                    <p className="text-xs text-slate-500 font-sans mt-0.5">
+                      Tap any category pill below to filter. Active plan ({selectedGeoPackage.toUpperCase()}) is highlighted on each factor.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 font-sans">
+                    <button
+                      type="button"
+                      onClick={() => setGeoCategoryFilter('all')}
+                      className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${
+                        geoCategoryFilter === 'all'
+                          ? 'bg-[#0072BC] text-white shadow-xs'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      All Factors ({GEO_PACKAGES_DATA.categories.reduce((acc, c) => acc + c.items.length, 0)})
+                    </button>
+                    {GEO_PACKAGES_DATA.categories.map((cat) => (
+                      <button
+                        key={cat.category}
+                        type="button"
+                        onClick={() => setGeoCategoryFilter(cat.category)}
+                        className={`text-xs px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${
+                          geoCategoryFilter === cat.category
+                            ? 'bg-[#0072BC] text-white shadow-xs'
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        }`}
+                      >
+                        {cat.category} ({cat.items.length})
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-6">
+                  {GEO_PACKAGES_DATA.categories
+                    .filter((cat) => geoCategoryFilter === 'all' || geoCategoryFilter === cat.category)
+                    .map((cat, catIdx) => (
+                      <div key={catIdx} className="space-y-2.5">
+                        <div className="text-xs font-bold text-[#0072BC] uppercase tracking-wider font-sans flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
+                          <span>{cat.category}</span>
+                          <span className="text-slate-400 font-normal">({cat.items.length} factors)</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 font-sans">
+                          {cat.items.map((item, itemIdx) => {
+                            const allSame = item.values.every((v) => v === item.values[0]);
+                            const val0 = item.values[0];
+                            const isIncluded = val0 === 'YES' || val0 === 'Included';
+
+                            return (
+                              <div
+                                key={itemIdx}
+                                className="p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/80 hover:bg-slate-100/70 transition-colors flex flex-col justify-between gap-2.5"
+                              >
+                                <div className="flex items-start gap-2.5">
+                                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                                    <Check className="w-3.5 h-3.5" />
+                                  </div>
+                                  <span className="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
+                                    {item.feature}
+                                  </span>
+                                </div>
+
+                                <div className="pl-7.5">
+                                  {allSame ? (
+                                    <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${
+                                      isIncluded
+                                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                        : val0.includes('Rs.')
+                                        ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                        : 'bg-blue-50 text-[#0072BC] border-blue-200'
+                                    }`}>
+                                      {isIncluded ? '✓ Included in All Plans' : `${val0} (All Plans)`}
+                                    </span>
+                                  ) : (
+                                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                                      {[
+                                        { plan: 'Silver', id: 'silver', val: item.values[0] },
+                                        { plan: 'Gold', id: 'gold', val: item.values[1] },
+                                        { plan: 'Platinum', id: 'platinum', val: item.values[2] },
+                                        { plan: 'Titanium', id: 'titanium', val: item.values[3] },
+                                      ].map((tier) => {
+                                        const isActive = selectedGeoPackage === tier.id;
+                                        return (
+                                          <span
+                                            key={tier.id}
+                                            className={`px-2 py-0.5 rounded-md border text-[11px] font-medium transition-colors ${
+                                              isActive
+                                                ? 'bg-[#0072BC] text-white font-bold border-[#0072BC] shadow-2xs'
+                                                : 'bg-white text-slate-600 border-slate-200'
+                                            }`}
+                                          >
+                                            <span className="opacity-75 mr-1 font-normal">{tier.plan}:</span>
+                                            {tier.val}
+                                          </span>
+                                        );
+                                      })}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </motion.div>
             </motion.div>
