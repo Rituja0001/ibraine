@@ -481,6 +481,45 @@ export const SOCIAL_MEDIA_DATA = {
       popular: false,
     },
   ],
+  // 4 Core Strategic Pillars
+  commonPillars: [
+    {
+      pillar: "1. Strategy & Research",
+      desc: "Data-backed roadmapping and continuous audience positioning.",
+      bullets: [
+        "Monthly content calendar and core brand pillars",
+        "Competitor benchmarking and trend analysis",
+        "Platform-specific hashtag and keyword research",
+      ],
+    },
+    {
+      pillar: "2. Creative & Account Setup",
+      desc: "Brand identity alignment, conversion-focused design, and copy.",
+      bullets: [
+        "Profile/bio optimization and CTA alignment",
+        "Brand-aligned copywriting and creative adaptation",
+        "Streamlined content approval workflow prior to posting",
+      ],
+    },
+    {
+      pillar: "3. Publishing & Community",
+      desc: "Consistent distribution and proactive audience touchpoints.",
+      bullets: [
+        "Scheduled publishing across all selected platforms",
+        "Active monitoring of comments, tags, and mentions",
+        "Standard response handling (escalating complex queries to your team)",
+      ],
+    },
+    {
+      pillar: "4. Reporting & Governance",
+      desc: "Full transparency, growth metrics, and future roadmapping.",
+      bullets: [
+        "Monthly performance report with actionable insights",
+        "Reach, engagement, and follower growth tracking",
+        "Monthly strategy check-in and next-month roadmap",
+      ],
+    },
+  ],
   commonDeliverables: [
     { title: "Strategy & Planning", desc: "Monthly content plan, basic content pillars, and posting calendar." },
     { title: "Account Management", desc: "Profile/page optimization for selected platforms; bio, links, and CTA review." },
@@ -492,12 +531,97 @@ export const SOCIAL_MEDIA_DATA = {
     { title: "Coordination & Review", desc: "Monthly check-in and streamlined content approval coordination." },
   ],
   platformDeliverables: [
-    { platform: "Facebook", details: "Page setup/optimization, cover creative, CTA review, relevant group sharing where appropriate." },
-    { platform: "Instagram", details: "Feed and Story adaptations, Reels publishing where included in monthly quota." },
-    { platform: "LinkedIn", details: "Company page optimization, professional copy, relevant polls/articles where agreed." },
-    { platform: "YouTube", details: "Video title, description, tags, thumbnail selection; upload/publishing for included videos." },
-    { platform: "X (Twitter)", details: "Post adaptation, hashtag use, and engagement activities as agreed in the package." },
-    { platform: "Pinterest", details: "Pin creative adaptation, pinboard organization, and pin publishing where selected." },
+    {
+      platform: "Instagram",
+      brandColor: "#E1306C",
+      brandBg: "bg-pink-50 text-pink-600 border-pink-200",
+      accentBorder: "border-pink-500/20",
+      bullets: [
+        { lead: "Feed & Story Formatting", text: "Aspect-ratio adaptation for high visual impact." },
+        { lead: "Reels Publishing", text: "Optimization, cover selection, and trending audio pairing (per monthly quota)." },
+        { lead: "Bio & Highlights", text: "Profile optimization and organized story highlight covers." },
+        { lead: "Discovery", text: "Niche hashtag clusters and location tagging." },
+      ],
+    },
+    {
+      platform: "Facebook",
+      brandColor: "#1877F2",
+      brandBg: "bg-blue-50 text-blue-600 border-blue-200",
+      accentBorder: "border-blue-500/20",
+      bullets: [
+        { lead: "Page Optimization", text: "Cover banner design, bio setup, and action-button (CTA) configuration." },
+        { lead: "Content Publishing", text: "Cross-formatted posts tailored for Facebook’s feed algorithm." },
+        { lead: "Community Reach", text: "Strategic sharing in relevant niche groups (up to agreed monthly limit)." },
+        { lead: "Page Hygiene", text: "Spam comment filtering and inbox auto-responder setup." },
+      ],
+    },
+    {
+      platform: "LinkedIn",
+      brandColor: "#0A66C2",
+      brandBg: "bg-sky-50 text-sky-700 border-sky-200",
+      accentBorder: "border-sky-500/20",
+      bullets: [
+        { lead: "Company Page Setup", text: "Banner branding, tagline refinement, and custom CTA button setup." },
+        { lead: "B2B Copywriting", text: "Authority-building captions tailored for decision-makers and professionals." },
+        { lead: "Interactive Formats", text: "Document carousels (PDFs) and industry polls (as per package scope)." },
+        { lead: "Executive Alignment", text: "Tagging key stakeholders and strategic industry hashtags." },
+      ],
+    },
+    {
+      platform: "YouTube",
+      brandColor: "#FF0000",
+      brandBg: "bg-red-50 text-red-600 border-red-200",
+      accentBorder: "border-red-500/20",
+      bullets: [
+        { lead: "Video SEO", text: "High-CTR title crafting, keyword-rich descriptions, and metadata tags." },
+        { lead: "Visual Packaging", text: "Custom thumbnail design and end-screen/card setup." },
+        { lead: "Channel Management", text: "Video upload, scheduling, and playlist categorization." },
+        { lead: "Shorts Adaptation", text: "Vertical formatting and publishing (when included in video quota)." },
+      ],
+    },
+    {
+      platform: "X (Twitter)",
+      brandColor: "#000000",
+      brandBg: "bg-slate-100 text-slate-900 border-slate-300",
+      accentBorder: "border-slate-400/20",
+      bullets: [
+        { lead: "Copy Adaptation", text: "Concise, punchy copywriting tailored for fast-moving feeds and threads." },
+        { lead: "Trend Integration", text: "Strategic use of trending and niche-specific hashtags." },
+        { lead: "Profile Branding", text: "Header design, pinned post optimization, and bio copy." },
+        { lead: "Active Engagement", text: "Monitoring brand mentions and industry conversations." },
+      ],
+    },
+    {
+      platform: "Pinterest",
+      brandColor: "#BD081C",
+      brandBg: "bg-rose-50 text-rose-700 border-rose-200",
+      accentBorder: "border-rose-500/20",
+      bullets: [
+        { lead: "Pin Design", text: "Vertical, search-friendly creative formatting tailored for Pinterest." },
+        { lead: "Board Architecture", text: "Creation and SEO optimization of keyword-themed pinboards." },
+        { lead: "Traffic Linking", text: "Direct destination URL mapping on every published pin." },
+        { lead: "Scheduled Pinning", text: "Consistent publishing cadence for long-tail organic discovery." },
+      ],
+    },
+  ],
+  // Collapsible FAQ Accordion for Quota Clarity & Terms
+  faqTerms: [
+    {
+      question: "How are AI images and videos counted in monthly quotas?",
+      answer: "AI image and AI video quantities are included within the monthly static-post and video quotas defined in your selected package, rather than being separate bonus deliverables.",
+    },
+    {
+      question: "What items require custom quotation or separate budgets?",
+      answer: "Paid media spend (ad budget), influencer collaborations/fees, on-location video/photo shoots, premium commercial stock or music licenses, high-end 3D animations, and specialized third-party SaaS subscriptions are not included in monthly management unless explicitly quoted.",
+    },
+    {
+      question: "What are the client onboarding responsibilities?",
+      answer: "Clients supply necessary brand guideline assets, account administrative access, raw multimedia files, and prompt factual approvals during the monthly content approval cycles.",
+    },
+    {
+      question: "What are the commercial billing and payment terms?",
+      answer: "All fees are monthly retainers denominated in INR, exclusive of applicable statutory taxes (GST). Paid advertising management campaigns and ad budget execution are billed separately unless bundled into a custom enterprise agreement.",
+    },
   ],
   notes: [
     "AI image and AI video quantities are included within the monthly static-post/video quotas above, not additional deliverables.",
