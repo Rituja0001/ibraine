@@ -1584,8 +1584,7 @@ const CommercialsPage = () => {
                   {SOCIAL_MEDIA_DATA.commonPillars.map((pillar, idx) => (
                     <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center gap-2.5 mb-1.5">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC]" />
+                        <div className="mb-1.5">
                           <h4 className="text-base sm:text-lg font-bold text-slate-950">{pillar.pillar}</h4>
                         </div>
                         <p className="text-sm text-slate-700 font-medium mb-4 leading-relaxed">{pillar.desc}</p>
