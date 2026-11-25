@@ -1571,7 +1571,7 @@ const CommercialsPage = () => {
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                       <span>Common Deliverables — Included in All SMM Packages</span>
                     </h3>
-                    <p className="text-sm text-slate-500 mt-1">
+                    <p className="text-sm sm:text-base text-slate-700 font-medium mt-1">
                       Structured across 4 high-performance operational pillars covering the complete social media growth lifecycle.
                     </p>
                   </div>
@@ -1588,7 +1588,7 @@ const CommercialsPage = () => {
                           <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC]" />
                           <h4 className="text-base sm:text-lg font-bold text-slate-950">{pillar.pillar}</h4>
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-500 mb-4 leading-relaxed">{pillar.desc}</p>
+                        <p className="text-sm text-slate-700 font-medium mb-4 leading-relaxed">{pillar.desc}</p>
                         <ul className="space-y-3">
                           {pillar.bullets.map((bullet, bIdx) => (
                             <li key={bIdx} className="flex items-start gap-2.5">
@@ -1614,7 +1614,7 @@ const CommercialsPage = () => {
                     <Share2 className="w-5 h-5 text-[#0072BC]" />
                     <span>Platform-Specific Execution</span>
                   </h3>
-                  <p className="text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-700 font-medium mt-1 max-w-3xl leading-relaxed">
                     Tailored optimization and content formatting based on your selected channels.
                   </p>
                 </div>
@@ -1632,7 +1632,7 @@ const CommercialsPage = () => {
                             {renderPlatformIcon(plat.platform)}
                             <div>
                               <h4 className="text-base sm:text-lg font-bold text-slate-950">{plat.platform}</h4>
-                              <span className="text-xs text-slate-500">Channel Execution</span>
+                              <span className="text-xs text-slate-600 font-medium">Channel Execution</span>
                             </div>
                           </div>
                           <span className="text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200 shrink-0">
@@ -1646,9 +1646,9 @@ const CommercialsPage = () => {
                               <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
                                 <Check className="w-3.5 h-3.5" />
                               </div>
-                              <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                              <div className="text-sm sm:text-base font-medium text-slate-900 leading-snug flex-1 min-w-0">
                                 <strong className="font-bold text-slate-950">{b.lead}:</strong>{' '}
-                                <span className="text-slate-700">{b.text}</span>
+                                <span className="text-slate-800 font-medium">{b.text}</span>
                               </div>
                             </li>
                           ))}
@@ -1669,7 +1669,7 @@ const CommercialsPage = () => {
                     <h4 className="text-lg sm:text-xl font-bold text-slate-950">
                       Frequently Asked Questions & Quota Terms
                     </h4>
-                    <p className="text-sm text-slate-500 mt-0.5">
+                    <p className="text-sm sm:text-base text-slate-700 font-medium mt-1">
                       Clear operational boundaries, asset delivery guidelines, and commercial billing specifics.
                     </p>
                   </div>
@@ -1701,7 +1701,7 @@ const CommercialsPage = () => {
                               transition={{ duration: 0.2 }}
                               className="overflow-hidden"
                             >
-                              <p className="pt-2.5 text-sm sm:text-base text-slate-700 leading-relaxed">
+                              <p className="pt-2.5 text-sm sm:text-base text-slate-900 font-medium leading-relaxed">
                                 {faq.answer}
                               </p>
                             </motion.div>
