@@ -96,8 +96,6 @@ const Navbar = () => {
 
             {[
               { label: 'Clientele', to: '/clientele' },
-              { label: 'Case Studies', to: '/website/case-studies' },
-              { label: 'Commercials', to: '/commercials' },
               { label: 'Blog', to: '/blog' },
               { label: 'Contact', to: '/contact' }
             ].map((item) => (
@@ -105,8 +103,6 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-
-            <QuoteButton />
           </div>
 
           {/* MOBILE MENU TOGGLE BUTTON */}
@@ -198,23 +194,6 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/website/case-studies"
-                onClick={() => { setIsMobileMenuOpen(false); document.body.classList.remove("menu-open"); }}
-                className="text-[26px] font-bold text-slate-900 border-b border-slate-100 pb-3"
-              >
-                Case Studies
-              </Link>
-
-              <Link
-                to="/commercials"
-                onClick={() => { setIsMobileMenuOpen(false); document.body.classList.remove("menu-open"); }}
-                className="text-[26px] font-bold text-[#0072BC] border-b border-slate-100 pb-3 flex items-center justify-between"
-              >
-                <span>Commercials</span>
-                <span className="text-xs bg-blue-100 text-[#0072BC] px-2 py-0.5 rounded-full font-sans uppercase font-bold">New</span>
-              </Link>
-
-              <Link
                 to="/blog"
                 onClick={() => { setIsMobileMenuOpen(false); document.body.classList.remove("menu-open"); }}
                 className="text-[26px] font-bold text-slate-900 border-b border-slate-100 pb-3"
@@ -229,8 +208,6 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-
-              <QuoteButton className="w-full py-3.5 text-base mt-2 shadow-sm" />
             </div>
           </motion.div>
         )}
