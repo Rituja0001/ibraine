@@ -1726,7 +1726,7 @@ const CommercialsPage = () => {
                   </p>
                 </div>
                 <Link
-                  to="/request-quote"
+                  to="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#0072BC] font-bold text-xs sm:text-sm shadow-md hover:bg-blue-50 transition-all shrink-0 cursor-pointer"
                 >
                   <span>Get a Custom Channel Mix</span>

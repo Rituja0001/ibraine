@@ -31,7 +31,7 @@ const Navbar = () => {
     <motion.button
       whileTap={{ scale: 0.96 }}
       onClick={() => {
-        navigate("/request-quote");
+        navigate("/contact");
         setIsMobileMenuOpen(false); // Close menu on click
       }}
       className={`border-2 border-[#ffb400] text-[#ffb400] px-6 py-2 rounded-md font-bold text-[14px] hover:bg-[#ffb400] hover:text-white transition-all duration-300 font-lora ${className}`}
@@ -103,6 +103,8 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
+
+            <QuoteButton />
           </div>
 
           {/* MOBILE MENU TOGGLE BUTTON */}
@@ -208,6 +210,8 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+
+              <QuoteButton className="w-full py-3.5 text-base mt-2 shadow-sm" />
             </div>
           </motion.div>
         )}
