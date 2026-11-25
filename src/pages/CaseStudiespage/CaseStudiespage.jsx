@@ -14,6 +14,15 @@ const CaseStudiespage = () => {
   useEffect(() => {
     document.title = 'Case Studies & Work Portfolio | iBraine Digital Marketing Mumbai';
 
+    // Enforce noindex, nofollow for search engines
+    let meta = document.querySelector("meta[name='robots']");
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      document.head.appendChild(meta);
+    }
+    meta.content = 'noindex, nofollow';
+
     // Canonical link tag
     let canonical = document.querySelector("link[rel='canonical']");
     if (!canonical) {
@@ -31,6 +40,10 @@ const CaseStudiespage = () => {
       document.head.appendChild(ogUrl);
     }
     ogUrl.setAttribute('content', 'https://www.ibraine.com/website/case-studies');
+
+    return () => {
+      meta.content = 'index, follow';
+    };
   }, []);
 
   // Compute exact counts for the 5 tabs

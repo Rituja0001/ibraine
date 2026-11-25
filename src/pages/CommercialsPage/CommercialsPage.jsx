@@ -208,6 +208,19 @@ const CommercialsPage = () => {
   useEffect(() => {
     document.title = 'Commercials & Deliverables Plans | iBraine Digital Marketing';
     window.scrollTo(0, 0);
+
+    // Enforce noindex, nofollow for search engines
+    let meta = document.querySelector("meta[name='robots']");
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      document.head.appendChild(meta);
+    }
+    meta.content = 'noindex, nofollow';
+
+    return () => {
+      meta.content = 'index, follow';
+    };
   }, []);
 
   // Filtered Collaterals for Tab 8
