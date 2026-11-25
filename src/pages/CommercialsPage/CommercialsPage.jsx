@@ -137,8 +137,8 @@ const renderPlatformIcon = (platform) => {
   switch (platform) {
     case 'Instagram':
       return (
-        <div className="w-8 h-8 rounded-lg bg-pink-50 text-[#E1306C] flex items-center justify-center shrink-0 border border-pink-100 shadow-2xs">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#E1306C] flex items-center justify-center shrink-0 border border-pink-100 shadow-2xs">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -147,40 +147,40 @@ const renderPlatformIcon = (platform) => {
       );
     case 'Facebook':
       return (
-        <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#1877F2] flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#1877F2] flex items-center justify-center shrink-0 border border-blue-100 shadow-2xs">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
         </div>
       );
     case 'LinkedIn':
       return (
-        <div className="w-8 h-8 rounded-lg bg-sky-50 text-[#0A66C2] flex items-center justify-center shrink-0 border border-sky-100 shadow-2xs">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <div className="w-10 h-10 rounded-xl bg-sky-50 text-[#0A66C2] flex items-center justify-center shrink-0 border border-sky-100 shadow-2xs">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
         </div>
       );
     case 'YouTube':
       return (
-        <div className="w-8 h-8 rounded-lg bg-red-50 text-[#FF0000] flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <div className="w-10 h-10 rounded-xl bg-red-50 text-[#FF0000] flex items-center justify-center shrink-0 border border-red-100 shadow-2xs">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
           </svg>
         </div>
       );
     case 'X (Twitter)':
       return (
-        <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-900 flex items-center justify-center shrink-0 border border-slate-300 shadow-2xs">
-          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+        <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center shrink-0 border border-slate-300 shadow-2xs">
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
         </div>
       );
     case 'Pinterest':
       return (
-        <div className="w-8 h-8 rounded-lg bg-rose-50 text-[#BD081C] flex items-center justify-center shrink-0 border border-rose-100 shadow-2xs">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <div className="w-10 h-10 rounded-xl bg-rose-50 text-[#BD081C] flex items-center justify-center shrink-0 border border-rose-100 shadow-2xs">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.357-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.372 12-12 0-6.628-5.373-12-12-12z"/>
           </svg>
         </div>
@@ -1564,36 +1564,40 @@ const CommercialsPage = () => {
               </motion.div>
 
               {/* 1. Common Deliverables: 4 Core Strategic Pillars */}
-              <motion.div variants={itemVariants} className="p-5 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-2xs font-sans">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2 mb-6">
+              <motion.div variants={itemVariants} className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs font-sans">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-100 gap-3 mb-6">
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-slate-950 flex items-center gap-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2.5">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                       <span>Common Deliverables — Included in All SMM Packages</span>
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-sm text-slate-500 mt-1">
                       Structured across 4 high-performance operational pillars covering the complete social media growth lifecycle.
                     </p>
                   </div>
-                  <span className="self-start sm:self-auto text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200 shrink-0">
-                    4 Core Pillars
+                  <span className="self-start sm:self-auto text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200 shrink-0">
+                    4 Core Strategic Pillars
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 font-sans">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
                   {SOCIAL_MEDIA_DATA.commonPillars.map((pillar, idx) => (
-                    <div key={idx} className="p-4 sm:p-5 rounded-xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between">
+                    <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="w-2 h-2 rounded-full bg-[#0072BC]" />
-                          <h4 className="text-sm sm:text-base font-bold text-slate-900">{pillar.pillar}</h4>
+                        <div className="flex items-center gap-2.5 mb-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#0072BC]" />
+                          <h4 className="text-base sm:text-lg font-bold text-slate-950">{pillar.pillar}</h4>
                         </div>
-                        <p className="text-xs text-slate-500 mb-3.5 leading-relaxed">{pillar.desc}</p>
-                        <ul className="space-y-2">
+                        <p className="text-xs sm:text-sm text-slate-500 mb-4 leading-relaxed">{pillar.desc}</p>
+                        <ul className="space-y-3">
                           {pillar.bullets.map((bullet, bIdx) => (
-                            <li key={bIdx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                              <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                              <span className="leading-snug">{bullet}</span>
+                            <li key={bIdx} className="flex items-start gap-2.5">
+                              <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                              <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                                {bullet}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -1604,39 +1608,47 @@ const CommercialsPage = () => {
               </motion.div>
 
               {/* 2. Platform-Specific Execution */}
-              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs font-sans">
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs font-sans">
                 <div className="pb-5 border-b border-slate-100">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-950 flex items-center gap-2.5">
                     <Share2 className="w-5 h-5 text-[#0072BC]" />
                     <span>Platform-Specific Execution</span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
+                  <p className="text-sm text-slate-500 mt-1 max-w-3xl leading-relaxed">
                     Tailored optimization and content formatting based on your selected channels.
                   </p>
                 </div>
 
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 font-sans">
+                {/* 2-column spacious grid matching GEO spacing and font size */}
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
                   {SOCIAL_MEDIA_DATA.platformDeliverables.map((plat, idx) => (
                     <div
                       key={idx}
-                      className="p-4 sm:p-5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col justify-between"
+                      className="p-5 sm:p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-slate-300 transition-all flex flex-col justify-between"
                     >
                       <div>
-                        <div className="flex items-center gap-2.5 pb-3 border-b border-slate-200/60 mb-3.5">
-                          {renderPlatformIcon(plat.platform)}
-                          <div>
-                            <h4 className="text-sm sm:text-base font-bold text-slate-900">{plat.platform}</h4>
-                            <span className="text-[11px] font-medium text-slate-500">Channel Execution</span>
+                        <div className="flex items-center justify-between pb-4 border-b border-slate-200/70 mb-4">
+                          <div className="flex items-center gap-3">
+                            {renderPlatformIcon(plat.platform)}
+                            <div>
+                              <h4 className="text-base sm:text-lg font-bold text-slate-950">{plat.platform}</h4>
+                              <span className="text-xs text-slate-500">Channel Execution</span>
+                            </div>
                           </div>
+                          <span className="text-[11px] font-bold text-[#0072BC] bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200 shrink-0">
+                            Custom Formatted
+                          </span>
                         </div>
 
-                        <ul className="space-y-2.5">
+                        <ul className="space-y-3.5">
                           {plat.bullets.map((b, bIdx) => (
-                            <li key={bIdx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 leading-snug">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#0072BC] shrink-0 mt-1.5" />
-                              <div>
-                                <strong className="font-bold text-slate-900">{b.lead}:</strong>{' '}
-                                <span className="text-slate-600">{b.text}</span>
+                            <li key={bIdx} className="flex items-start gap-2.5">
+                              <div className="w-5 h-5 rounded-full bg-blue-50 text-[#0072BC] flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                              <div className="text-sm sm:text-base font-medium text-slate-800 leading-snug flex-1 min-w-0">
+                                <strong className="font-bold text-slate-950">{b.lead}:</strong>{' '}
+                                <span className="text-slate-700">{b.text}</span>
                               </div>
                             </li>
                           ))}
@@ -1648,16 +1660,16 @@ const CommercialsPage = () => {
               </motion.div>
 
               {/* 3. Collapsible FAQ Accordion for Quota Clarity & Terms */}
-              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs font-sans">
-                <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100">
-                  <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
-                    <HelpCircle className="w-4 h-4" />
+              <motion.div variants={itemVariants} className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs font-sans">
+                <div className="flex items-center gap-3 pb-5 border-b border-slate-100">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
+                    <HelpCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-bold text-slate-950">
+                    <h4 className="text-lg sm:text-xl font-bold text-slate-950">
                       Frequently Asked Questions & Quota Terms
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-sm text-slate-500 mt-0.5">
                       Clear operational boundaries, asset delivery guidelines, and commercial billing specifics.
                     </p>
                   </div>
@@ -1667,15 +1679,15 @@ const CommercialsPage = () => {
                   {SOCIAL_MEDIA_DATA.faqTerms.map((faq, idx) => {
                     const isOpen = openSmmFaq === idx;
                     return (
-                      <div key={idx} className="py-3">
+                      <div key={idx} className="py-4">
                         <button
                           type="button"
                           onClick={() => setOpenSmmFaq(isOpen ? null : idx)}
-                          className="w-full flex items-center justify-between text-left py-1 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#0072BC] transition-colors cursor-pointer gap-4"
+                          className="w-full flex items-center justify-between text-left py-1 text-base sm:text-lg font-bold text-slate-950 hover:text-[#0072BC] transition-colors cursor-pointer gap-4"
                         >
                           <span>{faq.question}</span>
                           <ChevronDown
-                            className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
+                            className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
                               isOpen ? 'rotate-180 text-[#0072BC]' : ''
                             }`}
                           />
@@ -1689,7 +1701,7 @@ const CommercialsPage = () => {
                               transition={{ duration: 0.2 }}
                               className="overflow-hidden"
                             >
-                              <p className="pt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                              <p className="pt-2.5 text-sm sm:text-base text-slate-700 leading-relaxed">
                                 {faq.answer}
                               </p>
                             </motion.div>
