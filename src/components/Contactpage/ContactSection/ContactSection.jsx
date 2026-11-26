@@ -130,7 +130,7 @@ const ContactSection = () => {
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 relative z-10">
 
         {/* ════ LEFT: THE FORM ════ */}
-        <div className="lg:col-span-7 p-8 md:p-14 lg:p-20 bg-white border-r border-slate-100">
+        <div className="lg:col-span-7 p-8 md:p-12 lg:px-20 lg:pt-8 lg:pb-16 bg-white border-r border-slate-100">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             whileInView={{ opacity: 1, x: 0 }} 
@@ -282,7 +282,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="p-8 md:p-14 lg:p-20 space-y-16"
+            className="p-8 md:p-12 lg:px-20 lg:pt-8 lg:pb-16 space-y-16"
           >
             {/* Headquarters */}
             <div className="space-y-6">

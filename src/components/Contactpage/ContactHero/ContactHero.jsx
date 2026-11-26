@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FiMessageSquare, FiArrowDown } from 'react-icons/fi';
 
 const ContactHero = () => {
   const { scrollY } = useScroll();
@@ -8,7 +7,7 @@ const ContactHero = () => {
   const orbY = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
-    <section className="relative w-full py-32 md:py-10 px-6 overflow-hidden flex flex-col items-center justify-center text-center bg-[#fdfdfd]">
+    <section className="relative w-full pt-16 pb-6 md:pt-20 md:pb-8 px-6 overflow-hidden flex flex-col items-center justify-center text-center bg-[#fdfdfd]">
 
       {/* ════ LIVELY BACKGROUND SYSTEM ════ */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -67,20 +66,10 @@ const ContactHero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="mt-16 text-slate-600 text-base md:text-xl font-medium max-w-md mx-auto italic leading-relaxed"
+          className="mt-6 md:mt-8 text-slate-600 text-base md:text-xl font-medium max-w-md mx-auto italic leading-relaxed"
         >
           We bridge the gap between business vision and digital execution. We are your growth partner.
         </motion.p>
-
-        {/* 4. Editorial Vertical Anchor */}
-        <motion.div
-          animate={{ y: [0, 15, 0] }}
-          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-          className="mt-20 flex flex-col items-center gap-4 opacity-20"
-        >
-          <div className="w-px h-16 bg-gradient-to-b from-slate-900 to-transparent" />
-          <FiArrowDown size={14} />
-        </motion.div>
       </motion.div>
 
       {/* Font Import in component for safety */}
