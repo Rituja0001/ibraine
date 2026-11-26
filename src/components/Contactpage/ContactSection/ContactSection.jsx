@@ -164,7 +164,7 @@ const ContactSection = () => {
                 <motion.div key={idx} variants={itemVariants} className="group relative pt-4">
                   <label 
                     style={{ fontFamily: "'Lora', serif" }} 
-                    className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 group-focus-within:text-[#2c66f6] transition-colors duration-300"
+                    className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 group-focus-within:text-[#2c66f6] transition-colors duration-300"
                   >
                     {field.label}
                   </label>
@@ -175,7 +175,7 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required={field.required}
                     style={{ fontFamily: "'Lora', serif" }} 
-                    className="w-full bg-transparent border-b border-slate-200 pb-2 pt-3 outline-none focus:border-[#2c66f6] transition-all duration-300 text-[15px] md:text-[16px] text-slate-800 placeholder:text-slate-300 placeholder:font-light" 
+                    className="w-full bg-transparent border-b border-slate-200 pb-2 pt-3 outline-none focus:border-[#2c66f6] transition-all duration-300 text-[15px] md:text-[16px] text-slate-800 placeholder:text-slate-400 placeholder:font-light" 
                     placeholder={field.placeholder} 
                   />
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#2c66f6] group-focus-within:w-full transition-all duration-500 ease-out" />
@@ -187,7 +187,7 @@ const ContactSection = () => {
             <motion.div variants={itemVariants} className="space-y-5 pt-4">
               <label 
                 style={{ fontFamily: "'Lora', serif" }} 
-                className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 block mb-2"
+                className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 block mb-2"
               >
                 Services Required
               </label>
@@ -206,7 +206,7 @@ const ContactSection = () => {
                     </div>
                     <span 
                       style={{ fontFamily: "'Lora', serif" }} 
-                      className="text-slate-500 text-[14px] md:text-[15px] font-medium group-hover:text-slate-900 transition-colors select-none"
+                      className="text-slate-700 text-[14px] md:text-[15px] font-medium group-hover:text-slate-900 transition-colors select-none"
                     >
                       {service}
                     </span>
@@ -219,7 +219,7 @@ const ContactSection = () => {
             <motion.div variants={itemVariants} className="group relative pt-4">
               <label 
                 style={{ fontFamily: "'Lora', serif" }} 
-                className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 group-focus-within:text-[#2c66f6] transition-colors duration-300"
+                className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-600 group-focus-within:text-[#2c66f6] transition-colors duration-300"
               >
                 Requirements
               </label>
@@ -229,7 +229,7 @@ const ContactSection = () => {
                 value={formData.requirements}
                 onChange={handleChange}
                 style={{ fontFamily: "'Lora', serif" }} 
-                className="w-full bg-transparent border-b border-slate-200 pb-2 pt-3 outline-none focus:border-[#2c66f6] transition-all duration-300 text-[15px] md:text-[16px] text-slate-800 placeholder:text-slate-300 placeholder:font-light resize-none mt-2" 
+                className="w-full bg-transparent border-b border-slate-200 pb-2 pt-3 outline-none focus:border-[#2c66f6] transition-all duration-300 text-[15px] md:text-[16px] text-slate-800 placeholder:text-slate-400 placeholder:font-light resize-none mt-2" 
                 placeholder="Share a brief of your requirements..."
               />
               <div className="absolute bottom-1 left-0 w-0 h-[2px] bg-[#2c66f6] group-focus-within:w-full transition-all duration-500 ease-out" />
@@ -328,7 +328,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="border-t border-slate-200 p-8 md:p-14 lg:p-20 mt-auto bg-[#fafafa]"
           >
-            <p style={{ fontFamily: "'Lora', serif" }} className="text-[11px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-8">Follow Ecosystem</p>
+            <p style={{ fontFamily: "'Lora', serif" }} className="text-[11px] font-bold uppercase tracking-[0.4em] text-slate-600 mb-8">Follow Ecosystem</p>
             <div className="flex flex-wrap gap-x-10 gap-y-6">
               {['Instagram', 'LinkedIn', 'Twitter', 'Facebook'].map((social) => (
                 <a 
