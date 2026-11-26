@@ -161,10 +161,10 @@ const ContactSection = () => {
                 { key: 'company', label: 'Company Name', type: 'text', placeholder: 'Optional', required: false },
                 { key: 'website', label: 'Website Link', type: 'url', placeholder: 'www.example.com', required: false },
               ].map((field, idx) => (
-                <motion.div key={idx} variants={itemVariants} className="group relative pt-4">
+                <motion.div key={idx} variants={itemVariants} className="group relative pt-5">
                   <label 
                     style={{ fontFamily: "'Lora', serif" }} 
-                    className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-900 group-focus-within:text-[#2c66f6] transition-colors duration-300"
+                    className="absolute top-0 left-0 text-[12px] font-bold uppercase tracking-[0.25em] text-slate-900 group-focus-within:text-[#2c66f6] transition-colors duration-300"
                   >
                     {field.label}
                   </label>
@@ -187,7 +187,7 @@ const ContactSection = () => {
             <motion.div variants={itemVariants} className="space-y-5 pt-4">
               <label 
                 style={{ fontFamily: "'Lora', serif" }} 
-                className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-900 block mb-2"
+                className="text-[12px] font-bold uppercase tracking-[0.25em] text-slate-900 block mb-2"
               >
                 Services Required
               </label>
@@ -216,10 +216,10 @@ const ContactSection = () => {
             </motion.div>
 
             {/* Textarea */}
-            <motion.div variants={itemVariants} className="group relative pt-4">
+            <motion.div variants={itemVariants} className="group relative pt-5">
               <label 
                 style={{ fontFamily: "'Lora', serif" }} 
-                className="absolute top-0 left-0 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-900 group-focus-within:text-[#2c66f6] transition-colors duration-300"
+                className="absolute top-0 left-0 text-[12px] font-bold uppercase tracking-[0.25em] text-slate-900 group-focus-within:text-[#2c66f6] transition-colors duration-300"
               >
                 Requirements
               </label>
@@ -328,7 +328,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="border-t border-slate-200 p-8 md:p-14 lg:p-20 mt-auto bg-[#fafafa]"
           >
-            <p style={{ fontFamily: "'Lora', serif" }} className="text-[11px] font-bold uppercase tracking-[0.4em] text-slate-800 mb-8">Follow Ecosystem</p>
+            <p style={{ fontFamily: "'Lora', serif" }} className="text-[12px] font-bold uppercase tracking-[0.3em] text-slate-800 mb-8">Follow Ecosystem</p>
             <div className="flex flex-wrap gap-x-10 gap-y-6">
               {['Instagram', 'LinkedIn', 'Twitter', 'Facebook'].map((social) => (
                 <a 
