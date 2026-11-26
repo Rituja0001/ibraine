@@ -16,9 +16,9 @@ const Footer = () => {
   // ✅ Added routing configs
   const companyLinks = [
     { name: "About Us", path: "/about" },
-    { name: "Commercials & Plans", path: "/commercials" },
-    { name: "Project Discovery", path: "/questionnaire" },
-    { name: "Careers", path: "#" },
+    { name: "Commercials & Plans" },
+    { name: "Project Discovery" },
+    { name: "Careers" },
     { name: "Blog", path: "/blog" },
     // { name: "Case Studies", path: "/website/case-studies" },
     { name: "Contact", path: "/contact" },
@@ -77,12 +77,18 @@ const Footer = () => {
             <ul className="space-y-4 text-[15px] font-sans">
               {companyLinks.map((item) => (
                 <li key={item.name}>
-                  <Link
-                    to={item.path}
-                    className="text-white/70 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block"
-                  >
-                    {item.name}
-                  </Link>
+                  {item.path ? (
+                    <Link
+                      to={item.path}
+                      className="text-white/70 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <span className="text-white/70 cursor-default inline-block">
+                      {item.name}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

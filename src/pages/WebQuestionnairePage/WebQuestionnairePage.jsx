@@ -160,6 +160,19 @@ const WebQuestionnairePage = () => {
   useEffect(() => {
     document.title = 'Website Design & Development Questionnaire | iBraine';
     window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Enforce noindex, nofollow for search engines
+    let meta = document.querySelector("meta[name='robots']");
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      document.head.appendChild(meta);
+    }
+    meta.content = 'noindex, nofollow';
+
+    return () => {
+      meta.content = 'index, follow';
+    };
   }, []);
 
   const handleInputChange = (field, value) => {

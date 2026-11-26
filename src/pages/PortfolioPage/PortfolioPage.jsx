@@ -28,24 +28,17 @@ const PortfolioPage = () => {
     }
     ogUrl.setAttribute('content', 'https://www.ibraine.com/website/portfolio');
 
-    // Robots meta tag: noindex, nofollow
-    let robots = document.querySelector("meta[name='robots']");
-    let created = false;
-    if (!robots) {
-      robots = document.createElement('meta');
-      robots.setAttribute('name', 'robots');
-      document.head.appendChild(robots);
-      created = true;
+    // Enforce noindex, nofollow for search engines
+    let meta = document.querySelector("meta[name='robots']");
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      document.head.appendChild(meta);
     }
-    const prevContent = robots.getAttribute('content');
-    robots.setAttribute('content', 'noindex, nofollow');
+    meta.content = 'noindex, nofollow';
 
     return () => {
-      if (created && robots.parentNode) {
-        robots.parentNode.removeChild(robots);
-      } else if (robots) {
-        robots.setAttribute('content', prevContent || 'index, follow');
-      }
+      meta.content = 'index, follow';
     };
   }, []);
 

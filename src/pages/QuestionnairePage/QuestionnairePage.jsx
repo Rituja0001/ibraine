@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FileText,
@@ -76,6 +76,24 @@ const DDM_OPTIONS_YES_NO = ['YES', 'NO'];
 const DDM_OPTIONS_PENALTY = ['YES', 'NO', 'NOT SURE'];
 
 const DigitalMarketingQuestionnaire = () => {
+  useEffect(() => {
+    document.title = 'Client Discovery Questionnaire | iBraine Digital Marketing';
+    window.scrollTo(0, 0);
+
+    // Enforce noindex, nofollow for search engines
+    let meta = document.querySelector("meta[name='robots']");
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'robots';
+      document.head.appendChild(meta);
+    }
+    meta.content = 'noindex, nofollow';
+
+    return () => {
+      meta.content = 'index, follow';
+    };
+  }, []);
+
   // Form State
   const [formData, setFormData] = useState({
     // Contact & Business Information
