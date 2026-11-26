@@ -310,7 +310,7 @@ const CommercialsPage = () => {
             transition={{ duration: 0.5 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold font-lora tracking-tight leading-[1.18] max-w-4xl mx-auto"
           >
-            <span className="text-[#ffb400]">i</span><span className="text-[#0072BC]">Braine</span> <span className="text-black italic">Commercial Plans</span>
+            <span className="text-[#fa8a34]">i</span><span className="text-[#0072BC]">Braine</span> <span className="text-black italic">Commercial Plans</span>
           </motion.h1>
 
           <motion.p
