@@ -342,9 +342,8 @@ const CommercialsPage = () => {
             </span>
           </div>
 
-          {/* Modern Elevated Hub Tray */}
-          <div className="bg-slate-100/70 backdrop-blur-md p-2 sm:p-2.5 rounded-2xl border border-slate-200/80 shadow-inner">
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-2.5">
+          {/* 4-column x 2-row Grid (Desktop) / 2-column x 4-row (Mobile) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-2.5">
               {SERVICES_TABS.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -363,7 +362,7 @@ const CommercialsPage = () => {
                     type="button"
                     className={`group relative text-left p-3.5 sm:p-4 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[102px] sm:min-h-[110px] ${
                       isActive
-                        ? 'bg-[#0072BC] text-white shadow-lg shadow-blue-600/30 ring-2 ring-[#0072BC] ring-offset-2 ring-offset-slate-100 border-transparent z-10'
+                        ? 'bg-[#0072BC] text-white shadow-lg shadow-blue-600/30 ring-2 ring-[#0072BC] border-transparent z-10'
                         : 'bg-white hover:bg-white text-slate-800 border border-slate-200/90 hover:border-[#0072BC]/40 shadow-xs hover:shadow-md hover:shadow-blue-900/5'
                     }`}
                   >
@@ -418,7 +417,6 @@ const CommercialsPage = () => {
                 );
               })}
             </div>
-          </div>
         </div>
       </section>
 
