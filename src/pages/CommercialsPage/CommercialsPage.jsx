@@ -439,43 +439,29 @@ const CommercialsPage = () => {
                   <span>Monthly Management Fees (Based on Ad Spends)</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  {PERFORMANCE_MARKETING_DATA.pricingTiers.map((tier, idx) => {
-                    const isSelected = selectedPerfTier === idx;
-                    return (
-                      <motion.div
-                        key={idx}
-                        onClick={() => setSelectedPerfTier(idx)}
-                        whileHover={{ y: -4 }}
-                        transition={{ duration: 0.25 }}
-                        className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer ${
-                          isSelected
-                            ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                            : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 text-slate-900'
-                        }`}
-                      >
-                        <div>
-                          <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-2 ${
-                            isSelected ? 'text-blue-100' : 'text-slate-500'
-                          }`}>
-                            Monthly Ad Spend Bracket
-                          </div>
-                          <div className="text-lg sm:text-xl font-bold font-lora mb-3">
-                            {tier.spendTier}
-                          </div>
-                          <div className={`text-2xl sm:text-3xl font-black font-sans ${
-                            isSelected ? 'text-white' : 'text-[#0072BC]'
-                          }`}>
-                            {tier.managementFee}
-                          </div>
-                          <p className={`mt-2 text-xs sm:text-sm font-sans ${
-                            isSelected ? 'text-blue-100' : 'text-slate-500'
-                          }`}>
-                            {tier.subtext}
-                          </p>
+                  {PERFORMANCE_MARKETING_DATA.pricingTiers.map((tier, idx) => (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25 }}
+                      className="group relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300 text-slate-900"
+                    >
+                      <div>
+                        <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-2 text-slate-500 group-hover:text-blue-100 transition-colors">
+                          Monthly Ad Spend Bracket
                         </div>
-                      </motion.div>
-                    );
-                  })}
+                        <div className="text-lg sm:text-xl font-bold font-lora mb-3 text-slate-950 group-hover:text-white transition-colors">
+                          {tier.spendTier}
+                        </div>
+                        <div className="text-2xl sm:text-3xl font-black font-sans text-[#0072BC] group-hover:text-white transition-colors">
+                          {tier.managementFee}
+                        </div>
+                        <p className="mt-2 text-xs sm:text-sm font-sans text-slate-500 group-hover:text-blue-100 transition-colors">
+                          {tier.subtext}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
 
@@ -636,87 +622,75 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {SEO_PACKAGES_DATA.packages.map((pkg) => {
-                  const isSelected = selectedSeoPackage === pkg.id;
-                  return (
-                    <motion.div
-                      key={pkg.id}
-                      onClick={() => setSelectedSeoPackage(pkg.id)}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                      }`}
-                    >
-                      <div>
-                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                          isSelected ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          {pkg.contract} Contract
-                        </div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans">
-                          {pkg.cost}
-                        </div>
-                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'} -mt-0.5 mb-3`}>
-                          per month
-                        </div>
+                {SEO_PACKAGES_DATA.packages.map((pkg) => (
+                  <motion.div
+                    key={pkg.id}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                  >
+                    <div>
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                        {pkg.contract} Contract
+                      </div>
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                        {pkg.name} Plan
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white transition-colors">
+                        {pkg.cost}
+                      </div>
+                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3 transition-colors">
+                        per month
+                      </div>
 
-                        {/* Keyword Research & Content Output */}
-                        <div className="space-y-1.5 pt-3 border-t border-slate-200/20 text-xs font-sans">
-                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
-                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
-                          }`}>
-                            Targeted Keywords & Content
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Total Keywords:</span>
-                            <span className="font-bold">{pkg.keywords}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Blog Posts:</span>
-                            <span className="font-bold">{pkg.blogPosts}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Article Writing:</span>
-                            <span className="font-bold">{pkg.articleWriting}</span>
-                          </div>
+                      {/* Keyword Research & Content Output */}
+                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                          Targeted Keywords & Content
                         </div>
-
-                        {/* Off-Page Submissions */}
-                        <div className="space-y-1.5 pt-2.5 mt-2.5 border-t border-slate-200/20 text-xs font-sans">
-                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
-                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
-                          }`}>
-                            Off-Page Optimization & Submissions
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Directory Submissions:</span>
-                            <span className="font-bold">{pkg.directorySubmissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Social Bookmarking:</span>
-                            <span className="font-bold">{pkg.socialBookmarking}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Search Engine Submissions:</span>
-                            <span className="font-bold">{pkg.searchEngineSubmissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Image Submissions:</span>
-                            <span className="font-bold">{pkg.imageSubmissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Web 2.0 Submissions:</span>
-                            <span className="font-bold">{pkg.web2Submissions}</span>
-                          </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Total Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.keywords}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Blog Posts:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.blogPosts}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Article Writing:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.articleWriting}</span>
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+
+                      {/* Off-Page Submissions */}
+                      <div className="space-y-1.5 pt-2.5 mt-2.5 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                          Off-Page Optimization & Submissions
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Directory Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.directorySubmissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Social Bookmarking:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.socialBookmarking}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Search Engine Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.searchEngineSubmissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Image Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.imageSubmissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Web 2.0 Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.web2Submissions}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
               {/* Common Deliverables Grid (Matching SMM, Web Dev & GEO layout) */}
@@ -752,13 +726,13 @@ const CommercialsPage = () => {
                     </p>
                   </div>
 
-                  {/* Active Plan Indicator */}
-                  <div className="self-start lg:self-auto shrink-0 bg-blue-50/70 px-3 py-1.5 rounded-xl border border-blue-200/80">
+                  {/* Unified Plan Indicator */}
+                  <div className="self-start lg:self-auto shrink-0 bg-blue-50/70 px-3.5 py-2 rounded-xl border border-blue-200/80">
                     <div className="text-[10px] uppercase font-bold text-[#0072BC] tracking-wider">
-                      Active Plan: {activeSeoPackageObj.name} Plan
+                      Complete SEO Architecture
                     </div>
                     <div className="text-xs font-bold text-slate-900">
-                      {activeSeoPackageObj.cost}/month • {activeSeoPackageObj.contract} Contract
+                      Standard • Silver • Gold • Platinum
                     </div>
                   </div>
                 </div>
@@ -1122,96 +1096,84 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {GEO_PACKAGES_DATA.packages.map((pkg) => {
-                  const isSelected = selectedGeoPackage === pkg.id;
-                  return (
-                    <motion.div
-                      key={pkg.id}
-                      onClick={() => setSelectedGeoPackage(pkg.id)}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                      }`}
-                    >
-                      <div>
-                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                          isSelected ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          {pkg.contract} • {pkg.scope}
-                        </div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans">
-                          {pkg.cost}
-                        </div>
-                        <div className={`text-xs font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'} -mt-0.5 mb-3`}>
-                          per month
-                        </div>
+                {GEO_PACKAGES_DATA.packages.map((pkg) => (
+                  <motion.div
+                    key={pkg.id}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                  >
+                    <div>
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                        {pkg.contract} • {pkg.scope}
+                      </div>
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                        {pkg.name} Plan
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white transition-colors">
+                        {pkg.cost}
+                      </div>
+                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3 transition-colors">
+                        per month
+                      </div>
 
-                        {/* Keywords Research & Distribution */}
-                        <div className="space-y-1.5 pt-3 border-t border-slate-200/20 text-xs font-sans">
-                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
-                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
-                          }`}>
-                            Keywords Research & Distribution
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Total Keywords:</span>
-                            <span className="font-bold">{pkg.keywords}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Primary Keywords:</span>
-                            <span className="font-bold">{pkg.primaryKeywords}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Searched Terms:</span>
-                            <span className="font-bold">{pkg.aiKeywords}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>PASF Queries:</span>
-                            <span className="font-bold">{pkg.pasfKeywords}</span>
-                          </div>
+                      {/* Keywords Research & Distribution */}
+                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                          Keywords Research & Distribution
                         </div>
-
-                        {/* Off-Page Optimization & Submissions */}
-                        <div className="space-y-1.5 pt-2.5 border-t border-slate-200/20 text-xs font-sans">
-                          <div className={`text-[10px] uppercase font-bold tracking-wider mb-1 ${
-                            isSelected ? 'text-[#ffed4e]' : 'text-[#0072BC]'
-                          }`}>
-                            Off-Page Optimization & Submissions
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Social Bookmarking:</span>
-                            <span className="font-bold">{pkg.socialBookmarking}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Article Submissions:</span>
-                            <span className="font-bold">{pkg.articleSubmissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Web 2.0 Submissions:</span>
-                            <span className="font-bold">{pkg.web2Submissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Image Submissions:</span>
-                            <span className="font-bold">{pkg.imageSubmissions}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Search Engine Submissions:</span>
-                            <span className="font-bold">{pkg.searchEngineSubmissions}</span>
-                          </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Total Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.keywords}</span>
                         </div>
-
-                        <div className="pt-2 border-t border-slate-200/20 flex justify-between items-center text-xs font-sans">
-                          <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Optimization Scope:</span>
-                          <span className="font-bold">{pkg.scope}</span>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Primary Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.primaryKeywords}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Searched Terms:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiKeywords}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">PASF Queries:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.pasfKeywords}</span>
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+
+                      {/* Off-Page Optimization & Submissions */}
+                      <div className="space-y-1.5 pt-2.5 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                          Off-Page Optimization & Submissions
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Social Bookmarking:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.socialBookmarking}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Article Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.articleSubmissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Web 2.0 Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.web2Submissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Image Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.imageSubmissions}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Search Engine Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.searchEngineSubmissions}</span>
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200/80 group-hover:border-white/20 transition-colors flex justify-between items-center text-xs font-sans">
+                        <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Optimization Scope:</span>
+                        <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.scope}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
               {/* Common Deliverables Grid (Matching SMM & Web Dev layout) */}
@@ -1527,53 +1489,45 @@ const CommercialsPage = () => {
 
               {/* Packages Grid */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {SOCIAL_MEDIA_DATA.packages.map((pkg) => {
-                  const isSelected = selectedSmmPackage === pkg.id;
-                  return (
-                    <motion.div
-                      key={pkg.id}
-                      onClick={() => setSelectedSmmPackage(pkg.id)}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                      }`}
-                    >
-                      <div>
-                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                          isSelected ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          {pkg.platforms}
-                        </div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans mb-3">
-                          {pkg.cost}
-                        </div>
+                {SOCIAL_MEDIA_DATA.packages.map((pkg) => (
+                  <motion.div
+                    key={pkg.id}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                  >
+                    <div>
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                        {pkg.platforms}
+                      </div>
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                        {pkg.name} Plan
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-3 text-slate-950 group-hover:text-white transition-colors">
+                        {pkg.cost}
+                      </div>
 
-                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs font-sans">
-                          <div className="flex justify-between">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Image Creatives:</span>
-                            <span className="font-bold">{pkg.aiImages} / mo</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Static Posts:</span>
-                            <span className="font-bold">{pkg.staticPosts} / mo</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>Reels / Videos / GIFs:</span>
-                            <span className="font-bold">{pkg.videosReels} / mo</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-600'}>AI Videos:</span>
-                            <span className="font-bold">{pkg.aiVideos} / mo</span>
-                          </div>
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Image Creatives:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiImages} / mo</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Static Posts:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.staticPosts} / mo</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Reels / Videos / GIFs:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.videosReels} / mo</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Videos:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiVideos} / mo</span>
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
               {/* 1. Common Deliverables: 4 Core Strategic Pillars */}
@@ -1776,65 +1730,57 @@ const CommercialsPage = () => {
 
               {/* 3 Main Plans */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {WEBSITE_DEVELOPMENT_DATA.plans.map((plan) => {
-                  const isSelected = selectedWebPlan === plan.id;
-                  return (
-                    <motion.div
-                      key={plan.id}
-                      onClick={() => setSelectedWebPlan(plan.id)}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                      }`}
-                    >
-                      <div>
-                        <div className={`text-[11px] font-sans uppercase tracking-wider font-bold mb-1 ${
-                          isSelected ? 'text-blue-100' : 'text-slate-500'
-                        }`}>
-                          {plan.platform}
-                        </div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-2">{plan.name}</div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans mb-4">
-                          {plan.cost}
-                        </div>
+                {WEBSITE_DEVELOPMENT_DATA.plans.map((plan) => (
+                  <motion.div
+                    key={plan.id}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                  >
+                    <div>
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                        {plan.platform}
+                      </div>
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2 text-slate-900 group-hover:text-white transition-colors">
+                        {plan.name}
+                      </div>
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-4 text-slate-950 group-hover:text-white transition-colors">
+                        {plan.cost}
+                      </div>
 
-                        <div className="space-y-2 pt-3 border-t border-slate-200/20 text-xs sm:text-sm font-sans">
-                          <div className="flex justify-between items-start gap-2">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Theme:</span>
-                            <span className="font-semibold text-right">{plan.themeType}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Pages:</span>
-                            <span className="font-semibold">{plan.pages}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Products:</span>
-                            <span className="font-semibold">{plan.products}</span>
-                          </div>
-                          <div className="flex justify-between items-start gap-2">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>E-Commerce:</span>
-                            <span className="font-semibold text-right">{plan.ecommerceScope}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Additional:</span>
-                            <span className="font-semibold">{plan.additionalScope}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Timeline:</span>
-                            <span className={`font-semibold ${isSelected ? 'text-white' : 'text-emerald-500'}`}>{plan.timeToLive}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className={isSelected ? 'text-blue-100' : 'text-slate-500'}>Support:</span>
-                            <span className="font-semibold">{plan.support}</span>
-                          </div>
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs sm:text-sm font-sans">
+                        <div className="flex justify-between items-start gap-2">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Theme:</span>
+                          <span className="font-semibold text-right text-slate-900 group-hover:text-white transition-colors">{plan.themeType}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Pages:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.pages}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Products:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.products}</span>
+                        </div>
+                        <div className="flex justify-between items-start gap-2">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">E-Commerce:</span>
+                          <span className="font-semibold text-right text-slate-900 group-hover:text-white transition-colors">{plan.ecommerceScope}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Additional:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.additionalScope}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Timeline:</span>
+                          <span className="font-semibold text-emerald-600 group-hover:text-white transition-colors">{plan.timeToLive}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Support:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.support}</span>
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
 
               {/* Common Features Grid (Matching SMM layout) */}
@@ -1898,43 +1844,35 @@ const CommercialsPage = () => {
 
               {/* 3 GA4 Plans */}
               <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {GA4_PACKAGES_DATA.packages.map((pkg) => {
-                  const isSelected = selectedGa4Package === pkg.id;
-                  return (
-                    <motion.div
-                      key={pkg.id}
-                      onClick={() => setSelectedGa4Package(pkg.id)}
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25 }}
-                      className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer ${
-                        isSelected
-                          ? 'bg-gradient-to-br from-[#0072BC] via-[#005ea6] to-[#004d80] text-white shadow-xl shadow-blue-900/15 border border-blue-400/30'
-                          : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300'
-                      }`}
-                    >
-                      <div>
-                        <div className="text-xl sm:text-2xl font-bold font-lora mb-1">{pkg.name} Plan</div>
-                        <p className={`text-xs mb-3 font-sans ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
-                          {pkg.description}
-                        </p>
-                        <div className="text-2xl sm:text-3xl font-black font-sans mb-5">
-                          {pkg.cost}
-                        </div>
-
-                        <div className="space-y-2 pt-3 border-t border-slate-200/20 font-sans">
-                          {pkg.deliverables.map((deliv, idx) => (
-                            <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
-                              <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                                isSelected ? 'text-white' : 'text-emerald-600'
-                              }`} />
-                              <span className={isSelected ? 'text-white' : 'text-slate-700'}>{deliv}</span>
-                            </div>
-                          ))}
-                        </div>
+                {GA4_PACKAGES_DATA.packages.map((pkg) => (
+                  <motion.div
+                    key={pkg.id}
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                  >
+                    <div>
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                        {pkg.name} Plan
                       </div>
-                    </motion.div>
-                  );
-                })}
+                      <p className="text-xs mb-3 font-sans text-slate-500 group-hover:text-blue-100 transition-colors">
+                        {pkg.description}
+                      </p>
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-5 text-slate-950 group-hover:text-white transition-colors">
+                        {pkg.cost}
+                      </div>
+
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors font-sans">
+                        {pkg.deliverables.map((deliv, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
+                            <Check className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 group-hover:text-white transition-colors" />
+                            <span className="text-slate-700 group-hover:text-white transition-colors">{deliv}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
             </motion.div>
           )}
@@ -1971,21 +1909,21 @@ const CommercialsPage = () => {
                     key={idx}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="rounded-2xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 flex flex-col justify-between"
+                    className="group rounded-2xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300 flex flex-col justify-between cursor-pointer"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold text-[#0072BC] mb-1">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold text-[#0072BC] group-hover:text-[#ffed4e] mb-1 transition-colors">
                         Deliverable 0{idx + 1}
                       </div>
-                      <div className="text-xl font-bold font-lora mb-1 text-slate-950">{plan.item}</div>
-                      <div className="text-2xl font-black font-sans text-slate-900 mb-5">
+                      <div className="text-xl font-bold font-lora mb-1 text-slate-950 group-hover:text-white transition-colors">{plan.item}</div>
+                      <div className="text-2xl font-black font-sans text-slate-900 group-hover:text-white mb-5 transition-colors">
                         {plan.cost}
                       </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200 font-sans">
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors font-sans">
                         {plan.scope.map((item, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
-                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                          <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600 group-hover:text-white transition-colors">
+                            <Check className="w-4 h-4 text-emerald-600 group-hover:text-white shrink-0 mt-0.5 transition-colors" />
                             <span>{item}</span>
                           </div>
                         ))}
