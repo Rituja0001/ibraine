@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp,
+  Target,
   Search,
   Sparkles,
   Share2,
   Code,
+  BarChart2,
   BarChart3,
   PenTool,
+  FileText,
   Palette,
+  Image as ImageIcon,
   Check,
   X as XIcon,
   ChevronDown,
@@ -43,7 +47,7 @@ const SERVICES_TABS = [
     num: '01',
     label: 'Performance Marketing',
     shortLabel: 'Performance Marketing',
-    icon: TrendingUp,
+    icon: Target,
     badge: 'Popular',
     desc: 'Ad Spend Tiers & 50+ Deliverables',
   },
@@ -88,7 +92,7 @@ const SERVICES_TABS = [
     num: '06',
     label: 'Google Analytics 4 (GA4)',
     shortLabel: 'Google Analytics 4',
-    icon: BarChart3,
+    icon: BarChart2,
     badge: 'Tracking',
     desc: 'GA4 Setup & Custom Tracking',
   },
@@ -97,7 +101,7 @@ const SERVICES_TABS = [
     num: '07',
     label: 'Blog & Content Marketing',
     shortLabel: 'Blog & Content',
-    icon: PenTool,
+    icon: FileText,
     badge: 'Inbound',
     desc: 'Blog Setup & Weekly Posts',
   },
@@ -106,7 +110,7 @@ const SERVICES_TABS = [
     num: '08',
     label: 'Creative Collaterals',
     shortLabel: 'Creative Assets',
-    icon: Palette,
+    icon: ImageIcon,
     badge: '24 Deliverables',
     desc: 'A La Carte Rate Card',
   },
@@ -328,95 +332,102 @@ const CommercialsPage = () => {
       <section className="sticky top-20 z-40 bg-[#fafbfc]/90 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] py-3 sm:py-4 px-3 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Bar */}
-          <div className="flex items-center justify-between mb-2.5 sm:mb-3 text-xs sm:text-sm font-sans px-1">
-            <span className="font-bold text-slate-700 flex items-center gap-2 tracking-wide">
-              <span className="w-6 h-6 rounded-lg bg-orange-50 border border-orange-200/60 flex items-center justify-center text-[#fa8a34]">
-                <SlidersHorizontal className="w-3.5 h-3.5" />
+          <div className="flex items-center justify-between mb-3.5 text-xs sm:text-sm font-sans px-1">
+            <span className="font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2 text-xs sm:text-sm">
+              <span className="flex flex-col gap-0.5 justify-center">
+                <span className="w-3.5 h-[2px] bg-[#fa8a34] rounded-full" />
+                <span className="w-3.5 h-[2px] bg-[#fa8a34] rounded-full" />
+                <span className="w-3.5 h-[2px] bg-[#fa8a34] rounded-full" />
               </span>
-              <span className="hidden sm:inline">Select Service (8 Specialized Verticals):</span>
-              <span className="sm:hidden font-bold">Select Service:</span>
+              <span>SELECT SERVICE (TOTAL 8 SERVICES):</span>
             </span>
-            <span className="font-bold text-xs bg-blue-50/90 text-[#0072BC] px-3 py-1 rounded-full border border-blue-200/70 shadow-2xs flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0072BC] animate-pulse" />
-              <span>Active: {SERVICES_TABS.find((t) => t.id === activeTab)?.shortLabel}</span>
+            <span className="font-bold text-xs bg-blue-50/90 text-[#0072BC] px-3.5 py-1 rounded-full border border-blue-200/60 shadow-2xs">
+              Showing 8 of 8
             </span>
           </div>
 
           {/* 4-column x 2-row Grid (Desktop) / 2-column x 4-row (Mobile) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-2.5">
-              {SERVICES_TABS.map((tab) => {
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <motion.button
-                    key={tab.id}
-                    onClick={() => {
-                      setActiveTab(tab.id);
-                      if (window.innerWidth < 768) {
-                        const el = document.getElementById('commercials-content');
-                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="button"
-                    className={`group relative text-left p-3.5 sm:p-4 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[102px] sm:min-h-[110px] ${
-                      isActive
-                        ? 'bg-[#0072BC] text-white shadow-lg shadow-blue-600/30 ring-2 ring-[#0072BC] border-transparent z-10'
-                        : 'bg-white hover:bg-white text-slate-800 border border-slate-200/90 hover:border-[#0072BC]/40 shadow-xs hover:shadow-md hover:shadow-blue-900/5'
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4">
+            {SERVICES_TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    if (window.innerWidth < 768) {
+                      const el = document.getElementById('commercials-content');
+                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  className={`group relative text-left p-4 sm:p-5 rounded-2xl transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[128px] sm:min-h-[136px] overflow-hidden ${
+                    isActive
+                      ? 'bg-gradient-to-br from-[#0072BC] via-[#006bb0] to-[#005a96] text-white shadow-xl shadow-blue-700/25 ring-2 ring-[#0072BC] z-10'
+                      : 'bg-white hover:bg-slate-50/60 text-slate-800 border border-slate-200/80 hover:border-blue-200/80 shadow-[0_2px_10px_rgba(0,114,188,0.04)] hover:shadow-[0_8px_24px_rgba(0,114,188,0.09)]'
+                  }`}
+                >
+                  {/* Top Bar with Icon & VIEWING Badge */}
+                  <div className="flex items-center justify-between w-full relative z-10">
+                    <div
+                      className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-200 ${
+                        isActive
+                          ? 'bg-white text-[#0072BC] shadow-md'
+                          : 'bg-[#0072BC] text-white shadow-xs group-hover:scale-105'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </div>
+
+                    {isActive && (
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/25 text-white text-[10px] sm:text-[11px] font-bold tracking-wider shadow-2xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#ffb400] animate-pulse" />
+                        <span>VIEWING</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Service Title & Desc */}
+                  <div className="mt-4 relative z-10">
+                    <div
+                      className={`text-[15px] sm:text-[16px] font-bold font-lora leading-snug line-clamp-1 transition-colors ${
+                        isActive ? 'text-white' : 'text-slate-900 group-hover:text-[#0072BC]'
+                      }`}
+                    >
+                      {tab.shortLabel}
+                    </div>
+                    <div
+                      className={`text-[11.5px] sm:text-[12.5px] font-sans mt-1 line-clamp-1 transition-colors ${
+                        isActive ? 'text-blue-100/90 font-medium' : 'text-slate-500'
+                      }`}
+                    >
+                      {tab.desc}
+                    </div>
+                  </div>
+
+                  {/* Faint Large Watermark Number at Bottom Right */}
+                  <span
+                    className={`absolute -bottom-2.5 -right-1 text-5xl sm:text-6xl font-sans font-black select-none pointer-events-none transition-colors ${
+                      isActive ? 'text-white/10' : 'text-slate-100 group-hover:text-blue-50/80'
                     }`}
                   >
-                    {/* Top Row: Pill Badge Number & Styled Icon */}
-                    <div className="flex items-center justify-between w-full mb-2">
-                      <span
-                        className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider transition-colors ${
-                          isActive
-                            ? 'bg-[#fa8a34] text-white shadow-xs font-black'
-                            : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-[#0072BC]'
-                        }`}
-                      >
-                        {tab.num}
-                      </span>
-                      <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 ${
-                          isActive
-                            ? 'bg-white/20 border border-white/25 text-[#ffed4e] backdrop-blur-md shadow-inner'
-                            : 'bg-slate-100/90 border border-slate-200/60 text-[#0072BC] group-hover:bg-[#0072BC] group-hover:text-white group-hover:scale-105'
-                        }`}
-                      >
-                        <Icon className="w-4 h-4" />
-                      </div>
-                    </div>
+                    {tab.num}
+                  </span>
 
-                    {/* Service Title & Desc */}
-                    <div>
-                      <div
-                        className={`text-[14px] sm:text-[15.5px] font-bold font-lora leading-snug line-clamp-1 transition-colors ${
-                          isActive ? 'text-white' : 'text-slate-900 group-hover:text-[#0072BC]'
-                        }`}
-                      >
-                        {tab.shortLabel}
-                      </div>
-                      <div
-                        className={`text-[11.5px] sm:text-[12.5px] font-sans mt-0.5 line-clamp-1 transition-colors ${
-                          isActive ? 'text-blue-100/90 font-medium' : 'text-slate-500'
-                        }`}
-                      >
-                        {tab.desc}
-                      </div>
-                    </div>
-
-                    {/* Active Indicator Bar - Animated Sliding Line */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTabUnderline"
-                        className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#ffed4e] rounded-full shadow-sm"
-                      />
-                    )}
-                  </motion.button>
-                );
-              })}
-            </div>
+                  {/* Active Indicator Bar - Animated Yellow Bottom Line */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabUnderline"
+                      className="absolute bottom-0 left-4 right-4 h-1 bg-[#ffb400] rounded-t-full shadow-xs"
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
