@@ -407,9 +407,12 @@ const CommercialsPage = () => {
                       </div>
                     </div>
 
-                    {/* Subtle Downward Pointer Anchor on Active Card */}
+                    {/* Active Indicator Bar - Animated Sliding Line */}
                     {isActive && (
-                      <div className="hidden sm:block absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0072BC] rotate-45 rounded-[2px] shadow-xs pointer-events-none" />
+                      <motion.div
+                        layoutId="activeTabUnderline"
+                        className="absolute -bottom-1 left-3 right-3 h-0.5 bg-[#ffed4e] rounded-full shadow-sm"
+                      />
                     )}
                   </motion.button>
                 );
