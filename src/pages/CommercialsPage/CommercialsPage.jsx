@@ -444,19 +444,19 @@ const CommercialsPage = () => {
                       key={idx}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
-                      className="group relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300 text-slate-900"
+                      className="group relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200 text-slate-900"
                     >
                       <div>
-                        <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-2 text-slate-500 group-hover:text-blue-100 transition-colors">
+                        <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-2 text-slate-500 group-hover:text-blue-100">
                           Monthly Ad Spend Bracket
                         </div>
-                        <div className="text-lg sm:text-xl font-bold font-lora mb-3 text-slate-950 group-hover:text-white transition-colors">
+                        <div className="text-lg sm:text-xl font-bold font-lora mb-3 text-slate-950 group-hover:text-white">
                           {tier.spendTier}
                         </div>
-                        <div className="text-2xl sm:text-3xl font-black font-sans text-[#0072BC] group-hover:text-white transition-colors">
+                        <div className="text-2xl sm:text-3xl font-black font-sans text-[#0072BC] group-hover:text-white">
                           {tier.managementFee}
                         </div>
-                        <p className="mt-2 text-xs sm:text-sm font-sans text-slate-500 group-hover:text-blue-100 transition-colors">
+                        <p className="mt-2 text-xs sm:text-sm font-sans text-slate-500 group-hover:text-blue-100">
                           {tier.subtext}
                         </p>
                       </div>
@@ -627,65 +627,65 @@ const CommercialsPage = () => {
                     key={pkg.id}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100">
                         {pkg.contract} Contract
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white">
                         {pkg.name} Plan
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white transition-colors">
+                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white">
                         {pkg.cost}
                       </div>
-                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3 transition-colors">
+                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3">
                         per month
                       </div>
 
                       {/* Keyword Research & Content Output */}
-                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
-                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e]">
                           Targeted Keywords & Content
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Total Keywords:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.keywords}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Total Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.keywords}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Blog Posts:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.blogPosts}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Blog Posts:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.blogPosts}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Article Writing:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.articleWriting}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Article Writing:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.articleWriting}</span>
                         </div>
                       </div>
 
                       {/* Off-Page Submissions */}
-                      <div className="space-y-1.5 pt-2.5 mt-2.5 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
-                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                      <div className="space-y-1.5 pt-2.5 mt-2.5 border-t border-slate-200/80 group-hover:border-white/20 text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e]">
                           Off-Page Optimization & Submissions
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Directory Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.directorySubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Directory Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.directorySubmissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Social Bookmarking:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.socialBookmarking}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Social Bookmarking:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.socialBookmarking}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Search Engine Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.searchEngineSubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Search Engine Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.searchEngineSubmissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Image Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.imageSubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Image Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.imageSubmissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Web 2.0 Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.web2Submissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Web 2.0 Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.web2Submissions}</span>
                         </div>
                       </div>
                     </div>
@@ -1101,75 +1101,75 @@ const CommercialsPage = () => {
                     key={pkg.id}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100">
                         {pkg.contract} • {pkg.scope}
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white">
                         {pkg.name} Plan
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white transition-colors">
+                      <div className="text-2xl sm:text-3xl font-black font-sans text-slate-950 group-hover:text-white">
                         {pkg.cost}
                       </div>
-                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3 transition-colors">
+                      <div className="text-xs font-sans text-slate-500 group-hover:text-blue-100 -mt-0.5 mb-3">
                         per month
                       </div>
 
                       {/* Keywords Research & Distribution */}
-                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
-                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                      <div className="space-y-1.5 pt-3 border-t border-slate-200/80 group-hover:border-white/20 text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e]">
                           Keywords Research & Distribution
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Total Keywords:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.keywords}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Total Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.keywords}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Primary Keywords:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.primaryKeywords}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Primary Keywords:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.primaryKeywords}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Searched Terms:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiKeywords}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">AI Searched Terms:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.aiKeywords}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">PASF Queries:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.pasfKeywords}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">PASF Queries:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.pasfKeywords}</span>
                         </div>
                       </div>
 
                       {/* Off-Page Optimization & Submissions */}
-                      <div className="space-y-1.5 pt-2.5 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
-                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e] transition-colors">
+                      <div className="space-y-1.5 pt-2.5 border-t border-slate-200/80 group-hover:border-white/20 text-xs font-sans">
+                        <div className="text-[10px] uppercase font-bold tracking-wider mb-1 text-[#0072BC] group-hover:text-[#ffed4e]">
                           Off-Page Optimization & Submissions
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Social Bookmarking:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.socialBookmarking}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Social Bookmarking:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.socialBookmarking}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Article Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.articleSubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Article Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.articleSubmissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Web 2.0 Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.web2Submissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Web 2.0 Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.web2Submissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Image Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.imageSubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Image Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.imageSubmissions}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Search Engine Submissions:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.searchEngineSubmissions}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Search Engine Submissions:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.searchEngineSubmissions}</span>
                         </div>
                       </div>
 
-                      <div className="pt-2 border-t border-slate-200/80 group-hover:border-white/20 transition-colors flex justify-between items-center text-xs font-sans">
-                        <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Optimization Scope:</span>
-                        <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.scope}</span>
+                      <div className="pt-2 border-t border-slate-200/80 group-hover:border-white/20 flex justify-between items-center text-xs font-sans">
+                        <span className="text-slate-600 group-hover:text-blue-100">Optimization Scope:</span>
+                        <span className="font-bold text-slate-900 group-hover:text-white">{pkg.scope}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -1494,35 +1494,35 @@ const CommercialsPage = () => {
                     key={pkg.id}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                    className="group rounded-2xl p-5 sm:p-6 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100">
                         {pkg.platforms}
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white">
                         {pkg.name} Plan
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-3 text-slate-950 group-hover:text-white transition-colors">
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-3 text-slate-950 group-hover:text-white">
                         {pkg.cost}
                       </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs font-sans">
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 text-xs font-sans">
                         <div className="flex justify-between">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Image Creatives:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiImages} / mo</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">AI Image Creatives:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.aiImages} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Static Posts:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.staticPosts} / mo</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Static Posts:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.staticPosts} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Reels / Videos / GIFs:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.videosReels} / mo</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Reels / Videos / GIFs:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.videosReels} / mo</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">AI Videos:</span>
-                          <span className="font-bold text-slate-900 group-hover:text-white transition-colors">{pkg.aiVideos} / mo</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">AI Videos:</span>
+                          <span className="font-bold text-slate-900 group-hover:text-white">{pkg.aiVideos} / mo</span>
                         </div>
                       </div>
                     </div>
@@ -1735,47 +1735,47 @@ const CommercialsPage = () => {
                     key={plan.id}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100 transition-colors">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold mb-1 text-slate-500 group-hover:text-blue-100">
                         {plan.platform}
                       </div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2 text-slate-900 group-hover:text-white transition-colors">
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-2 text-slate-900 group-hover:text-white">
                         {plan.name}
                       </div>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-4 text-slate-950 group-hover:text-white transition-colors">
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-4 text-slate-950 group-hover:text-white">
                         {plan.cost}
                       </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors text-xs sm:text-sm font-sans">
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 text-xs sm:text-sm font-sans">
                         <div className="flex justify-between items-start gap-2">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Theme:</span>
-                          <span className="font-semibold text-right text-slate-900 group-hover:text-white transition-colors">{plan.themeType}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Theme:</span>
+                          <span className="font-semibold text-right text-slate-900 group-hover:text-white">{plan.themeType}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Pages:</span>
-                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.pages}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Pages:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white">{plan.pages}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Products:</span>
-                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.products}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Products:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white">{plan.products}</span>
                         </div>
                         <div className="flex justify-between items-start gap-2">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">E-Commerce:</span>
-                          <span className="font-semibold text-right text-slate-900 group-hover:text-white transition-colors">{plan.ecommerceScope}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">E-Commerce:</span>
+                          <span className="font-semibold text-right text-slate-900 group-hover:text-white">{plan.ecommerceScope}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Additional:</span>
-                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.additionalScope}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Additional:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white">{plan.additionalScope}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Timeline:</span>
-                          <span className="font-semibold text-emerald-600 group-hover:text-white transition-colors">{plan.timeToLive}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Timeline:</span>
+                          <span className="font-semibold text-emerald-600 group-hover:text-white">{plan.timeToLive}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-600 group-hover:text-blue-100 transition-colors">Support:</span>
-                          <span className="font-semibold text-slate-900 group-hover:text-white transition-colors">{plan.support}</span>
+                          <span className="text-slate-600 group-hover:text-blue-100">Support:</span>
+                          <span className="font-semibold text-slate-900 group-hover:text-white">{plan.support}</span>
                         </div>
                       </div>
                     </div>
@@ -1849,24 +1849,24 @@ const CommercialsPage = () => {
                     key={pkg.id}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300"
+                    className="group rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative cursor-pointer bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200"
                   >
                     <div>
-                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white transition-colors">
+                      <div className="text-xl sm:text-2xl font-bold font-lora mb-1 text-slate-900 group-hover:text-white">
                         {pkg.name} Plan
                       </div>
-                      <p className="text-xs mb-3 font-sans text-slate-500 group-hover:text-blue-100 transition-colors">
+                      <p className="text-xs mb-3 font-sans text-slate-500 group-hover:text-blue-100">
                         {pkg.description}
                       </p>
-                      <div className="text-2xl sm:text-3xl font-black font-sans mb-5 text-slate-950 group-hover:text-white transition-colors">
+                      <div className="text-2xl sm:text-3xl font-black font-sans mb-5 text-slate-950 group-hover:text-white">
                         {pkg.cost}
                       </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors font-sans">
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 font-sans">
                         {pkg.deliverables.map((deliv, idx) => (
                           <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
-                            <Check className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 group-hover:text-white transition-colors" />
-                            <span className="text-slate-700 group-hover:text-white transition-colors">{deliv}</span>
+                            <Check className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 group-hover:text-white" />
+                            <span className="text-slate-700 group-hover:text-white">{deliv}</span>
                           </div>
                         ))}
                       </div>
@@ -1909,21 +1909,21 @@ const CommercialsPage = () => {
                     key={idx}
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25 }}
-                    className="group rounded-2xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                    className="group rounded-2xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-xs hover:border-blue-400/30 hover:bg-gradient-to-br hover:from-[#0072BC] hover:via-[#005ea6] hover:to-[#004d80] hover:text-white hover:shadow-xl hover:shadow-blue-900/15 transition-shadow duration-200 flex flex-col justify-between cursor-pointer"
                   >
                     <div>
-                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold text-[#0072BC] group-hover:text-[#ffed4e] mb-1 transition-colors">
+                      <div className="text-[11px] font-sans uppercase tracking-wider font-bold text-[#0072BC] group-hover:text-[#ffed4e] mb-1">
                         Deliverable 0{idx + 1}
                       </div>
-                      <div className="text-xl font-bold font-lora mb-1 text-slate-950 group-hover:text-white transition-colors">{plan.item}</div>
-                      <div className="text-2xl font-black font-sans text-slate-900 group-hover:text-white mb-5 transition-colors">
+                      <div className="text-xl font-bold font-lora mb-1 text-slate-950 group-hover:text-white">{plan.item}</div>
+                      <div className="text-2xl font-black font-sans text-slate-900 group-hover:text-white mb-5">
                         {plan.cost}
                       </div>
 
-                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 transition-colors font-sans">
+                      <div className="space-y-2 pt-3 border-t border-slate-200/80 group-hover:border-white/20 font-sans">
                         {plan.scope.map((item, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600 group-hover:text-white transition-colors">
-                            <Check className="w-4 h-4 text-emerald-600 group-hover:text-white shrink-0 mt-0.5 transition-colors" />
+                          <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600 group-hover:text-white">
+                            <Check className="w-4 h-4 text-emerald-600 group-hover:text-white shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </div>
                         ))}
